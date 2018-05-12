@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,33 +11,28 @@ public class VRLaser : MonoBehaviour
 
     private GameObject laser;
     private Transform laserTransform;
+
     private Vector3 hitPoint;
-    private Transform raycastHit;
 
     private GameObject teleportReticle;
     private Transform teleportReticleTransform;
 
-    private GameObject interactReticle;
-    private Transform interactReticleTransform;
-
     private bool canTeleport;
-    //private bool canInteract;
     #endregion
 
-    public GameObject laserPrefab;
-    public Material laserMat;
+    [SerializeField]
+    private GameObject laserPrefab;
+    [SerializeField]
+    private Material laserMat;
 
-    public Transform cameraRigTransform;
-
-    public Transform headTransform;
+    [SerializeField]
+    private Transform headTransform;
 
     [Header("Teleport Reticle")]
-    public GameObject teleportReticlePrefab;
-    public Vector3 teleportReticleOffset;
-
-    //[Header("Interact Reticle")]
-    //public GameObject interactReticlePrefab;
-    //public Vector3 interactReticleOffset;
+    [SerializeField]
+    private GameObject teleportReticlePrefab;
+    [SerializeField]
+    private Vector3 teleportReticleOffset;
 
     private SteamVR_Controller.Device Controller
     {
@@ -55,12 +51,17 @@ public class VRLaser : MonoBehaviour
 
         teleportReticle = Instantiate(teleportReticlePrefab);
         teleportReticleTransform = teleportReticle.transform;
-
-        //interactReticle = Instantiate(interactReticlePrefab);
-        //interactReticleTransform = interactReticle.transform;
     }
 
     private void Update()
+    {
+        if (VRPlayerMovementManager.instance.movementType == VRPlayerMovementManager.MovementType.Teleportation)
+        {
+            HandleLaser();
+        }
+    }
+
+    private void HandleLaser()
     {
         if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
@@ -68,7 +69,6 @@ public class VRLaser : MonoBehaviour
             if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 50))
             {
                 hitPoint = hit.point;
-                raycastHit = hit.transform;
                 ShowLaser(hit);
 
                 if (hit.transform.tag == "Ground")
@@ -76,31 +76,17 @@ public class VRLaser : MonoBehaviour
                     laserMat.color = Color.green;
 
                     teleportReticle.SetActive(true);
-                    //interactReticle.SetActive(false);
                     teleportReticleTransform.position = hitPoint + teleportReticleOffset;
 
                     canTeleport = true;
                 }
-                //else if (hit.transform.tag == "Interactable")
-                //{
-                //    laserMat.color = Color.green;
-
-                //    teleportReticle.SetActive(false);
-                //    interactReticle.SetActive(true);
-                //    interactReticleTransform.position = hitPoint + interactReticleOffset;
-
-                //    canTeleport = false;
-                //    canInteract = true;
-                //}
                 else
                 {
                     laserMat.color = Color.red;
 
                     teleportReticle.SetActive(false);
-                    interactReticle.SetActive(false);
 
                     canTeleport = false;
-                    //canInteract = false;
                 }
             }
         }
@@ -108,7 +94,6 @@ public class VRLaser : MonoBehaviour
         {
             laser.SetActive(false);
             teleportReticle.SetActive(false);
-            //interactReticle.SetActive(false);
         }
 
         if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
@@ -118,15 +103,6 @@ public class VRLaser : MonoBehaviour
                 Teleport();
                 return;
             }
-
-            //if (canInteract)
-            //{
-            //    raycastHit.GetComponentInParent<Animator>().SetTrigger("Trigger");
-
-            //    canInteract = false;
-            //    interactReticle.SetActive(false);
-            //    return;
-            //}
         }
     }
 
@@ -144,9 +120,9 @@ public class VRLaser : MonoBehaviour
         canTeleport = false;
         teleportReticle.SetActive(false);
 
-        Vector3 difference = cameraRigTransform.position - headTransform.position;
+        Vector3 difference = VRPlayerMovementManager.instance.cameraRigTransform.position - headTransform.position;
         difference.y = 0;
 
-        cameraRigTransform.position = hitPoint + difference;
+        VRPlayerMovementManager.instance.cameraRigTransform.position = hitPoint + difference;
     }
 }

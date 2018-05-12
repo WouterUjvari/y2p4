@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 65198718343060342}
   - component: {fileID: 114925091457266110}
   - component: {fileID: 114163385924316594}
+  - component: {fileID: 114562083586570378}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -31,6 +32,7 @@ GameObject:
   - component: {fileID: 2348914}
   - component: {fileID: 3380982}
   - component: {fileID: 11489174}
+  - component: {fileID: 114808864148886146}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -508,7 +510,6 @@ MonoBehaviour:
   laserPrefab: {fileID: 1035184855583724, guid: d5842147ddc15d04cb67ed8d525fd5f4,
     type: 2}
   laserMat: {fileID: 2100000, guid: c282282150f0c51439c257d033d1aa7a, type: 2}
-  cameraRigTransform: {fileID: 420908}
   headTransform: {fileID: 4302074170769362}
   teleportReticlePrefab: {fileID: 1291757174082908, guid: 4d842ed9b656d0d40850c4ed381432b3,
     type: 2}
@@ -538,7 +539,6 @@ MonoBehaviour:
   laserPrefab: {fileID: 1035184855583724, guid: d5842147ddc15d04cb67ed8d525fd5f4,
     type: 2}
   laserMat: {fileID: 2100000, guid: c282282150f0c51439c257d033d1aa7a, type: 2}
-  cameraRigTransform: {fileID: 420908}
   headTransform: {fileID: 4302074170769362}
   teleportReticlePrefab: {fileID: 1291757174082908, guid: 4d842ed9b656d0d40850c4ed381432b3,
     type: 2}
@@ -556,6 +556,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
+--- !u!114 &114562083586570378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb5a99ff5f98f54a8c38f679cf8f7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
 --- !u!114 &114761902410863696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,6 +625,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &114808864148886146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a1a1eb46db8a94c9d8d86192ac9fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementType: 0
+  cameraRigTransform: {fileID: 0}
 --- !u!114 &114925091457266110
 MonoBehaviour:
   m_ObjectHideFlags: 1
