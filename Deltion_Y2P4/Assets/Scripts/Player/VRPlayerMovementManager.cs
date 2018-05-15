@@ -16,7 +16,7 @@ public class VRPlayerMovementManager : MonoBehaviour
 
     [HideInInspector]
     public Transform cameraRigTransform;
-
+	[HideInInspector]
 	public Transform headTransform;
 
     private void Awake()
@@ -31,5 +31,6 @@ public class VRPlayerMovementManager : MonoBehaviour
         }
 
         cameraRigTransform = transform;
+		headTransform = Camera.main.transform;
     }
 }

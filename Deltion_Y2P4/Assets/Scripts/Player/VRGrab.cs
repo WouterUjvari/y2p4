@@ -74,6 +74,9 @@ public class VRGrab : MonoBehaviour
         objectInHand = collidingObject;
         collidingObject = null;
 
+		objectInHand.transform.SetParent(this.transform);
+		objectInHand.GetComponent<Rigidbody> ().useGravity = false;
+
         FixedJoint joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -82,8 +85,8 @@ public class VRGrab : MonoBehaviour
     {
         FixedJoint joint = gameObject.AddComponent<FixedJoint>();
 
-        joint.breakForce = 20000;
-        joint.breakTorque = 20000;
+        joint.breakForce = Mathf.Infinity;
+		joint.breakTorque = Mathf.Infinity;
 
         return joint;
     }
@@ -100,8 +103,10 @@ public class VRGrab : MonoBehaviour
             Rigidbody rb = objectInHand.GetComponent<Rigidbody>();
             rb.velocity = Controller.velocity;
             rb.angularVelocity = Controller.angularVelocity;
+			rb.useGravity = true;
         }
 
+		objectInHand.transform.SetParent(null);
         objectInHand = null;
     }
 }

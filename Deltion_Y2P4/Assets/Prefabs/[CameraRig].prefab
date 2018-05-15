@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 65913266647031736}
   - component: {fileID: 114151691233474794}
   - component: {fileID: 114112066101260796}
+  - component: {fileID: 114377876701182958}
   - component: {fileID: 54470121130085968}
   m_Layer: 0
   m_Name: Controller (right)
@@ -588,6 +589,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 4302074170769362}
+--- !u!114 &114377876701182958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb5a99ff5f98f54a8c38f679cf8f7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 150
 --- !u!114 &114562083586570378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -599,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb5a99ff5f98f54a8c38f679cf8f7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 150
 --- !u!114 &114761902410863696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -668,8 +681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a1a1eb46db8a94c9d8d86192ac9fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 0
+  movementType: 1
   cameraRigTransform: {fileID: 0}
+  headTransform: {fileID: 413432}
 --- !u!114 &114925091457266110
 MonoBehaviour:
   m_ObjectHideFlags: 1
