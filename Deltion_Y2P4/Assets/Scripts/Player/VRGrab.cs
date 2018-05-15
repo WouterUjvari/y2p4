@@ -10,6 +10,9 @@ public class VRGrab : MonoBehaviour
     private GameObject collidingObject;
     private GameObject objectInHand;
 
+	[SerializeField]
+	private VRGrab otherHand;
+
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -71,6 +74,14 @@ public class VRGrab : MonoBehaviour
 
     private void GrabObject()
     {
+		if (otherHand != null) 
+		{
+			if (otherHand.objectInHand == collidingObject) 
+			{
+				otherHand.ReleaseObject();
+			}
+		}
+
         objectInHand = collidingObject;
         collidingObject = null;
 
@@ -91,7 +102,7 @@ public class VRGrab : MonoBehaviour
         return joint;
     }
 
-    private void ReleaseObject()
+    public void ReleaseObject()
     {
         FixedJoint joint = GetComponent<FixedJoint>();
 
