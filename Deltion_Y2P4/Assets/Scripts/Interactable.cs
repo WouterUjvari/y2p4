@@ -10,6 +10,8 @@ public class Interactable : MonoBehaviour
 
     private MeshRenderer[] renderers;
 
+	private bool isHighlighted;
+
     private void Awake()
     {
         highlightMat = Instantiate(highlightMat);
@@ -29,10 +31,12 @@ public class Interactable : MonoBehaviour
     public void Highlight()
     {
         highlightMat.SetFloat("Vector1_8DB509E0", 0);
+		isHighlighted = true;
     }
 
     public void DeHighlight()
     {
         highlightMat.SetFloat("Vector1_8DB509E0", 1);
+		isHighlighted = false;
     }
 }
