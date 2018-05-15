@@ -1,0 +1,156 @@
+<Project>
+  <Name>DeltionY2P4</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Main</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>SettingsManager</Name>
+        <Access>Public</Access>
+        <Location left="278" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VRPlayerMovementManager</Name>
+        <Access>Public</Access>
+        <Location left="940" top="43" />
+        <Size width="224" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VRTeleport</Name>
+        <Access>Public</Access>
+        <Location left="846" top="190" />
+        <Size width="162" height="100" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VRWalk</Name>
+        <Access>Public</Access>
+        <Location left="1096" top="190" />
+        <Size width="162" height="100" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VRGrab</Name>
+        <Access>Public</Access>
+        <Location left="1349" top="190" />
+        <Size width="162" height="100" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TimeManager</Name>
+        <Access>Public</Access>
+        <Location left="74" top="301" />
+        <Size width="162" height="206" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameManager</Name>
+        <Access>Public</Access>
+        <Location left="74" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Clock</Name>
+        <Access>Public</Access>
+        <Location left="74" top="566" />
+        <Size width="162" height="85" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PuzzleManager</Name>
+        <Access>Public</Access>
+        <Location left="490" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BananaManager</Name>
+        <Access>Public</Access>
+        <Location left="278" top="301" />
+        <Size width="162" height="202" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Banana</Name>
+        <Access>Public</Access>
+        <Location left="278" top="565" />
+        <Size width="162" height="86" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Highlightable</Name>
+        <Access>Public</Access>
+        <Location left="74" top="776" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Component to highlight the object when the players hand collides with it </Text>
+        <Location left="74" top="836" />
+        <Size width="162" height="154" />
+      </Entity>
+      <Entity type="Class">
+        <Name>Interactable</Name>
+        <Access>Public</Access>
+        <Location left="278" top="776" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>363</X>
+          <Y>540</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

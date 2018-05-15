@@ -47,11 +47,6 @@ public class VRGrab : MonoBehaviour
         SetCollidingObject(other);
     }
 
-    //public void OnTriggerStay(Collider other)
-    //{
-    //    SetCollidingObject(other);
-    //}
-
     public void OnTriggerExit(Collider other)
     {
         if (!collidingObject)
@@ -59,7 +54,7 @@ public class VRGrab : MonoBehaviour
             return;
         }
 
-        Interactable interactable = other.GetComponent<Interactable>();
+        Highlightable interactable = other.GetComponent<Highlightable>();
         if (interactable != null)
         {
             interactable.DeHighlight();
@@ -75,11 +70,18 @@ public class VRGrab : MonoBehaviour
             return;
         }
 
-        Interactable interactable = col.GetComponent<Interactable>();
-        if (interactable != null)
+        if (otherHand != null)
         {
-            interactable.Highlight();
+            if (otherHand.objectInHand != collidingObject)
+            {
+                Highlightable highlightable = col.GetComponent<Highlightable>();
+                if (highlightable != null)
+                {
+                    highlightable.Highlight();
+                }
+            }
         }
+
 
         collidingObject = col.gameObject;
     }
@@ -94,10 +96,10 @@ public class VRGrab : MonoBehaviour
 			}
 		}
 
-        Interactable interactable = collidingObject.GetComponent<Interactable>();
-        if (interactable != null)
+        Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
+        if (highlightable != null)
         {
-            interactable.DeHighlight();
+            highlightable.DeHighlight();
         }
 
         objectInHand = collidingObject;
