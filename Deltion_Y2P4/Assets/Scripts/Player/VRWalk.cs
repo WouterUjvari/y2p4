@@ -35,7 +35,6 @@ public class VRWalk : MonoBehaviour
             Vector2 touchpad = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
             float speed = Time.deltaTime * moveSpeed;
-			//VRPlayerMovementManager.instance.cameraRigTransform.transform.position += new Vector3(VRPlayerMovementManager.instance.headTransform.right * (touchpad.x * speed), VRPlayerMovementManager.instance.cameraRigTransform.position.y, VRPlayerMovementManager.instance.headTransform.forward * (touchpad.y * speed));
 
 			Vector3 nextPos = (VRPlayerMovementManager.instance.headTransform.transform.right * (touchpad.x * speed) + VRPlayerMovementManager.instance.headTransform.transform.forward * (touchpad.y * speed)) * Time.deltaTime;
 			nextPos.y = VRPlayerMovementManager.instance.cameraRigTransform.transform.position.y;

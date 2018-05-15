@@ -47,16 +47,22 @@ public class VRGrab : MonoBehaviour
         SetCollidingObject(other);
     }
 
-    public void OnTriggerStay(Collider other)
-    {
-        SetCollidingObject(other);
-    }
+    //public void OnTriggerStay(Collider other)
+    //{
+    //    SetCollidingObject(other);
+    //}
 
     public void OnTriggerExit(Collider other)
     {
         if (!collidingObject)
         {
             return;
+        }
+
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            interactable.DeHighlight();
         }
 
         collidingObject = null;
@@ -67,6 +73,12 @@ public class VRGrab : MonoBehaviour
         if (collidingObject || !col.GetComponent<Rigidbody>())
         {
             return;
+        }
+
+        Interactable interactable = col.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            interactable.Highlight();
         }
 
         collidingObject = col.gameObject;
@@ -81,6 +93,12 @@ public class VRGrab : MonoBehaviour
 				otherHand.ReleaseObject();
 			}
 		}
+
+        Interactable interactable = collidingObject.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            interactable.DeHighlight();
+        }
 
         objectInHand = collidingObject;
         collidingObject = null;
