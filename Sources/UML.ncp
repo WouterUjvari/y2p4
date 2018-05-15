@@ -15,7 +15,7 @@
       <Entity type="Class">
         <Name>VRPlayerMovementManager</Name>
         <Access>Public</Access>
-        <Location left="940" top="43" />
+        <Location left="890" top="41" />
         <Size width="224" height="77" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -23,7 +23,7 @@
       <Entity type="Class">
         <Name>VRTeleport</Name>
         <Access>Public</Access>
-        <Location left="846" top="190" />
+        <Location left="806" top="188" />
         <Size width="162" height="100" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -31,17 +31,19 @@
       <Entity type="Class">
         <Name>VRWalk</Name>
         <Access>Public</Access>
-        <Location left="1096" top="190" />
+        <Location left="1046" top="188" />
         <Size width="162" height="100" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>VRGrab</Name>
+        <Name>VRInteractor</Name>
         <Access>Public</Access>
-        <Location left="1349" top="190" />
-        <Size width="162" height="100" />
+        <Location left="1322" top="188" />
+        <Size width="162" height="111" />
         <Collapsed>False</Collapsed>
+        <Member type="Method">public void Interact()</Member>
+        <Member type="Method">public void DeInteract()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -95,53 +97,55 @@
       <Entity type="Class">
         <Name>Highlightable</Name>
         <Access>Public</Access>
-        <Location left="74" top="776" />
+        <Location left="74" top="702" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Comment">
         <Text>Component to highlight the object when the players hand collides with it </Text>
-        <Location left="74" top="836" />
-        <Size width="162" height="154" />
+        <Location left="74" top="746" />
+        <Size width="162" height="172" />
       </Entity>
       <Entity type="Class">
         <Name>Interactable</Name>
         <Access>Public</Access>
-        <Location left="278" top="776" />
-        <Size width="162" height="216" />
+        <Location left="1289" top="355" />
+        <Size width="219" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public abstract void Interact(VRInteractor hand)</Member>
+        <Member type="Method">public abstract void DeInteract(VRInteractor hand)</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Grabable</Name>
+        <Access>Public</Access>
+        <Location left="1242" top="525" />
+        <Size width="162" height="84" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="1" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="5" second="7">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="9" second="10">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -150,6 +154,16 @@
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="14">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1325</X>
+          <Y>489</Y>
+        </BendPoint>
       </Relationship>
     </Relationships>
   </ProjectItem>
