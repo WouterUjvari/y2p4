@@ -120,8 +120,24 @@
       <Entity type="Class">
         <Name>Grabable</Name>
         <Access>Public</Access>
-        <Location left="1242" top="525" />
+        <Location left="1148" top="526" />
         <Size width="162" height="84" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Clickable</Name>
+        <Access>Public</Access>
+        <Location left="1322" top="526" />
+        <Size width="162" height="84" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Eatable</Name>
+        <Access>Public</Access>
+        <Location left="1494" top="526" />
+        <Size width="162" height="83" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
@@ -160,9 +176,31 @@
         </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1313</X>
+          <Y>490</Y>
+        </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1325</X>
-          <Y>489</Y>
+          <X>1231</X>
+          <Y>490</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1398</X>
+          <Y>491</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="16">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1488</X>
+          <Y>491</Y>
         </BendPoint>
       </Relationship>
     </Relationships>
