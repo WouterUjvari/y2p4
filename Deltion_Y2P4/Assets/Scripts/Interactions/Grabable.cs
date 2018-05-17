@@ -28,14 +28,14 @@ public class Grabable : Interactable
         Release(hand);
     }
 
-    private void Grab(VRInteractor hand)
+    protected void Grab(VRInteractor hand)
     {
         AddFixedJoint(hand);
         transform.SetParent(reparent ? hand.transform : transform.parent);
         rb.useGravity = false;
     }
 
-    private void Release(VRInteractor hand)
+    protected void Release(VRInteractor hand)
     {
         DestroyFixedJoint(hand);
         transform.SetParent(reparent ? originalParent : transform.parent);
@@ -58,7 +58,6 @@ public class Grabable : Interactable
 
         if (joint != null)
         {
-            //joint.connectedBody = null;
             Destroy(joint);
 
             rb.velocity = hand.Controller.velocity;

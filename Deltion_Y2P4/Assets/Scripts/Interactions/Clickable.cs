@@ -18,10 +18,10 @@ public class Clickable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
-        interactEvent.Invoke();
-
         if (canInteract)
         {
+            interactEvent.Invoke();
+
             anim.SetTrigger("Interact");
             canInteract = false;
         }

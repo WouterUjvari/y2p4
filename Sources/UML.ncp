@@ -87,14 +87,6 @@
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>Banana</Name>
-        <Access>Public</Access>
-        <Location left="278" top="565" />
-        <Size width="162" height="86" />
-        <Collapsed>False</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
         <Name>Highlightable</Name>
         <Access>Public</Access>
         <Location left="74" top="702" />
@@ -120,7 +112,7 @@
       <Entity type="Class">
         <Name>Grabable</Name>
         <Access>Public</Access>
-        <Location left="1148" top="526" />
+        <Location left="1210" top="526" />
         <Size width="162" height="84" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -128,7 +120,7 @@
       <Entity type="Class">
         <Name>Clickable</Name>
         <Access>Public</Access>
-        <Location left="1322" top="526" />
+        <Location left="1428" top="526" />
         <Size width="162" height="84" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -136,7 +128,15 @@
       <Entity type="Class">
         <Name>Eatable</Name>
         <Access>Public</Access>
-        <Location left="1494" top="526" />
+        <Location left="1122" top="685" />
+        <Size width="162" height="83" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Grabable_Restricted</Name>
+        <Access>Public</Access>
+        <Location left="1301" top="685" />
         <Size width="162" height="83" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -161,31 +161,21 @@
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
-      <Relationship type="Association" first="9" second="10">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>363</X>
-          <Y>540</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Association</AssociationType>
-      </Relationship>
-      <Relationship type="Dependency" first="13" second="14">
+      <Relationship type="Dependency" first="12" second="13">
         <Label>
         </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1313</X>
-          <Y>490</Y>
+          <X>1379</X>
+          <Y>491</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1231</X>
-          <Y>490</Y>
+          <X>1290</X>
+          <Y>501</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Dependency" first="13" second="15">
+      <Relationship type="Dependency" first="12" second="14">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -193,15 +183,13 @@
           <Y>491</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Dependency" first="13" second="16">
-        <Label>
-        </Label>
+      <Relationship type="Dependency" first="13" second="15">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1488</X>
-          <Y>491</Y>
-        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="16">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
       </Relationship>
     </Relationships>
   </ProjectItem>

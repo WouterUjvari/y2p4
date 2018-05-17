@@ -39,6 +39,9 @@ public class VRInteractor : MonoBehaviour
                 DeInteract();
             }
         }
+
+        Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+        print(triggerAxis);
     }
 
     public void OnTriggerEnter(Collider other)
