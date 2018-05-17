@@ -43,7 +43,6 @@ public class VRInteractor : MonoBehaviour
         }
 
         Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
-        print(triggerAxis);
         handActions.timeline = triggerAxis.x;
     }
 
@@ -56,14 +55,15 @@ public class VRInteractor : MonoBehaviour
 
         if (otherHand != null)
         {
-            if (otherHand.interactingObject.gameObject != collidingObject)
+			if (otherHand.interactingObject == null || otherHand.interactingObject.gameObject != collidingObject)
             {
                 Highlightable highlightable = other.GetComponent<Highlightable>();
                 if (highlightable != null)
                 {
+					print ("test");
                     highlightable.Highlight();
-                }
-            }
+                }            
+			}
         }
 
         Interactable interactable = other.GetComponent<Interactable>();
@@ -101,7 +101,7 @@ public class VRInteractor : MonoBehaviour
     {
         if (otherHand != null)
         {
-            if (otherHand.interactingObject.gameObject == collidingObject)
+			if (otherHand.interactingObject != null && otherHand.interactingObject.gameObject == collidingObject)
             {
                 otherHand.DeInteract();
             }
@@ -116,6 +116,7 @@ public class VRInteractor : MonoBehaviour
         Interactable interactable = collidingObject.GetComponent<Interactable>();
         if (interactable != null)
         {
+			print ("interactable found");
             interactable.Interact(this);
             interactingObject = interactable;
             collidingObject = null;

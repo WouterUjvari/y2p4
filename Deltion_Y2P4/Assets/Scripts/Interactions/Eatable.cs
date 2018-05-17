@@ -30,18 +30,15 @@ public class Eatable : Grabable
 
     public override void Interact(VRInteractor hand)
     {
-        base.Interact(hand);
-
+		Grab(hand);
         trackPosition = true;
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
-
+		Release(hand);
         trackPosition = false;
     }
-
 
     private void EatObject()
     {

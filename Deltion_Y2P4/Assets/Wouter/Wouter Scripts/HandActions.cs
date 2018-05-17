@@ -10,7 +10,7 @@ public class HandActions : MonoBehaviour {
 
     void Update()
     {
-        anim.SetFloat("TimeLine", timeline);
+		anim.SetFloat("TimeLine", Mathf.Clamp(timeline, 0, 0.9f));
         anim.SetBool("Press", press);
     }
 }

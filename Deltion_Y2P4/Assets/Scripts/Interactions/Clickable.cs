@@ -18,6 +18,7 @@ public class Clickable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
+		print ("button click");
         if (canInteract)
         {
             interactEvent.Invoke();
