@@ -12,6 +12,9 @@ public class Eatable : Grabable
     [SerializeField]
     private float eatDistance = 5f;
 
+    [SerializeField]
+    private GameObject eatParticle;
+
     private void Update()
     {
         if (!trackPosition)
@@ -43,6 +46,12 @@ public class Eatable : Grabable
     private void EatObject()
     {
         eatEvent.Invoke();
+
+        if (eatParticle != null)
+        {
+            Instantiate(eatParticle, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 }

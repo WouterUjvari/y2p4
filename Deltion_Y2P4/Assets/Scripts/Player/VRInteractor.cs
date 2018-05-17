@@ -8,8 +8,9 @@ public class VRInteractor : MonoBehaviour
     private GameObject collidingObject;
     private Interactable interactingObject;
 
-	[SerializeField]
-	private VRInteractor otherHand;
+    [SerializeField]
+    private VRInteractor otherHand;
+    private HandActions handActions;
 
     [HideInInspector]
     public SteamVR_Controller.Device Controller
@@ -20,6 +21,7 @@ public class VRInteractor : MonoBehaviour
     private void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        handActions = GetComponentInChildren<HandActions>();
     }
 
     private void Update()
@@ -42,6 +44,7 @@ public class VRInteractor : MonoBehaviour
 
         Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
         print(triggerAxis);
+        handActions.timeline = triggerAxis.x;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -63,6 +66,11 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            handActions.press = (interactable is Clickable ? true : false);
+        }
 
         collidingObject = other.gameObject;
     }
@@ -74,10 +82,16 @@ public class VRInteractor : MonoBehaviour
             return;
         }
 
-        Highlightable interactable = other.GetComponent<Highlightable>();
+        Highlightable highlightable = other.GetComponent<Highlightable>();
+        if (highlightable != null)
+        {
+            highlightable.DeHighlight();
+        }
+
+        Interactable interactable = other.GetComponent<Interactable>();
         if (interactable != null)
         {
-            interactable.DeHighlight();
+            handActions.press = false;
         }
 
         collidingObject = null;
@@ -85,13 +99,13 @@ public class VRInteractor : MonoBehaviour
 
     private void Interact()
     {
-		if (otherHand != null) 
-		{
-			if (otherHand.interactingObject.gameObject == collidingObject) 
-			{
-				otherHand.DeInteract();
-			}
-		}
+        if (otherHand != null)
+        {
+            if (otherHand.interactingObject.gameObject == collidingObject)
+            {
+                otherHand.DeInteract();
+            }
+        }
 
         Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
         if (highlightable != null)
