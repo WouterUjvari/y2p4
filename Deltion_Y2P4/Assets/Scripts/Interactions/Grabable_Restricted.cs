@@ -17,6 +17,7 @@ public class Grabable_Restricted : Grabable
     public AxisToRestrict axisToRestrict;
 
     private Vector3 restrictedAxis;
+    private Quaternion restrictedRot;
 
     private void Update()
     {
@@ -52,6 +53,8 @@ public class Grabable_Restricted : Grabable
                 transform.position = new Vector3(transform.position.x, transform.position.y, restrictedAxis.z);
                 break;
         }
+
+        transform.rotation = restrictedRot;
     }
 
     public override void Interact(VRInteractor hand)
@@ -73,5 +76,6 @@ public class Grabable_Restricted : Grabable
     private void LockRestrictedAxis()
     {
         restrictedAxis = transform.position;
+        restrictedRot = transform.rotation;
     }
 }

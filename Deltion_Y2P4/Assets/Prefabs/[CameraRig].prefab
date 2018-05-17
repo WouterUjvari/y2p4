@@ -5730,7 +5730,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.2}
+  m_Size: {x: 0.1, y: 0.1, z: 0.14}
   m_Center: {x: 0, y: -0.03, z: -0.05}
 --- !u!65 &65913266647031736
 BoxCollider:
@@ -5742,7 +5742,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.2}
+  m_Size: {x: 0.1, y: 0.1, z: 0.14}
   m_Center: {x: 0, y: -0.03, z: -0.05}
 --- !u!81 &81192091666795182
 AudioListener:
@@ -5830,6 +5830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b8e4b04394594eaab5418f67e32b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidingObject: {fileID: 0}
+  interactingObject: {fileID: 0}
   otherHand: {fileID: 114925091457266110}
 --- !u!114 &114163385924316594
 MonoBehaviour:
@@ -5996,6 +5998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b8e4b04394594eaab5418f67e32b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidingObject: {fileID: 0}
+  interactingObject: {fileID: 0}
   otherHand: {fileID: 114151691233474794}
 --- !u!114 &114942441114420984
 MonoBehaviour:

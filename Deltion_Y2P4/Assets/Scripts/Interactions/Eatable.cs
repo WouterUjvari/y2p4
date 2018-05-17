@@ -10,7 +10,7 @@ public class Eatable : Grabable
     private UnityEvent eatEvent;
 
     [SerializeField]
-    private float eatDistance = 5f;
+    private float eatDistance = 0.2f;
 
     [SerializeField]
     private GameObject eatParticle;
@@ -30,13 +30,15 @@ public class Eatable : Grabable
 
     public override void Interact(VRInteractor hand)
     {
-		Grab(hand);
+        base.Interact(hand);
+
         trackPosition = true;
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-		Release(hand);
+        base.DeInteract(hand);
+
         trackPosition = false;
     }
 
