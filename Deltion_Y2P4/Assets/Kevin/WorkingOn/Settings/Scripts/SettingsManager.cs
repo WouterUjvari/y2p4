@@ -26,15 +26,15 @@ public class SettingsManager : MonoBehaviour {
 		mainMixer.SetFloat("Master",volume);
 	}
 
-	public void GameVolumeMusic(float volume)
-	{
-		mainMixer.SetFloat("Music",volume);
-	}
+	// public void GameVolumeMusic(float volume)
+	// {
+	// 	mainMixer.SetFloat("Music",volume);
+	// }
 
-	public void GameVolumeEffects(float volume)
-	{
-		mainMixer.SetFloat("SoundEffects",volume);
-	}
+	// public void GameVolumeEffects(float volume)
+	// {
+	// 	mainMixer.SetFloat("SoundEffects",volume);
+	// }
 
 	public void ChangeQuality(int qualityIndex)
 	{
