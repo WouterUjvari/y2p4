@@ -33,6 +33,7 @@ public class SettingsQuality : MonoBehaviour {
 		float handelValue;
 		handelValue = Vector3.Distance(handelMin, new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z)));
 		print(handelValue);
+		print(WrapAngle(transform.rotation.eulerAngles.x));
 		if(handelValue >= lastStep + resultStep)
 		{
 			lastStep += resultStep;
@@ -55,7 +56,9 @@ public class SettingsQuality : MonoBehaviour {
 	{
 		angle%=360;
 		if(angle >180)
+		{
 			return angle - 360;
+		}	
 
 		return angle;
 	}
