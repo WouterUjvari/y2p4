@@ -7,17 +7,17 @@ public class Grabable : Interactable
 {
 
     [SerializeField]
-    private bool reparent;
+    protected bool reparent;
 
     [SerializeField]
     private List<Collider> collidersToTurnOff = new List<Collider>();
 
-    private Rigidbody rb;
+    protected Rigidbody rb;
     private Transform originalParent;
 
     private bool gravity;
 
-    private void Awake()
+    public virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         originalParent = transform.parent;
@@ -35,7 +35,7 @@ public class Grabable : Interactable
         Release(hand);
     }
 
-    protected void Grab(VRInteractor hand)
+    public virtual void Grab(VRInteractor hand)
     {
         AddFixedJoint(hand);
         transform.SetParent(reparent ? hand.transform : transform.parent);
@@ -47,7 +47,7 @@ public class Grabable : Interactable
         }
     }
 
-    protected void Release(VRInteractor hand)
+    public virtual void Release(VRInteractor hand)
     {
         transform.SetParent(reparent ? originalParent : transform.parent);
         rb.useGravity = gravity ? true : false;
@@ -79,8 +79,8 @@ public class Grabable : Interactable
             joint.connectedBody = null;
             Destroy(joint);
 
-            rb.velocity = hand.Controller.velocity;
-            rb.angularVelocity = hand.Controller.angularVelocity;
+            rb.velocity = (hand.Controller != null) ? hand.Controller.velocity : Vector3.zero;
+            rb.angularVelocity = (hand.Controller != null) ? hand.Controller.angularVelocity : Vector3.zero;
         }
     }
 }

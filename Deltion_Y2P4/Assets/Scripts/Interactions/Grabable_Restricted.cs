@@ -19,16 +19,16 @@ public class Grabable_Restricted : Grabable
     private Vector3 restrictedAxis;
     private Quaternion restrictedRot;
 
-    private Rigidbody rb;
-
     private Vector3 defaultPos;
+    private Vector3 currentPos;
 
     [SerializeField]
     private float maxMoveAmount;
 
-    private void Awake()
+    public override void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        base.Awake();
+
         defaultPos = transform.position;
     }
 
@@ -39,60 +39,39 @@ public class Grabable_Restricted : Grabable
             return;
         }
 
-        switch (axisToRestrict)
+        currentPos = transform.position;
+        transform.rotation = restrictedRot;
+    }
+
+    private void LateUpdate()
+    {
+        if (!restrict)
         {
-            case AxisToRestrict.X:
-
-                transform.position = new Vector3(restrictedAxis.x, GetClampedAxis(transform.position.y), GetClampedAxis(transform.position.z));
-                rb.constraints = RigidbodyConstraints.FreezePositionX;
-                break;
-            case AxisToRestrict.XY:
-
-                transform.position = new Vector3(restrictedAxis.x, restrictedAxis.y, GetClampedAxis(transform.position.z));
-                rb.constraints = RigidbodyConstraints.FreezePositionX;
-                rb.constraints = RigidbodyConstraints.FreezePositionY;
-                break;
-            case AxisToRestrict.XZ:
-
-                transform.position = new Vector3(restrictedAxis.x, GetClampedAxis(transform.position.y), restrictedAxis.z);
-                rb.constraints = RigidbodyConstraints.FreezePositionX;
-                rb.constraints = RigidbodyConstraints.FreezePositionZ;
-                break;
-            case AxisToRestrict.Y:
-
-                transform.position = new Vector3(GetClampedAxis(transform.position.x), restrictedAxis.y, GetClampedAxis(transform.position.z));
-                rb.constraints = RigidbodyConstraints.FreezePositionY;
-                break;
-            case AxisToRestrict.YZ:
-
-                transform.position = new Vector3(GetClampedAxis(transform.position.x), restrictedAxis.y, restrictedAxis.z);
-                rb.constraints = RigidbodyConstraints.FreezePositionY;
-                rb.constraints = RigidbodyConstraints.FreezePositionZ;
-                break;
-            case AxisToRestrict.Z:
-
-                transform.position = new Vector3(GetClampedAxis(transform.position.x), GetClampedAxis(transform.position.y), restrictedAxis.z);
-                rb.constraints = RigidbodyConstraints.FreezePositionZ;
-                break;
+            return;
         }
 
-        transform.rotation = restrictedRot;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        Vector3 deltaPos = (transform.position - currentPos);
+        print(deltaPos);
     }
 
     public override void Interact(VRInteractor hand)
     {
-        base.Interact(hand);
-
-        restrict = true;
-        LockRestrictedAxis();
-        ResetRigidbodyConstraints();
+        Grab(hand);
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
+        Release(hand);
+    }
 
+    public override void Grab(VRInteractor hand)
+    {
+        restrict = true;
+        LockRestrictedAxis();
+    }
+
+    public override void Release(VRInteractor hand)
+    {
         restrict = false;
     }
 
