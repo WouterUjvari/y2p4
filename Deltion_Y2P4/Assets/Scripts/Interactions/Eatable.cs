@@ -10,7 +10,12 @@ public class Eatable : Grabable
     private UnityEvent eatEvent;
 
     [SerializeField]
-    private float eatDistance = 5f;
+    private float eatDistance = 0.2f;
+
+    [SerializeField]
+    private GameObject eatParticle;
+
+	private VRInteractor interactingHand;
 
     private void Update()
     {
@@ -27,22 +32,31 @@ public class Eatable : Grabable
 
     public override void Interact(VRInteractor hand)
     {
-        base.Interact(hand);
-
+		Grab(hand);
         trackPosition = true;
+
+		interactingHand = hand;
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
-
+		Release(hand);
         trackPosition = false;
-    }
 
+		interactingHand = null;
+    }
 
     private void EatObject()
     {
         eatEvent.Invoke();
+
+        if (eatParticle != null)
+        {
+            Instantiate(eatParticle, transform.position, Quaternion.identity);
+        }
+
+		interactingHand.DeInteract ();
+
         Destroy(gameObject);
     }
 }

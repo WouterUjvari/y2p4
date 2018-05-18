@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class SettingsSlider : SettingsButton {
 
+	public enum VolumeType
+	{
+		Master,
+		Music,
+		Effects
+	}
+
+	public VolumeType volumeType;
 	public Vector3 sliderMin;
+	// the amount of distance it can move from start to end
 	public float maxMovement;
 	private float resultMultiplier;
 
@@ -12,7 +21,6 @@ public class SettingsSlider : SettingsButton {
 	{
 		sliderMin = transform.position;
 		resultMultiplier = -80 / maxMovement;
-		print(resultMultiplier);
 	}
 
 	void Update()
@@ -25,12 +33,24 @@ public class SettingsSlider : SettingsButton {
 		float sliderValue;
 		sliderValue = Vector3.Distance(sliderMin, transform.position);
 		sliderValue *= resultMultiplier;
-		print(sliderValue);
 		ChangeVolume(sliderValue);
 	}
 
 	public void ChangeVolume(float variable)
 	{
-		SettingsManager.instance.GameVolume(variable);
+		if(volumeType == VolumeType.Master)
+		{
+			SettingsManager.instance.GameVolume(variable);
+		}
+		
+		if(volumeType == VolumeType.Music)
+		{
+			SettingsManager.instance.GameVolumeMusic(variable);
+		}
+
+		if(volumeType == VolumeType.Effects)
+		{
+			SettingsManager.instance.GameVolumeEffects(variable);
+		}
 	}
 }

@@ -5,11 +5,12 @@ public class VRInteractor : MonoBehaviour
 
     private SteamVR_TrackedObject trackedObj;
 
-    private GameObject collidingObject;
-    private Interactable interactingObject;
+    public GameObject collidingObject;
+    public Interactable interactingObject;
 
-	[SerializeField]
-	private VRInteractor otherHand;
+    [SerializeField]
+    private VRInteractor otherHand;
+    private HandActions handActions;
 
     [HideInInspector]
     public SteamVR_Controller.Device Controller
@@ -20,10 +21,30 @@ public class VRInteractor : MonoBehaviour
     private void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        handActions = GetComponentInChildren<HandActions>();
     }
 
     private void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    if (collidingObject != null)
+        //    {
+        //        print("interact");
+        //        Interact();
+        //    }
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.E))
+        //{
+        //    if (interactingObject != null)
+        //    {
+        //        print("deinteract");
+        //        DeInteract();
+        //    }
+        //}
+
+        // If the trigger gets pressed down and there is a colliding object, interact with it.
         if (Controller.GetHairTriggerDown())
         {
             if (collidingObject != null)
@@ -32,6 +53,7 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
+        // If the trigger gets pressed up and the player is interacting with an object, deinteract with it.
         if (Controller.GetHairTriggerUp())
         {
             if (interactingObject != null)
@@ -41,21 +63,33 @@ public class VRInteractor : MonoBehaviour
         }
 
         Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
-        print(triggerAxis);
+        handActions.timeline = triggerAxis.x;
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (collidingObject != null || !other.GetComponent<Rigidbody>())
+        // If the player is already interacting with an object, ignore new collisions.
+        if (interactingObject != null)
         {
             return;
         }
 
+        // If theres already a colliding object, check if it has a highlight component and if so, dehighlight it.
+        if (collidingObject != null)
+        {
+            Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
+            if (highlightable != null)
+            {
+                highlightable.DeHighlight();
+            }
+        }
+
+        // If were currently not colliding with the object our other hand is colliding with, highlight our current object.
         if (otherHand != null)
         {
-            if (otherHand.interactingObject.gameObject != collidingObject)
+            if (otherHand.interactingObject == null || otherHand.interactingObject.gameObject != other.gameObject)
             {
-                Highlightable highlightable = other.GetComponent<Highlightable>();
+                Highlightable highlightable = other.gameObject.GetComponent<Highlightable>();
                 if (highlightable != null)
                 {
                     highlightable.Highlight();
@@ -63,53 +97,75 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
-
-        collidingObject = other.gameObject;
+        // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
+        Interactable interactable = other.gameObject.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            collidingObject = other.gameObject;
+            handActions.press = (interactable is Clickable ? true : false);
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (collidingObject == null)
+        // If the exiting object is not our collidingObject, ignore this function.
+        if (other.gameObject != collidingObject)
         {
             return;
         }
 
-        Highlightable interactable = other.GetComponent<Highlightable>();
-        if (interactable != null)
+        // If the exiting object has a highlight component, dehighlight it.
+        Highlightable highlightable = other.GetComponent<Highlightable>();
+        if (highlightable != null)
         {
-            interactable.DeHighlight();
+            highlightable.DeHighlight();
         }
 
+        // If the exiting object is an interactable, reset our hand animation to the default grab animation.
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            handActions.press = false;
+        }
+
+        // Set collidingObject to null since it has exited our trigger.
         collidingObject = null;
     }
 
     private void Interact()
     {
-		if (otherHand != null) 
-		{
-			if (otherHand.interactingObject.gameObject == collidingObject) 
-			{
-				otherHand.DeInteract();
-			}
-		}
+        // Check if the object were supposed to interact with is indeed an interactable, if not then return.
+        Interactable interactable = collidingObject.GetComponent<Interactable>();
+        if (interactable == null)
+        {
+            return;
+        }
 
+        // If the other hand is interacting with the object this hand wants to interact with, deinteract it from the other hand.
+        if (otherHand != null)
+        {
+            if (otherHand.interactingObject != null && otherHand.interactingObject.gameObject == collidingObject)
+            {
+                otherHand.DeInteract();
+            }
+        }
+
+        // Check if the object we wanna interact with has a highlight component and deactivate it if it has one.
         Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
         if (highlightable != null)
         {
             highlightable.DeHighlight();
         }
 
-        Interactable interactable = collidingObject.GetComponent<Interactable>();
-        if (interactable != null)
-        {
-            interactable.Interact(this);
-            interactingObject = interactable;
-            collidingObject = null;
-        }
+        // Interact with the object and set the interactingObject.
+        interactable.Interact(this);
+        interactingObject = interactable;
+        //collidingObject = null;
     }
 
     public void DeInteract()
     {
+        // Deinteract with the interactingObject and set it to null.
         interactingObject.DeInteract(this);
         interactingObject = null;
     }

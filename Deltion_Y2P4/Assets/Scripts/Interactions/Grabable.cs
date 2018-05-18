@@ -7,15 +7,22 @@ public class Grabable : Interactable
 {
 
     [SerializeField]
-    private bool reparent;
+    protected bool reparent;
 
-    private Rigidbody rb;
+    [SerializeField]
+    private List<Collider> collidersToTurnOff = new List<Collider>();
+
+    protected Rigidbody rb;
     private Transform originalParent;
 
-    private void Awake()
+    private bool gravity;
+
+    public virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         originalParent = transform.parent;
+
+        gravity = rb.useGravity;
     }
 
     public override void Interact(VRInteractor hand)
@@ -28,18 +35,29 @@ public class Grabable : Interactable
         Release(hand);
     }
 
-    protected void Grab(VRInteractor hand)
+    public virtual void Grab(VRInteractor hand)
     {
         AddFixedJoint(hand);
         transform.SetParent(reparent ? hand.transform : transform.parent);
         rb.useGravity = false;
+
+        for (int i = 0; i < collidersToTurnOff.Count; i++)
+        {
+            collidersToTurnOff[i].enabled = false;
+        }
     }
 
-    protected void Release(VRInteractor hand)
+    public virtual void Release(VRInteractor hand)
     {
-        DestroyFixedJoint(hand);
         transform.SetParent(reparent ? originalParent : transform.parent);
-        rb.useGravity = true;
+        rb.useGravity = gravity ? true : false;
+
+        for (int i = 0; i < collidersToTurnOff.Count; i++)
+        {
+            collidersToTurnOff[i].enabled = true;
+        }
+
+        DestroyFixedJoint(hand);
     }
 
     private void AddFixedJoint(VRInteractor hand)
@@ -58,10 +76,11 @@ public class Grabable : Interactable
 
         if (joint != null)
         {
+            joint.connectedBody = null;
             Destroy(joint);
 
-            rb.velocity = hand.Controller.velocity;
-            rb.angularVelocity = hand.Controller.angularVelocity;
+            rb.velocity = (hand.Controller != null) ? hand.Controller.velocity : Vector3.zero;
+            rb.angularVelocity = (hand.Controller != null) ? hand.Controller.angularVelocity : Vector3.zero;
         }
     }
 }

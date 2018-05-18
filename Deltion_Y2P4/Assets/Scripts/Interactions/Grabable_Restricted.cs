@@ -17,6 +17,20 @@ public class Grabable_Restricted : Grabable
     public AxisToRestrict axisToRestrict;
 
     private Vector3 restrictedAxis;
+    private Quaternion restrictedRot;
+
+    private Vector3 defaultPos;
+    private Vector3 currentPos;
+
+    [SerializeField]
+    private float maxMoveAmount;
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        defaultPos = transform.position;
+    }
 
     private void Update()
     {
@@ -25,53 +39,56 @@ public class Grabable_Restricted : Grabable
             return;
         }
 
-        switch (axisToRestrict)
+        currentPos = transform.position;
+        transform.rotation = restrictedRot;
+    }
+
+    private void LateUpdate()
+    {
+        if (!restrict)
         {
-            case AxisToRestrict.X:
-
-                transform.position = new Vector3(restrictedAxis.x, transform.position.y, transform.position.z);
-                break;
-            case AxisToRestrict.XY:
-
-                transform.position = new Vector3(restrictedAxis.x, restrictedAxis.y, transform.position.z);
-                break;
-            case AxisToRestrict.XZ:
-
-                transform.position = new Vector3(restrictedAxis.x, transform.position.y, restrictedAxis.z);
-                break;
-            case AxisToRestrict.Y:
-
-                transform.position = new Vector3(transform.position.x, restrictedAxis.y, transform.position.z);
-                break;
-            case AxisToRestrict.YZ:
-
-                transform.position = new Vector3(transform.position.x, restrictedAxis.y, restrictedAxis.z);
-                break;
-            case AxisToRestrict.Z:
-
-                transform.position = new Vector3(transform.position.x, transform.position.y, restrictedAxis.z);
-                break;
+            return;
         }
+
+        Vector3 deltaPos = (transform.position - currentPos);
+        print(deltaPos);
     }
 
     public override void Interact(VRInteractor hand)
     {
-        base.Interact(hand);
-
-        restrict = true;
-        LockRestrictedAxis();
+        Grab(hand);
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
+        Release(hand);
+    }
 
-        restrict = false;
+    public override void Grab(VRInteractor hand)
+    {
+        restrict = true;
         LockRestrictedAxis();
+    }
+
+    public override void Release(VRInteractor hand)
+    {
+        restrict = false;
     }
 
     private void LockRestrictedAxis()
     {
         restrictedAxis = transform.position;
+        restrictedRot = transform.rotation;
+    }
+
+    private void ResetRigidbodyConstraints()
+    {
+        rb.constraints = RigidbodyConstraints.None;
+    }
+
+    private float GetClampedAxis(float axis)
+    {
+        Mathf.Clamp(axis, axis - maxMoveAmount, axis + maxMoveAmount);
+        return axis;
     }
 }
