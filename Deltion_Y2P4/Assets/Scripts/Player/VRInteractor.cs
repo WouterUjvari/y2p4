@@ -44,8 +44,11 @@ public class VRInteractor : MonoBehaviour
         //    }
         //}
 
+		Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+        handActions.timeline = triggerAxis.x;
+
         // If the trigger gets pressed down and there is a colliding object, interact with it.
-        if (Controller.GetHairTriggerDown())
+		if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (collidingObject != null)
             {
@@ -54,16 +57,13 @@ public class VRInteractor : MonoBehaviour
         }
 
         // If the trigger gets pressed up and the player is interacting with an object, deinteract with it.
-        if (Controller.GetHairTriggerUp())
+		if (Controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (interactingObject != null)
             {
                 DeInteract();
             }
         }
-
-        Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
-        handActions.timeline = triggerAxis.x;
     }
 
     public void OnTriggerEnter(Collider other)

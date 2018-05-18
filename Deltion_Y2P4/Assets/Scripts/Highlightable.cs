@@ -14,6 +14,11 @@ public class Highlightable : MonoBehaviour
 
     private void Awake()
     {
+        if (highlightMat == null)
+        {
+            return;
+        }
+
         highlightMat = Instantiate(highlightMat);
 
         renderers = GetComponentsInChildren<MeshRenderer>();
@@ -30,12 +35,22 @@ public class Highlightable : MonoBehaviour
 
     public void Highlight()
     {
+        if (highlightMat == null)
+        {
+            return;
+        }
+
         highlightMat.SetFloat("Vector1_8DB509E0", 0);
 		isHighlighted = true;
     }
 
     public void DeHighlight()
     {
+        if (highlightMat == null)
+        {
+            return;
+        }
+
         highlightMat.SetFloat("Vector1_8DB509E0", 1);
 		isHighlighted = false;
     }

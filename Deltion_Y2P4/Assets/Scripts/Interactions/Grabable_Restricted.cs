@@ -39,21 +39,17 @@ public class Grabable_Restricted : Grabable
             return;
         }
 
-        currentPos = transform.position;
+		Vector3 deltaPos = (transform.position - currentPos);
+		print(deltaPos);
+
         transform.rotation = restrictedRot;
     }
 
-    private void LateUpdate()
-    {
-        if (!restrict)
-        {
-            return;
-        }
-
-        Vector3 deltaPos = (transform.position - currentPos);
-        print(deltaPos);
-    }
-
+	private void LateUpdate()
+	{
+		currentPos = transform.position;
+	}
+		
     public override void Interact(VRInteractor hand)
     {
         Grab(hand);
@@ -68,6 +64,8 @@ public class Grabable_Restricted : Grabable
     {
         restrict = true;
         LockRestrictedAxis();
+
+		currentPos = transform.position;
     }
 
     public override void Release(VRInteractor hand)

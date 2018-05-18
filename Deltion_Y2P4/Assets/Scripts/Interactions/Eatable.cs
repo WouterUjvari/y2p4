@@ -50,6 +50,11 @@ public class Eatable : Grabable
     {
         eatEvent.Invoke();
 
+		for (int i = 0; i < collidersToTurnOff.Count; i++)
+		{
+			collidersToTurnOff[i].enabled = true;
+		}
+
         if (eatParticle != null)
         {
             Instantiate(eatParticle, transform.position, Quaternion.identity);
