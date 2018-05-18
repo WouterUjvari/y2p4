@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: bad4549f5ea36b84eb63e4d45203093c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -14482,7 +14482,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16454
+  m_Name: pb_Mesh18444
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -53099,6 +53099,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 7a532f8588b6caa41861f25e266695fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a21a2af1ae5d5b498e4b381d57b7184, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a532f8588b6caa41861f25e266695fa, type: 3}
   m_IsPrefabParent: 0
@@ -56181,7 +56185,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.15974149, g: 0.14845142, b: 0.2264151, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -56214,13 +56218,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1260944298}
-  m_LocalRotation: {x: -0.06773809, y: -0.086979516, z: 0.028283833, w: -0.993502}
-  m_LocalPosition: {x: 6.79, y: 1.64, z: 0.31}
+  m_LocalRotation: {x: -0, y: 0.99999917, z: -0.0013464019, w: 0}
+  m_LocalPosition: {x: -9.38, y: 1.1, z: 4.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 8.02, y: 369.827, z: -2.571}
+  m_LocalEulerAnglesHint: {x: 0.15400001, y: 180.00002, z: 0}
 --- !u!43 &1275622317
 Mesh:
   m_ObjectHideFlags: 0
