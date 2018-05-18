@@ -15,6 +15,8 @@ public class Eatable : Grabable
     [SerializeField]
     private GameObject eatParticle;
 
+	private VRInteractor interactingHand;
+
     private void Update()
     {
         if (!trackPosition)
@@ -30,16 +32,18 @@ public class Eatable : Grabable
 
     public override void Interact(VRInteractor hand)
     {
-        base.Interact(hand);
-
+		Grab(hand);
         trackPosition = true;
+
+		interactingHand = hand;
     }
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
-
+		Release(hand);
         trackPosition = false;
+
+		interactingHand = null;
     }
 
     private void EatObject()
@@ -50,6 +54,8 @@ public class Eatable : Grabable
         {
             Instantiate(eatParticle, transform.position, Quaternion.identity);
         }
+
+		interactingHand.DeInteract ();
 
         Destroy(gameObject);
     }

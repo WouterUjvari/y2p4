@@ -163,7 +163,7 @@ public class VRInteractor : MonoBehaviour
         //collidingObject = null;
     }
 
-    private void DeInteract()
+    public void DeInteract()
     {
         // Deinteract with the interactingObject and set it to null.
         interactingObject.DeInteract(this);
