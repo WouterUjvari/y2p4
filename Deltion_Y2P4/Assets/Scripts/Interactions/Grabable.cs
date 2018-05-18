@@ -10,7 +10,7 @@ public class Grabable : Interactable
     protected bool reparent;
 
     [SerializeField]
-    private List<Collider> collidersToTurnOff = new List<Collider>();
+    protected List<Collider> collidersToTurnOff = new List<Collider>();
 
     protected Rigidbody rb;
     private Transform originalParent;
