@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PZ_BowlingPin : MonoBehaviour 
@@ -8,6 +9,12 @@ public class PZ_BowlingPin : MonoBehaviour
 
     [SerializeField]
     private GameObject graphic;
+
+    [SerializeField]
+    private Material dissolveMat;
+
+    [SerializeField]
+    private float dissolveSpeed = 1f;
 
     private Collider[] myColliders;
 
@@ -32,6 +39,9 @@ public class PZ_BowlingPin : MonoBehaviour
 
         rb.useGravity = true;
 
+        StopCoroutine(DissolveEffect());
+        StartCoroutine(DissolveEffect());
+
         isActive = true;
     }
 
@@ -47,5 +57,15 @@ public class PZ_BowlingPin : MonoBehaviour
         rb.useGravity = false;
 
         isActive = false;
+    }
+
+    private IEnumerator DissolveEffect()
+    {
+        dissolveMat.SetFloat("Vector1_643BC525", 0);
+        while (dissolveMat.GetFloat("Vector1_643BC525") < 1)
+        {
+            dissolveMat.SetFloat("Vector1_643BC525", dissolveMat.GetFloat("Vector1_643BC525") + (Time.deltaTime * dissolveSpeed));
+            yield return null;
+        }
     }
 }
