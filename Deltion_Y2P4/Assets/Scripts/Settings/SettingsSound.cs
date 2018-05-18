@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsSlider : SettingsButton {
+public class SettingsSound : SettingsEllement {
 
 	public enum VolumeType
 	{
@@ -12,7 +12,7 @@ public class SettingsSlider : SettingsButton {
 	}
 
 	public VolumeType volumeType;
-	public Vector3 sliderMin;
+	private Vector3 sliderMin;
 	// the amount of distance it can move from start to end
 	public float maxMovement;
 	private float resultMultiplier;
@@ -21,6 +21,7 @@ public class SettingsSlider : SettingsButton {
 	{
 		sliderMin = transform.position;
 		resultMultiplier = -80 / maxMovement;
+		print(resultMultiplier);
 	}
 
 	void Update()
@@ -33,6 +34,7 @@ public class SettingsSlider : SettingsButton {
 		float sliderValue;
 		sliderValue = Vector3.Distance(sliderMin, transform.position);
 		sliderValue *= resultMultiplier;
+		print(sliderValue);
 		ChangeVolume(sliderValue);
 	}
 
