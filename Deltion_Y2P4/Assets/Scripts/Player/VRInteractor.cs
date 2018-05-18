@@ -44,8 +44,10 @@ public class VRInteractor : MonoBehaviour
         //    }
         //}
 
-        // If the trigger gets pressed down and there is a colliding object, interact with it.
 		Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+        handActions.timeline = triggerAxis.x;
+
+        // If the trigger gets pressed down and there is a colliding object, interact with it.
 		if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (collidingObject != null)
@@ -62,8 +64,6 @@ public class VRInteractor : MonoBehaviour
                 DeInteract();
             }
         }
-
-        handActions.timeline = triggerAxis.x;
     }
 
     public void OnTriggerEnter(Collider other)
