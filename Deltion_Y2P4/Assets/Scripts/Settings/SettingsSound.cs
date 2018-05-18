@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsSound : SettingsEllement {
+public class SettingsSound : MonoBehaviour {
 
 	public enum VolumeType
 	{
@@ -34,7 +34,6 @@ public class SettingsSound : SettingsEllement {
 		float sliderValue;
 		sliderValue = Vector3.Distance(sliderMin, transform.position);
 		sliderValue *= resultMultiplier;
-		print(sliderValue);
 		ChangeVolume(sliderValue);
 	}
 

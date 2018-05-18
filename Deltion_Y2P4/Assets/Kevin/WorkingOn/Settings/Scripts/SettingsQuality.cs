@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsQuality : SettingsEllement {
+public class SettingsQuality : MonoBehaviour {
 
 
 	private Vector3 handelMin;
@@ -13,7 +13,7 @@ public class SettingsQuality : SettingsEllement {
 
 	private float lastStep;
 
-	public int qualityIndex;
+	private int qualityIndex = 5;
 
 	void Start()
 	{
@@ -25,25 +25,27 @@ public class SettingsQuality : SettingsEllement {
 	void Update()
 	{
 		MovingHandel();
+		print(qualityIndex);
 	}
 
 	public void MovingHandel()
 	{
 		float handelValue;
 		handelValue = Vector3.Distance(handelMin, new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z)));
+		print(handelValue);
 		if(handelValue >= lastStep + resultStep)
 		{
 			lastStep += resultStep;
-			qualityIndex += 1;
+			qualityIndex -= 1;
 		}
 		if(handelValue <= lastStep - resultStep)
 		{
 			lastStep -= resultStep;
-			qualityIndex -= 1;
+			qualityIndex += 1;
 		}
-		if(handelValue <= 2 && qualityIndex != 0)
+		if(handelValue <= 2 && qualityIndex != 5)
 		{
-			qualityIndex -= 1;
+			qualityIndex += 1;
 			lastStep -= resultStep;
 		}
 		ChangeQuality(qualityIndex);
