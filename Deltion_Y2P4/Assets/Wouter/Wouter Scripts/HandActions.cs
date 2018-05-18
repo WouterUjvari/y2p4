@@ -12,5 +12,6 @@ public class HandActions : MonoBehaviour {
     {
         anim.SetFloat("TimeLine", timeline);
         anim.SetBool("Press", press);
+
     }
 }
