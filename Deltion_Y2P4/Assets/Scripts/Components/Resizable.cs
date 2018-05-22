@@ -11,20 +11,46 @@ public class Resizable : MonoBehaviour
     [SerializeField]
     private float smallSize = 0.3f;
 
-    public void StartResize()
+    [SerializeField]
+    private float bigSize = 1.5f;
+
+    public enum ResizeSetting
     {
-        StartCoroutine(Resize((transform.localScale.x < 1) ? true : false));
-        print("t");
+        Normal,
+        Shrunken,
+        Enlarged
+    }
+    [HideInInspector]
+    public ResizeSetting resizeSetting;
+
+    public void StartResize(ResizeSetting resizeTo)
+    {
+        StartCoroutine(Resize(resizeTo));
     }
 
-    private IEnumerator Resize(bool up)
+    private IEnumerator Resize(ResizeSetting resizeTo)
     {
         float newResizeSpeed = Random.Range(0.75f * resizeSpeed, 1.25f * resizeSpeed);
-
-        float targetSize = up ? 1 : smallSize;
         float resizeStep = Time.deltaTime * newResizeSpeed;
 
-        if (up)
+        float targetSize = 1;
+        switch (resizeTo)
+        {
+            case ResizeSetting.Normal:
+
+                targetSize = 1;
+                break;
+            case ResizeSetting.Shrunken:
+
+                targetSize = smallSize;
+                break;
+            case ResizeSetting.Enlarged:
+
+                targetSize = bigSize;
+                break;
+        }
+
+        if (transform.localScale.x < targetSize)
         {
             while (transform.localScale.x < targetSize)
             {
@@ -40,5 +66,7 @@ public class Resizable : MonoBehaviour
                 yield return null;
             }
         }
+
+        transform.localScale = Vector3.one * targetSize;
     }
 }

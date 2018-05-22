@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class Resizer : MonoBehaviour 
+public class Resizer : MonoBehaviour
 {
 
     private bool canResize = true;
@@ -11,9 +12,22 @@ public class Resizer : MonoBehaviour
     private List<Resizable> toResize = new List<Resizable>();
     private List<GameObject> toResizeObjectReferences = new List<GameObject>();
 
+    private enum Setting
+    {
+        Normal,
+        Shrink,
+        Enlarge
+    }
+    [SerializeField]
+    private Setting resizeSetting;
+
+    [SerializeField]
+    private TextMeshProUGUI resizeSettingText;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        resizeSettingText.text = resizeSetting.ToString();
     }
 
     public void StartResize()
@@ -27,11 +41,44 @@ public class Resizer : MonoBehaviour
         anim.SetTrigger("Resize");
     }
 
+    public void ChangeResizerSetting()
+    {
+        int nextSetting = (int)resizeSetting + 1;
+
+        if (nextSetting > 2)
+        {
+            nextSetting = 0;
+        }
+
+        resizeSetting = (Setting)nextSetting;
+        resizeSettingText.text = resizeSetting.ToString();
+    }
+
     public void AnimationEventResizeObjects()
     {
-        for (int i = 0; i < toResize.Count; i++)
+        switch (resizeSetting)
         {
-            toResize[i].StartResize();
+            case Setting.Normal:
+
+                for (int i = 0; i < toResize.Count; i++)
+                {
+                    toResize[i].StartResize(Resizable.ResizeSetting.Normal);
+                }
+                break;
+            case Setting.Shrink:
+
+                for (int i = 0; i < toResize.Count; i++)
+                {
+                    toResize[i].StartResize(Resizable.ResizeSetting.Shrunken);
+                }
+                break;
+            case Setting.Enlarge:
+
+                for (int i = 0; i < toResize.Count; i++)
+                {
+                    toResize[i].StartResize(Resizable.ResizeSetting.Enlarged);
+                }
+                break;
         }
     }
 

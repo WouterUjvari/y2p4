@@ -20,10 +20,12 @@ public class Grabable_Restricted : Grabable
     private Quaternion restrictedRot;
 
     private Vector3 defaultPos;
-    private Vector3 currentPos;
 
     [SerializeField]
-    private float maxMoveAmount;
+    private float maxMoveAmount = 5f;
+
+    private VRInteractor interactingHand;
+    private Vector3 interactingHandPos;
 
     public override void Awake()
     {
@@ -39,16 +41,40 @@ public class Grabable_Restricted : Grabable
             return;
         }
 
-		Vector3 deltaPos = (transform.position - currentPos);
-		print(deltaPos);
+		Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
+        interactingHandPos = interactingHand.transform.position;
+
+        switch (axisToRestrict)
+        {
+            case AxisToRestrict.X:
+
+                //transform.position += new Vector3(0, deltaPos.y, deltaPos.z);
+                transform.position = new Vector3(transform.position.x, GetClampedAxis(transform.position.y + deltaPos.y, "y"), GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                break;
+            case AxisToRestrict.XY:
+
+                transform.position = new Vector3(transform.position.x, transform.position.y, GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                break;
+            case AxisToRestrict.XZ:
+
+                transform.position = new Vector3(transform.position.x, GetClampedAxis(transform.position.y + deltaPos.y, "y"), transform.position.z);
+                break;
+            case AxisToRestrict.Y:
+
+                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), transform.position.y, GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                break;
+            case AxisToRestrict.YZ:
+
+                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), transform.position.y, transform.position.z);
+                break;
+            case AxisToRestrict.Z:
+
+                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), GetClampedAxis(transform.position.y + deltaPos.y, "y"), transform.position.z);
+                break;
+        }
 
         transform.rotation = restrictedRot;
     }
-
-	private void LateUpdate()
-	{
-		currentPos = transform.position;
-	}
 		
     public override void Interact(VRInteractor hand)
     {
@@ -62,15 +88,19 @@ public class Grabable_Restricted : Grabable
 
     public override void Grab(VRInteractor hand)
     {
+        interactingHand = hand;
+        interactingHandPos = hand.transform.position;
+
         restrict = true;
         LockRestrictedAxis();
 
-		currentPos = transform.position;
+		interactingHandPos = transform.position;
     }
 
     public override void Release(VRInteractor hand)
     {
         restrict = false;
+        interactingHand = null;
     }
 
     private void LockRestrictedAxis()
@@ -84,9 +114,24 @@ public class Grabable_Restricted : Grabable
         rb.constraints = RigidbodyConstraints.None;
     }
 
-    private float GetClampedAxis(float axis)
+    private float GetClampedAxis(float axisVar, string axisName)
     {
-        Mathf.Clamp(axis, axis - maxMoveAmount, axis + maxMoveAmount);
-        return axis;
+        switch (axisName)
+        {
+            case "x":
+
+                Mathf.Clamp(axisVar, defaultPos.x - maxMoveAmount, defaultPos.x + maxMoveAmount);
+                break;
+            case "y":
+
+                Mathf.Clamp(axisVar, defaultPos.y - maxMoveAmount, defaultPos.y + maxMoveAmount);
+                break;
+            case "z":
+
+                Mathf.Clamp(axisVar, defaultPos.z - maxMoveAmount, defaultPos.z + maxMoveAmount);
+                break;
+        }
+
+        return axisVar;
     }
 }
