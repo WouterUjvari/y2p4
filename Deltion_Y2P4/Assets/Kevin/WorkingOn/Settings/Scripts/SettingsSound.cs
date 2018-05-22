@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsSound : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class SettingsSound : MonoBehaviour {
 	}
 
 	public VolumeType volumeType;
+
+	public GameObject persentage;
 	private Vector3 sliderMin;
 	// the amount of distance it can move from start to end
 	public float maxMovement;
