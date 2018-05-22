@@ -21,7 +21,6 @@ public class SettingsSound : MonoBehaviour {
 	{
 		sliderMin = transform.position;
 		resultMultiplier = -80 / maxMovement;
-		print(resultMultiplier);
 	}
 
 	void Update()

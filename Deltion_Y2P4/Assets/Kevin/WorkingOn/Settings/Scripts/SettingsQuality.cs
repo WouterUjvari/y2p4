@@ -13,27 +13,28 @@ public class SettingsQuality : MonoBehaviour {
 
 	private float lastStep;
 
-	private int qualityIndex = 5;
+	public int qualityIndex = 5;
 
 	void Start()
 	{
-		handelMin = new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z));
+		//handelMin = new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z));
+		handelMin = transform.position;
 		resultStep = maxMovement / 5;
-		resultStep = Mathf.Round(resultStep * 100f) / 100f;
+		//resultStep = Mathf.Round(resultStep * 100f) / 100f;
 	}
 
 	void Update()
 	{
 		MovingHandel();
-		print(qualityIndex);
 	}
 
 	public void MovingHandel()
 	{
 		float handelValue;
-		handelValue = Vector3.Distance(handelMin, new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z)));
+		//handelValue = Vector3.Distance(handelMin, new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z)));
+		handelValue = Vector3.Distance(handelMin, transform.position);
 		print(handelValue);
-		print(WrapAngle(transform.rotation.eulerAngles.x));
+		//print(WrapAngle(transform.rotation.eulerAngles.x));
 		if(handelValue >= lastStep + resultStep)
 		{
 			lastStep += resultStep;
@@ -44,23 +45,17 @@ public class SettingsQuality : MonoBehaviour {
 			lastStep -= resultStep;
 			qualityIndex += 1;
 		}
-		if(handelValue <= 2 && qualityIndex != 5)
+		if(handelValue >= 0.39f && qualityIndex == 1)
 		{
-			qualityIndex += 1;
+			lastStep += resultStep;
+			qualityIndex -= 1;
+		}
+		if(handelValue <= 0.01f && qualityIndex == 4)
+		{
 			lastStep -= resultStep;
+			qualityIndex += 1;
 		}
 		ChangeQuality(qualityIndex);
-	}
-
-	public float WrapAngle(float angle)
-	{
-		angle%=360;
-		if(angle >180)
-		{
-			return angle - 360;
-		}	
-
-		return angle;
 	}
 
 	public void ChangeQuality(int variable)
