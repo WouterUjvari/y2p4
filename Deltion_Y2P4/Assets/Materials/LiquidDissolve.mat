@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Test
-  m_Shader: {fileID: 4800000, guid: ccce508e2f6a8954da05ffe38f462db1, type: 3}
+  m_Name: LiquidDissolve
+  m_Shader: {fileID: 4800000, guid: fc28dc232c8c6f848aadd5519de8d07d, type: 3}
   m_ShaderKeywords: BOOLEAN_F3E4BBC6_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -72,8 +72,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_F3E4BBC6: 1
+    - Vector1_235FAEA1: 0.03
     - Vector1_3CB111E5: 0.5
-    - Vector1_643BC525: 0.706
+    - Vector1_4C9FFEE3: 1.25
+    - Vector1_5D1C1245: 0.265
+    - Vector1_643BC525: 1
     - Vector1_7D5AB27: 50
     - Vector1_7DE91183: 0.5
     - Vector1_7E0B1363: 30
@@ -100,7 +103,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_2B7B423D: {r: 0, g: 0, b: 0, a: 0}
-    - Color_6FDBDC72: {r: 1, g: 0, b: 0, a: 1}
+    - Color_6FDBDC72: {r: 1, g: 0.05047773, b: 0, a: 1}
+    - Vector2_F7C701EB: {r: -1, g: 0.3, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
