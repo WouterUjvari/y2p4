@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsSound : MonoBehaviour {
 
@@ -14,7 +15,7 @@ public class SettingsSound : MonoBehaviour {
 
 	public VolumeType volumeType;
 
-	public GameObject persentage;
+	public TextMeshProUGUI persentage;
 	private Vector3 sliderMin;
 	// the amount of distance it can move from start to end
 	public float maxMovement;
@@ -36,6 +37,7 @@ public class SettingsSound : MonoBehaviour {
 		float sliderValue;
 		sliderValue = Vector3.Distance(sliderMin, transform.position);
 		sliderValue *= resultMultiplier;
+		persentage.text = Mathf.Round(100 - sliderValue / -80 * 100) + "%";
 		ChangeVolume(sliderValue);
 	}
 
