@@ -8,6 +8,9 @@ public class Highlightable : MonoBehaviour
     [SerializeField]
     private Material highlightMat;
 
+    [SerializeField]
+    private List<MeshRenderer> renderersToExclude = new List<MeshRenderer>();
+
     private MeshRenderer[] renderers;
 
 	private bool isHighlighted;
@@ -24,12 +27,15 @@ public class Highlightable : MonoBehaviour
         renderers = GetComponentsInChildren<MeshRenderer>();
         for (int i = 0; i < renderers.Length; i++)
         {
-            List<Material> materials = new List<Material>();
-            materials.AddRange(renderers[i].materials);
+            if (!renderersToExclude.Contains(renderers[i]))
+            {
+                List<Material> materials = new List<Material>();
+                materials.AddRange(renderers[i].materials);
 
-            materials.Add(highlightMat);
+                materials.Add(highlightMat);
 
-            renderers[i].materials = materials.ToArray();
+                renderers[i].materials = materials.ToArray();
+            }
         }
     }
 
