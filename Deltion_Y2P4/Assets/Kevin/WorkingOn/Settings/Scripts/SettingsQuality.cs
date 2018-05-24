@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsQuality : MonoBehaviour {
 
@@ -12,15 +13,15 @@ public class SettingsQuality : MonoBehaviour {
 	public float maxMovement;
 
 	private float lastStep;
+	public Slider qualitySlider;
 
 	public int qualityIndex = 5;
 
 	void Start()
 	{
-		//handelMin = new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z));
+		qualitySlider.maxValue = maxMovement - 0.01f;
 		handelMin = transform.position;
 		resultStep = maxMovement / 5;
-		//resultStep = Mathf.Round(resultStep * 100f) / 100f;
 	}
 
 	void Update()
@@ -31,10 +32,9 @@ public class SettingsQuality : MonoBehaviour {
 	public void MovingHandel()
 	{
 		float handelValue;
-		//handelValue = Vector3.Distance(handelMin, new Vector3(WrapAngle(transform.rotation.eulerAngles.x), WrapAngle(transform.rotation.eulerAngles.y), WrapAngle(transform.rotation.eulerAngles.z)));
 		handelValue = Vector3.Distance(handelMin, transform.position);
+		qualitySlider.value = 0.39f - handelValue;
 		print(handelValue);
-		//print(WrapAngle(transform.rotation.eulerAngles.x));
 		if(handelValue >= lastStep + resultStep)
 		{
 			lastStep += resultStep;
