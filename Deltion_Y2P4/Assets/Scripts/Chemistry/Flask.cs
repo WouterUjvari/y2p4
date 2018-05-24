@@ -2,8 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flask : MonoBehaviour 
+public class Flask : MonoBehaviour
 {
+
+    private enum Colors
+    {
+        Blue,
+        Red,
+        Magenta,
+        Cyan,
+        Green,
+        Yellow
+    }
+    [SerializeField]
+    private Colors colors;
 
     [SerializeField]
     private Color liquidColor;
@@ -26,18 +38,18 @@ public class Flask : MonoBehaviour
 
     private Renderer staticLiquidRenderer;
     private ParticleSystem.MainModule liquidModule;
+    private ParticleSystem.EmissionModule liquidEmissionModule;
     private ParticleSystem.MainModule bubbleModule;
 
     private bool isLerpingColor;
 
     private void Awake()
     {
-        myColor = liquidColor;
-
         staticLiquidRenderer = staticLiquid.GetChild(0).GetComponent<Renderer>();
         staticLiquidRenderer.material.SetColor("_Color", myColor);
 
         liquidModule = liquidParticle.main;
+        liquidEmissionModule = liquidParticle.emission;
         liquidModule.startColor = myColor;
 
         bubbleModule = bubbleParticle.main;
@@ -50,24 +62,18 @@ public class Flask : MonoBehaviour
         {
             if (staticLiquid.localScale.z > 0)
             {
-                if (!liquidParticle.isPlaying)
-                {
-                    liquidParticle.Play();
-                }
+                liquidEmissionModule.rateOverTime = 500;
                 staticLiquid.localScale -= new Vector3(0, 0, Time.deltaTime * staticLiquidFlowSpeed);
             }
             else
             {
-                if (!liquidParticle.isStopped)
-                {
-                    liquidParticle.Stop();
-                }
+                liquidEmissionModule.rateOverTime = 0;
                 staticLiquid.localScale = new Vector3(1, 1, 0);
             }
         }
         else
         {
-            liquidParticle.Stop();
+            liquidEmissionModule.rateOverTime = 0;
         }
 
         if (staticLiquid.localScale.z > 0)
