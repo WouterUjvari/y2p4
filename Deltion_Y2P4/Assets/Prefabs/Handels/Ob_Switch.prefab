@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4738545665342906}
   - component: {fileID: 33065625574285740}
   - component: {fileID: 23893206959301940}
-  - component: {fileID: 114295814784840684}
+  - component: {fileID: 65865725270322504}
   m_Layer: 0
   m_Name: Ob_Switch_Handel
   m_TagString: Untagged
@@ -53,8 +53,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706861314246780}
   m_LocalRotation: {x: 0.0000014007092, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4914626426820446}
   m_RootOrder: 0
@@ -65,14 +65,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587754999013836}
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.9415628, y: 0, z: 3.716}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalRotation: {x: -0.30868825, y: -0.14396368, z: -0.8521174, w: 0.39734364}
+  m_LocalPosition: {x: -0.868, y: 0.022, z: 1.101}
+  m_LocalScale: {x: 1.0000008, y: 1.0000006, z: 1.0000008}
   m_Children:
   - {fileID: 4738545665342906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -129.828, y: -39.99701, z: -90.00299}
 --- !u!23 &23359752064010356
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -157,16 +157,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587754999013836}
   m_Mesh: {fileID: 4300000, guid: 333d666746624374497c3739f52c5ecf, type: 3}
---- !u!114 &114295814784840684
-MonoBehaviour:
+--- !u!65 &65865725270322504
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706861314246780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480a991942590734a9635fed30d64629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeType: 0
-  maxMovement: 0.44
+  serializedVersion: 2
+  m_Size: {x: 0.082390815, y: 0.18945958, z: 0.046658814}
+  m_Center: {x: -0.00000008347455, y: -0.00000075076116, z: 0.08457591}
