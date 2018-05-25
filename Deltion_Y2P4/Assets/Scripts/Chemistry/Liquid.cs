@@ -20,5 +20,11 @@ public class Liquid : MonoBehaviour
         {
             flask.AddLiquid(psModule.startColor.color);
         }
+
+        Colourable colourable = other.GetComponent<Colourable>();
+        if (colourable != null)
+        {
+            colourable.ReColor(psModule.startColor.color);
+        }
     }
 }

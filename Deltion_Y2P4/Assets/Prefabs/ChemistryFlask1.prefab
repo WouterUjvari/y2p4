@@ -519,7 +519,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94a048fb1ff97f45934bc43ee08b208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liquidColor: {r: 1, g: 0, b: 0.13618708, a: 1}
+  myColorName: red
+  colors:
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    name: red
+  - color: {r: 0, g: 0, b: 1, a: 1}
+    name: blue
+  - color: {r: 1, g: 1, b: 0, a: 1}
+    name: yellow
+  - color: {r: 0, g: 1, b: 0.007030964, a: 1}
+    name: green
+  - color: {r: 1, g: 0, b: 1, a: 1}
+    name: purple
+  - color: {r: 0.6603774, g: 0.33027843, b: 0, a: 1}
+    name: brown
   liquidParticle: {fileID: 198376951531927338}
   bubbleParticle: {fileID: 198631928899828596}
   staticLiquid: {fileID: 4651477920002900}
