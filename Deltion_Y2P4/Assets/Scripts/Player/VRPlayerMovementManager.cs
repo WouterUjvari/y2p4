@@ -19,6 +19,8 @@ public class VRPlayerMovementManager : MonoBehaviour
 	[HideInInspector]
 	public Transform headTransform;
 
+    public float controllerHapticPulse = 500f;
+
     private void Awake()
     {
         if (instance == null)

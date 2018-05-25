@@ -93,6 +93,7 @@ public class VRInteractor : MonoBehaviour
                 if (highlightable != null)
                 {
                     highlightable.Highlight();
+                    Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
                 }
             }
         }
