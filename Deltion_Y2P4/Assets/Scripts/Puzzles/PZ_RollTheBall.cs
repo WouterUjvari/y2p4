@@ -36,16 +36,6 @@ public class PZ_RollTheBall : MonoBehaviour
                 ballCanTp = true;
             }
         }
-
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            RotateArenaLeft();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RotateArenaRight();
-        }
     }
 
     public void RotateArenaRight()

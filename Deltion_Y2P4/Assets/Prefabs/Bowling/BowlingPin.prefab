@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114251398871018748}
   - component: {fileID: 54858350116979638}
   - component: {fileID: 65861760255582438}
+  - component: {fileID: 114489266890095972}
   m_Layer: 0
   m_Name: BowlingPin
   m_TagString: Untagged
@@ -154,6 +155,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  activeTime: 0
   graphic: {fileID: 1358362545170128}
   dissolveMat: {fileID: 2100000, guid: 28534b78a8c05e64f9f434a62d3b86b9, type: 2}
   dissolveSpeed: 2
+--- !u!114 &114489266890095972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1126020069441606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9126f19dea98c4593591bda12cc023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionType: 1
+  lookForTag: BowlingBall
+  collisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

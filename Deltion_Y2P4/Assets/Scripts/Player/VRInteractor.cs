@@ -26,29 +26,29 @@ public class VRInteractor : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    if (collidingObject != null)
-        //    {
-        //        print("interact");
-        //        Interact();
-        //    }
-        //}
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (collidingObject != null)
+            {
+                print("interact");
+                Interact();
+            }
+        }
 
-        //if (Input.GetKeyUp(KeyCode.E))
-        //{
-        //    if (interactingObject != null)
-        //    {
-        //        print("deinteract");
-        //        DeInteract();
-        //    }
-        //}
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (interactingObject != null)
+            {
+                print("deinteract");
+                DeInteract();
+            }
+        }
 
-		Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+        Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
         handActions.timeline = triggerAxis.x;
 
         // If the trigger gets pressed down and there is a colliding object, interact with it.
-		if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (collidingObject != null)
             {
@@ -57,7 +57,7 @@ public class VRInteractor : MonoBehaviour
         }
 
         // If the trigger gets pressed up and the player is interacting with an object, deinteract with it.
-		if (Controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        if (Controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (interactingObject != null)
             {
@@ -74,13 +74,19 @@ public class VRInteractor : MonoBehaviour
             return;
         }
 
-        // If theres already a colliding object, check if it has a highlight component and if so, dehighlight it.
+        // Try to find an interactable component on the colliding object.
+        Interactable interactable = other.gameObject.GetComponent<Interactable>();
+
+        // If theres already a colliding object, check if were colliding with another interactable and if collidingObject has a highlight component and if so, dehighlight it.
         if (collidingObject != null)
         {
-            Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
-            if (highlightable != null)
+            if (interactable != null)
             {
-                highlightable.DeHighlight();
+                Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
+                if (highlightable != null)
+                {
+                    highlightable.DeHighlight();
+                }
             }
         }
 
@@ -99,7 +105,6 @@ public class VRInteractor : MonoBehaviour
         }
 
         // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
-        Interactable interactable = other.gameObject.GetComponent<Interactable>();
         if (interactable != null)
         {
             collidingObject = other.gameObject;

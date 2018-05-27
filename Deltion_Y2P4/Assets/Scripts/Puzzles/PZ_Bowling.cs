@@ -6,10 +6,12 @@ public class PZ_Bowling : MonoBehaviour
 {
 
     public bool canSpawn;
-    private bool isSpawningPin;
 
     [SerializeField]
     private float spawnTimer;
+    private float spawnCooldown;
+    [SerializeField]
+    private float pinActiveTime;
 
     private List<PZ_BowlingPin> pins = new List<PZ_BowlingPin>();
 
@@ -21,11 +23,7 @@ public class PZ_Bowling : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < pinSpawns.Count; i++)
-        {
-            GameObject newPin = Instantiate(pin, pinSpawns[i].position, Quaternion.identity);
-            pins.Add(newPin.GetComponent<PZ_BowlingPin>());
-        }
+        PlacePins();
     }
 
     private void Update()
@@ -35,24 +33,43 @@ public class PZ_Bowling : MonoBehaviour
             return;
         }
 
-        if (!isSpawningPin)
+        if (spawnCooldown > 0)
         {
-            StartCoroutine(SpawnPin());
+            spawnCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            spawnCooldown = Random.Range((float)(0.75 * spawnTimer), (float)(1.25 * spawnTimer));
+            SpawnPin();
         }
     }
 
-    private IEnumerator SpawnPin()
+    private void PlacePins()
     {
-        isSpawningPin = true;
-
-        for (int i = 0; i < pins.Count; i++)
+        if (pins.Count > 0)
         {
-            if (pins[i].isActive)
+            for (int i = 0; i < pins.Count; i++)
             {
-                pins[i].DeActivate();
+                Destroy(pins[i].gameObject);
             }
+
+            pins.Clear();
         }
 
+        for (int i = 0; i < pinSpawns.Count; i++)
+        {
+            GameObject newPin = Instantiate(pin, pinSpawns[i].position, Quaternion.identity);
+            PZ_BowlingPin newPinComponent = newPin.GetComponent<PZ_BowlingPin>();
+            newPinComponent.activeTime = pinActiveTime;
+            pins.Add(newPinComponent);
+
+            CollisionEventZone colEZ = newPin.GetComponent<CollisionEventZone>();
+            colEZ.collisionEvent.AddListener(BallHitPin);
+        }
+    }
+
+    private void SpawnPin()
+    {
         PZ_BowlingPin inActivePin = null;
         while (inActivePin == null)
         {
@@ -64,9 +81,10 @@ public class PZ_Bowling : MonoBehaviour
         }
 
         inActivePin.Activate();
+    }
 
-        yield return new WaitForSeconds(spawnTimer);
-
-        isSpawningPin = false;
+    public void BallHitPin()
+    {
+        canSpawn = false;
     }
 }
