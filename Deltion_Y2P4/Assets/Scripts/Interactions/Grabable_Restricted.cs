@@ -31,11 +31,20 @@ public class Grabable_Restricted : Grabable
     {
         base.Awake();
 
-        defaultPos = transform.position;
+        defaultPos = transform.localPosition;
     }
 
     private void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Interact(testHand);
+        //}
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    DeInteract(testHand);
+        //}
+
         if (!restrict)
         {
             return;
@@ -49,27 +58,27 @@ public class Grabable_Restricted : Grabable
             case AxisToRestrict.X:
 
                 //transform.position += new Vector3(0, deltaPos.y, deltaPos.z);
-                transform.position = new Vector3(transform.position.x, GetClampedAxis(transform.position.y + deltaPos.y, "y"), GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
                 break;
             case AxisToRestrict.XY:
 
-                transform.position = new Vector3(transform.position.x, transform.position.y, GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
                 break;
             case AxisToRestrict.XZ:
 
-                transform.position = new Vector3(transform.position.x, GetClampedAxis(transform.position.y + deltaPos.y, "y"), transform.position.z);
+                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), transform.localPosition.z);
                 break;
             case AxisToRestrict.Y:
 
-                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), transform.position.y, GetClampedAxis(transform.position.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
                 break;
             case AxisToRestrict.YZ:
 
-                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), transform.position.y, transform.position.z);
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), transform.localPosition.y, transform.localPosition.z);
                 break;
             case AxisToRestrict.Z:
 
-                transform.position = new Vector3(GetClampedAxis(transform.position.x + deltaPos.x, "x"), GetClampedAxis(transform.position.y + deltaPos.y, "y"), transform.position.z);
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), transform.localPosition.z);
                 break;
         }
 
@@ -114,22 +123,24 @@ public class Grabable_Restricted : Grabable
 
     private float GetClampedAxis(float axisVar, string axisName)
     {
+        float f = axisVar;
+
         switch (axisName)
         {
             case "x":
 
-                Mathf.Clamp(axisVar, defaultPos.x - maxMoveAmount, defaultPos.x + maxMoveAmount);
+                f = Mathf.Clamp(f, defaultPos.x - maxMoveAmount, defaultPos.x + maxMoveAmount);
                 break;
             case "y":
 
-                Mathf.Clamp(axisVar, defaultPos.y - maxMoveAmount, defaultPos.y + maxMoveAmount);
+                f = Mathf.Clamp(f, defaultPos.y - maxMoveAmount, defaultPos.y + maxMoveAmount);
                 break;
             case "z":
 
-                Mathf.Clamp(axisVar, defaultPos.z - maxMoveAmount, defaultPos.z + maxMoveAmount);
+                f = Mathf.Clamp(f, defaultPos.z - maxMoveAmount, defaultPos.z + maxMoveAmount);
                 break;
         }
 
-        return axisVar;
+        return f;
     }
 }
