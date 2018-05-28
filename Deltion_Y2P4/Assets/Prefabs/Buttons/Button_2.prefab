@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1909381017792456}
   m_LocalRotation: {x: -0.70710593, y: -0, z: -0, w: 0.7071077}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: -0.056, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4571611401194274}
@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: dd11a884e9b826342b379ebf8c4aeff2, type: 2}
+  renderersToExclude: []
 --- !u!114 &114624642167918320
 MonoBehaviour:
   m_ObjectHideFlags: 1

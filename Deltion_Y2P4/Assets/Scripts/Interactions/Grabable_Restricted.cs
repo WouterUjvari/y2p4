@@ -93,8 +93,6 @@ public class Grabable_Restricted : Grabable
 
         restrict = true;
         LockRestrictedAxis();
-
-		interactingHandPos = transform.position;
     }
 
     public override void Release(VRInteractor hand)
