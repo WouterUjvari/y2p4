@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Grabable : Interactable
@@ -11,6 +12,13 @@ public class Grabable : Interactable
 
     [SerializeField]
     protected List<Collider> collidersToTurnOff = new List<Collider>();
+
+    [Space(10)]
+
+    [SerializeField]
+    private UnityEvent interactEvent;
+    [SerializeField]
+    private UnityEvent deInteractEvent;
 
     protected Rigidbody rb;
     private Transform originalParent;
@@ -28,11 +36,13 @@ public class Grabable : Interactable
     public override void Interact(VRInteractor hand)
     {
         Grab(hand);
+        interactEvent.Invoke();
     }
 
     public override void DeInteract(VRInteractor hand)
     {
         Release(hand);
+        deInteractEvent.Invoke();
     }
 
     public virtual void Grab(VRInteractor hand)

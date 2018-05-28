@@ -560,10 +560,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b1062ce01996a4ca1b1fa8db13a1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   moveSpeed: 1
   rotateSpeed: 2
   moveUpdateRadius: 4
   stoppingDistance: 0.1
+  stopTime: 2
 --- !u!114 &114562591708460030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,6 +579,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reparent: 1
   collidersToTurnOff: []
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114224101198946952}
+        m_MethodName: DroneGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114224101198946952}
+        m_MethodName: DroneReleased
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!135 &135498634924925732
 SphereCollider:
   m_ObjectHideFlags: 1
