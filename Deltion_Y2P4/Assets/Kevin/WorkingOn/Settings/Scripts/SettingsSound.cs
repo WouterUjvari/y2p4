@@ -21,6 +21,8 @@ public class SettingsSound : MonoBehaviour {
 	public float maxMovement;
 	private float resultMultiplier;
 
+	public bool touched;
+
 	void Start()
 	{
 		sliderMin = transform.position;
@@ -34,11 +36,14 @@ public class SettingsSound : MonoBehaviour {
 
 	public void MovingSlider()
 	{
-		float sliderValue;
-		sliderValue = Vector3.Distance(sliderMin, transform.position);
-		sliderValue *= resultMultiplier;
-		persentage.text = Mathf.Round(100 - sliderValue / -80 * 100) + "%";
-		ChangeVolume(sliderValue);
+		if(touched)
+		{
+			float sliderValue;
+			sliderValue = Vector3.Distance(sliderMin, transform.position);
+			sliderValue *= resultMultiplier;
+			persentage.text = Mathf.Round(100 - sliderValue / -80 * 100) + "%";
+			ChangeVolume(sliderValue);
+		}
 	}
 
 	public void ChangeVolume(float variable)

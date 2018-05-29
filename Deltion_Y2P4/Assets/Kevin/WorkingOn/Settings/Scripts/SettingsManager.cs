@@ -40,18 +40,4 @@ public class SettingsManager : MonoBehaviour {
 	{
 		QualitySettings.SetQualityLevel(qualityIndex);
 	}
-
-	public void ChangeScreenMode(int screenModeIndex)
-	{	
-		if(screenModeIndex == 0)
-		{
-			screenMode = true;
-			Screen.fullScreen = true;
-		}
-		else if(screenModeIndex == 1)
-		{
-			screenMode = false;
-			Screen.fullScreen = false;
-		}
-	}
 }

@@ -58,12 +58,11 @@ public class SettingsQuality : MonoBehaviour {
 				lastStep -= resultStep;
 				qualityIndex += 1;
 			}
-				ChangeQuality(qualityIndex);
-			}
+		}
 	}
 
-	public void ChangeQuality(int variable)
+	public void ChangeQuality()
 	{
-		SettingsManager.instance.ChangeQuality(variable);
+		SettingsManager.instance.ChangeQuality(qualityIndex);
 	}
 }

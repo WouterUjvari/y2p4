@@ -7,7 +7,8 @@ public class Door : MonoBehaviour {
 	private Animator anim;
 	public bool doorOpen;
 
-	void Start()
+
+	void Awake()
 	{
 		anim = GetComponent<Animator>();
 		anim.SetBool("Open", doorOpen);
