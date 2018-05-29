@@ -17,6 +17,8 @@ public class SettingsQuality : MonoBehaviour {
 
 	public int qualityIndex = 5;
 
+	public bool touched;
+
 	void Start()
 	{
 		qualitySlider.maxValue = maxMovement - 0.01f;
@@ -33,8 +35,7 @@ public class SettingsQuality : MonoBehaviour {
 	{
 		float handelValue;
 		handelValue = Vector3.Distance(handelMin, transform.position);
-		qualitySlider.value = 0.39f - handelValue;
-		print(qualityIndex);
+		qualitySlider.value = maxMovement - handelValue;
 		if(handelValue >= lastStep + resultStep)
 		{
 			lastStep += resultStep;

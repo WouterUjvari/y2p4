@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 95933368249477258}
   - component: {fileID: 65816563406060004}
   - component: {fileID: 54528873820491268}
+  - component: {fileID: 114519804634502206}
   m_Layer: 0
   m_Name: Button_Switch
   m_TagString: Untagged
@@ -127,14 +128,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860168275153656}
-  m_LocalRotation: {x: -0.49999854, y: -0.5, z: 0.5, w: 0.5000015}
-  m_LocalPosition: {x: 1.398, y: 1.182, z: 4.954}
+  m_LocalRotation: {x: 0.0000014454126, y: -0.70710576, z: -0.0000014454126, w: 0.70710784}
+  m_LocalPosition: {x: 1.197, y: 1.03, z: 3.013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429255910763844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
 --- !u!23 &23673145739767322
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -277,9 +278,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114519804634502206}
+        m_MethodName: SwitchWalkingType
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114519804634502206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860168275153656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b40bfee182381f4a903e67b4474b882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleport: {fileID: 0}
+  smooth: {fileID: 0}
 --- !u!114 &114557007914120212
 MonoBehaviour:
   m_ObjectHideFlags: 1
