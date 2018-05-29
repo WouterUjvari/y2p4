@@ -11,7 +11,6 @@ public class Door : MonoBehaviour {
 	{
 		anim = GetComponent<Animator>();
 		anim.SetBool("Open", doorOpen);
-		OpenCloseDoor();
 	}
 
 	public void OpenCloseDoor()

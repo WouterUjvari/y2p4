@@ -72,7 +72,7 @@ public class Rotatable : Interactable
 
         float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
 
-        if (deltaDistance != 0 && Mathf.Abs(deltaPos.z) < 0.085f)
+        if (deltaDistance != 0 && Mathf.Abs(deltaDistance) < 0.085f)
         {
             float rotationChange = deltaDistance * Time.deltaTime * rotateMultiplier;
 
@@ -80,20 +80,20 @@ public class Rotatable : Interactable
 
             if (axis == Axis.X)
             {
-                Quaternion desiredRot = currentRot *= Quaternion.Euler(-rotationChange * 100, 0, 0);
+                Quaternion desiredRot = currentRot *= Quaternion.Euler(rotationChange * 100, 0, 0);
 
                 if (desiredRot.eulerAngles.x < eulerAnglesMax)
                 {
-                    objectToRotate.localRotation *= Quaternion.Euler(-rotationChange * 100, 0, 0);
+                    objectToRotate.localRotation *= Quaternion.Euler(rotationChange * 100, 0, 0);
                 }
             }
             else if (axis == Axis.Y)
             {
-                Quaternion desiredRot = currentRot *= Quaternion.Euler(0, -rotationChange * 100, 0);
+                Quaternion desiredRot = currentRot *= Quaternion.Euler(0, rotationChange * 100, 0);
 
                 if (desiredRot.eulerAngles.y < eulerAnglesMax)
                 {
-                    objectToRotate.localRotation *= Quaternion.Euler(0, -rotationChange * 100, 0);
+                    objectToRotate.localRotation *= Quaternion.Euler(0, rotationChange * 100, 0);
                 }
             }
         }
