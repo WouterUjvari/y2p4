@@ -9,14 +9,14 @@ public class SettingsCredits : MonoBehaviour {
 	public GameObject titelPannel;
 	public void ToggleMainScreen()
 	{
-		if(titelPannel.activeSelf == true)
+		if(titelPannel.activeSelf)
 		{
 			titelPannel.SetActive(false);
 			creditsPannel.SetActive(true);
 		}
-		else if(creditsPannel.activeSelf == true)
+		else if(creditsPannel.activeSelf)
 		{
-			creditsPannel.SetActive(true);
+			creditsPannel.SetActive(false);
 			titelPannel.SetActive(true);
 		}
 	}
