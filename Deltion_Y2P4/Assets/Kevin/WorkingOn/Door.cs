@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
-	public Animator anim;
+	private Animator anim;
+	public bool doorOpen;
+
+	void Start()
+	{
+		anim = GetComponent<Animator>();
+		anim.SetBool("Open", doorOpen);
+		OpenCloseDoor();
+	}
+
 	public void OpenCloseDoor()
 	{
-
+		anim.SetTrigger("OpenClose");
 	}
 }
