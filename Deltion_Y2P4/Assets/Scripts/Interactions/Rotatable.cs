@@ -70,9 +70,11 @@ public class Rotatable : Interactable
         Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
         interactingHandPos = interactingHand.transform.position;
 
-        if (deltaPos != Vector3.zero && Mathf.Abs(deltaPos.z) < 0.085f)
+        float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
+
+        if (deltaDistance != 0 && Mathf.Abs(deltaPos.z) < 0.085f)
         {
-            float rotationChange = deltaPos.z * Time.deltaTime * rotateMultiplier;
+            float rotationChange = deltaDistance * Time.deltaTime * rotateMultiplier;
 
             Quaternion currentRot = objectToRotate.localRotation;
 
