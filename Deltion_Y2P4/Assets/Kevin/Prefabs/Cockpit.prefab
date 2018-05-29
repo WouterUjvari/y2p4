@@ -630,7 +630,6 @@ GameObject:
   - component: {fileID: 65265221253790920}
   - component: {fileID: 114856027964068000}
   - component: {fileID: 114387416066973442}
-  - component: {fileID: 114296172891239380}
   m_Layer: 0
   m_Name: Ob_Switch_Handel
   m_TagString: Untagged
@@ -1156,7 +1155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505999784219194}
   m_LocalRotation: {x: -0.49999905, y: -0.500001, z: -0.49999958, w: 0.5000005}
-  m_LocalPosition: {x: -0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4849762076544272}
@@ -3092,20 +3091,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114296172891239380
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505999784219194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480a991942590734a9635fed30d64629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeType: 0
-  persentage: {fileID: 114073187209392538}
-  maxMovement: 0.2
 --- !u!114 &114322932624839138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3130,18 +3115,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511a2d3992de914e81eb0d9f0df8552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114909315657070888}
+        m_MethodName: Touching
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114909315657070888}
+        m_MethodName: Touching
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   reparent: 0
   collidersToTurnOff: []
-  interactEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  deInteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  testHand: {fileID: 0}
   axisToRestrict: 1
   interactPoint: {fileID: 4849762076544272}
   moveMultiplier: 250
@@ -3942,6 +3950,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8c7fe3121dc21478d9bd5f824ad386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4093,6 +4111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8c7fe3121dc21478d9bd5f824ad386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactEvent:
     m_PersistentCalls:
       m_Calls:
@@ -4120,6 +4148,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e043a48a7804649933a6a1e48709a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114140034335694592}
+        m_MethodName: Touching
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114140034335694592}
+        m_MethodName: Touching
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   axis: 0
   objectToRotate: {fileID: 0}
   interactPoint: {fileID: 0}
@@ -4297,7 +4357,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 0.369
   m_WholeNumbers: 0
-  m_Value: 0.3
+  m_Value: 0.369
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4689,6 +4749,7 @@ MonoBehaviour:
   volumeType: 0
   persentage: {fileID: 114073187209392538}
   maxMovement: 0.2
+  touched: 0
 --- !u!114 &114936705806709488
 MonoBehaviour:
   m_ObjectHideFlags: 1
