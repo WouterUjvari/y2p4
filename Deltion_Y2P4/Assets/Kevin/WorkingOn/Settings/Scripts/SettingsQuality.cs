@@ -31,6 +31,15 @@ public class SettingsQuality : MonoBehaviour {
 		MovingHandel();
 	}
 
+	public void Touching(bool b)
+	{
+		touched = b;
+		if(b == false)
+		{
+			ChangeQuality();
+		}
+	} 
+
 	public void MovingHandel()
 	{
 		if(touched)

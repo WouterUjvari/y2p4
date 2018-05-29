@@ -34,6 +34,11 @@ public class SettingsSound : MonoBehaviour {
 		MovingSlider();
 	}
 
+	public void Touching(bool b)
+	{
+		touched = b;
+	} 
+	
 	public void MovingSlider()
 	{
 		if(touched)
