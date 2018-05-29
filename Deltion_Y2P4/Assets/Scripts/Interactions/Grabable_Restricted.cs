@@ -5,7 +5,7 @@ public class Grabable_Restricted : Grabable
 
     private bool restrict;
 
-    public enum AxisToRestrict
+    private enum AxisToRestrict
     {
         X,
         XY,
@@ -14,7 +14,8 @@ public class Grabable_Restricted : Grabable
         YZ,
         Z
     }
-    public AxisToRestrict axisToRestrict;
+    [SerializeField]
+    private AxisToRestrict axisToRestrict;
 
     private Vector3 restrictedAxis;
     private Quaternion restrictedRot;
@@ -22,10 +23,17 @@ public class Grabable_Restricted : Grabable
     private Vector3 defaultPos;
 
     [SerializeField]
-    private float moveMultiplier = 1f;
+    private Transform interactPoint;
+
+    [Space(10)]
 
     [SerializeField]
+    private float moveMultiplier = 200f;
+    [SerializeField]
     private float maxMoveAmount = 5f;
+    [SerializeField]
+    private float interactBreakDistance = 0.5f;
+
 
     private VRInteractor interactingHand;
     private Vector3 interactingHandPos;
@@ -35,6 +43,11 @@ public class Grabable_Restricted : Grabable
         base.Awake();
 
         defaultPos = transform.localPosition;
+
+        if (interactPoint == null)
+        {
+            interactPoint = transform;
+        }
     }
 
     private void Update()
@@ -53,7 +66,13 @@ public class Grabable_Restricted : Grabable
             return;
         }
 
-		Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
+        if (Vector3.Distance(interactingHand.transform.position, interactPoint.position) > interactBreakDistance)
+        {
+            DeInteract(interactingHand);
+            return;
+        }
+
+        Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
         interactingHandPos = interactingHand.transform.position;
 
         float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
