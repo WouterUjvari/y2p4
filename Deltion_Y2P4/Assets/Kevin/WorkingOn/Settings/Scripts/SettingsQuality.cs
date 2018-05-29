@@ -33,30 +33,33 @@ public class SettingsQuality : MonoBehaviour {
 
 	public void MovingHandel()
 	{
-		float handelValue;
-		handelValue = Vector3.Distance(handelMin, transform.position);
-		qualitySlider.value = maxMovement - handelValue;
-		if(handelValue >= lastStep + resultStep)
+		if(touched)
 		{
-			lastStep += resultStep;
-			qualityIndex -= 1;
-		}
-		if(handelValue <= lastStep - resultStep)
-		{
-			lastStep -= resultStep;
-			qualityIndex += 1;
-		}
-		if(handelValue >= 0.39f && qualityIndex == 1)
-		{
-			lastStep += resultStep;
-			qualityIndex -= 1;
-		}
-		if(handelValue <= 0.01f && qualityIndex == 4)
-		{
-			lastStep -= resultStep;
-			qualityIndex += 1;
-		}
-		ChangeQuality(qualityIndex);
+			float handelValue;
+			handelValue = Vector3.Distance(handelMin, transform.position);
+			qualitySlider.value = maxMovement - handelValue;
+			if(handelValue >= lastStep + resultStep)
+			{
+				lastStep += resultStep;
+				qualityIndex -= 1;
+			}
+			if(handelValue <= lastStep - resultStep)
+			{
+				lastStep -= resultStep;
+				qualityIndex += 1;
+			}
+			if(handelValue >= 0.39f && qualityIndex == 1)
+			{
+				lastStep += resultStep;
+				qualityIndex -= 1;
+			}
+			if(handelValue <= 0.01f && qualityIndex == 4)
+			{
+				lastStep -= resultStep;
+				qualityIndex += 1;
+			}
+				ChangeQuality(qualityIndex);
+			}
 	}
 
 	public void ChangeQuality(int variable)
