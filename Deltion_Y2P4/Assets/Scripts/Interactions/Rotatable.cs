@@ -74,7 +74,7 @@ public class Rotatable : Interactable
 
         if (deltaDistance != 0 && Mathf.Abs(deltaDistance) < 0.085f)
         {
-            float rotationChange = deltaDistance * Time.deltaTime * rotateMultiplier;
+            float rotationChange = (deltaDistance * Time.deltaTime) * rotateMultiplier;
 
             Quaternion currentRot = objectToRotate.localRotation;
 

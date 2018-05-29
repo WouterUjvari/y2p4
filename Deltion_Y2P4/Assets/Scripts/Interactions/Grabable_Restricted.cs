@@ -22,6 +22,9 @@ public class Grabable_Restricted : Grabable
     private Vector3 defaultPos;
 
     [SerializeField]
+    private float moveMultiplier = 1f;
+
+    [SerializeField]
     private float maxMoveAmount = 5f;
 
     private VRInteractor interactingHand;
@@ -53,32 +56,35 @@ public class Grabable_Restricted : Grabable
 		Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
         interactingHandPos = interactingHand.transform.position;
 
+        float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
+        float deltaChange = (deltaDistance * Time.deltaTime) * moveMultiplier;
+
         switch (axisToRestrict)
         {
             case AxisToRestrict.X:
 
                 //transform.position += new Vector3(0, deltaPos.y, deltaPos.z);
-                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaChange, "y"), GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
                 break;
             case AxisToRestrict.XY:
 
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
                 break;
             case AxisToRestrict.XZ:
 
-                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), transform.localPosition.z);
+                transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaChange, "y"), transform.localPosition.z);
                 break;
             case AxisToRestrict.Y:
 
-                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaPos.z, "z"));
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
                 break;
             case AxisToRestrict.YZ:
 
-                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), transform.localPosition.y, transform.localPosition.z);
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), transform.localPosition.y, transform.localPosition.z);
                 break;
             case AxisToRestrict.Z:
 
-                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaPos.x, "x"), GetClampedAxis(transform.localPosition.y + deltaPos.y, "y"), transform.localPosition.z);
+                transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), GetClampedAxis(transform.localPosition.y + deltaChange, "y"), transform.localPosition.z);
                 break;
         }
 
