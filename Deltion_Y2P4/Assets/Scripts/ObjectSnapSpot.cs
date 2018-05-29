@@ -13,6 +13,7 @@ public class ObjectSnapSpot : MonoBehaviour
     public State state;
 
     public Transform snappedObject;
+    private bool snappedObjectKinematic;
 
     private void Awake()
     {
@@ -30,6 +31,11 @@ public class ObjectSnapSpot : MonoBehaviour
         }
 
         obj.transform.position = transform.position;
+
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        snappedObjectKinematic = (rb.isKinematic) ? true : false;
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+
         snappedObject = obj;
 
         state = State.Taken;
@@ -42,6 +48,7 @@ public class ObjectSnapSpot : MonoBehaviour
             return;
         }
 
+        snappedObject.GetComponent<Rigidbody>().isKinematic = snappedObjectKinematic;
         snappedObject = null;
 
         state = State.Available;

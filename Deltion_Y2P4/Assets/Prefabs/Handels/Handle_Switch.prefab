@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 65814122768252158}
   - component: {fileID: 114472103819636608}
   - component: {fileID: 114725877450898366}
-  - component: {fileID: 114006115703827180}
   m_Layer: 0
   m_Name: Ob_Switch_Handel
   m_TagString: Untagged
@@ -73,7 +72,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4090048089460870}
-  - component: {fileID: 114082845427400750}
   m_Layer: 0
   m_Name: InteractPoint
   m_TagString: Untagged
@@ -100,15 +98,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1334359940181068}
-  m_LocalRotation: {x: 0.6408569, y: 0.64085805, z: 0.29883406, w: 0.29883382}
-  m_LocalPosition: {x: 0.083, y: -0.582, z: 1.118}
+  m_LocalRotation: {x: 0.25881815, y: -0.0000028642899, z: -0.0000007674815, w: -0.9659261}
+  m_LocalPosition: {x: 5.001, y: 0.798, z: 3.987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4350673594997172}
   - {fileID: 4317928523155304}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -180, y: -770, z: -90}
+  m_LocalEulerAnglesHint: {x: -150, y: -900, z: -180}
 --- !u!4 &4317928523155304
 Transform:
   m_ObjectHideFlags: 1
@@ -247,34 +245,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.082390845, y: 0.1894596, z: 0.07741751}
   m_Center: {x: -0.000000007452207, y: -0.000000007450501, z: 0.09586166}
---- !u!114 &114006115703827180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1656881002937018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480a991942590734a9635fed30d64629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeType: 0
-  persentage: {fileID: 0}
-  maxMovement: 0.2
---- !u!114 &114082845427400750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1761533927313480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480a991942590734a9635fed30d64629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeType: 0
-  persentage: {fileID: 0}
-  maxMovement: 0.2
 --- !u!114 &114472103819636608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,20 +269,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511a2d3992de914e81eb0d9f0df8552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   reparent: 0
   collidersToTurnOff: []
-  interactEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  deInteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  testHand: {fileID: 0}
   axisToRestrict: 1
   interactPoint: {fileID: 4090048089460870}
-  moveMultiplier: 250
+  moveMultiplier: 100
   maxMoveAmount: 0.1
-  interactBreakDistance: 0.2
+  interactBreakDistance: 0.12

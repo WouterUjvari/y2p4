@@ -15,15 +15,12 @@ public class Grabable : Interactable
 
     [Space(10)]
 
-    [SerializeField]
-    private UnityEvent interactEvent;
-    [SerializeField]
-    private UnityEvent deInteractEvent;
-
     protected Rigidbody rb;
     private Transform originalParent;
 
     private bool gravity;
+
+    public VRInteractor testHand;
 
     public virtual void Awake()
     {
@@ -35,14 +32,16 @@ public class Grabable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
+        base.Interact(hand);
+
         Grab(hand);
-        interactEvent.Invoke();
     }
 
     public override void DeInteract(VRInteractor hand)
     {
+        base.DeInteract(hand);
+
         Release(hand);
-        deInteractEvent.Invoke();
     }
 
     public virtual void Grab(VRInteractor hand)

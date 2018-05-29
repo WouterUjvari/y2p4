@@ -1,8 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Interactable : MonoBehaviour
 {
 
-    public abstract void Interact(VRInteractor hand);
-    public abstract void DeInteract(VRInteractor hand);
+    [SerializeField]
+    private UnityEvent onInteract;
+    [SerializeField]
+    private UnityEvent onDeInteract;
+
+    public virtual void Interact(VRInteractor hand)
+    {
+        onInteract.Invoke();
+    }
+
+    public virtual void DeInteract(VRInteractor hand)
+    {
+        onDeInteract.Invoke();
+    }
 }

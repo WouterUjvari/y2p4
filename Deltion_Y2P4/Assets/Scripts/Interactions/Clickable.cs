@@ -18,6 +18,8 @@ public class Clickable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
+        base.Interact(hand);
+
         if (canInteract)
         {
             interactEvent.Invoke();
@@ -29,7 +31,7 @@ public class Clickable : Interactable
 
     public override void DeInteract(VRInteractor hand)
     {
-
+        base.DeInteract(hand);
     }
 
     public void ResetCanInteract()

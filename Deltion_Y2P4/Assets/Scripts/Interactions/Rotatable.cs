@@ -101,12 +101,16 @@ public class Rotatable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
+        base.Interact(hand);
+
         interactingHand = hand;
         interactingHandPos = hand.transform.position;
     }
 
     public override void DeInteract(VRInteractor hand)
     {
+        base.DeInteract(hand);
+
         interactingHand = null;
     }
 }

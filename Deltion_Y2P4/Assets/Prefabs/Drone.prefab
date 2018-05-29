@@ -577,9 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fcab5667f47ed4aa287b53d05612c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reparent: 1
-  collidersToTurnOff: []
-  interactEvent:
+  onInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114224101198946952}
@@ -595,7 +593,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  deInteractEvent:
+  onDeInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114224101198946952}
@@ -611,6 +609,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  reparent: 1
+  collidersToTurnOff: []
 --- !u!135 &135498634924925732
 SphereCollider:
   m_ObjectHideFlags: 1
