@@ -34,7 +34,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4489907671546168}
-  - component: {fileID: 114548521874280116}
   m_Layer: 0
   m_Name: SwitchPos
   m_TagString: Untagged
@@ -99,8 +98,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1096840339297502}
-  m_LocalRotation: {x: -0.2988388, y: 0.29883477, z: 0.640854, w: -0.64085835}
-  m_LocalPosition: {x: 0.13570002, y: -0.7398, z: 1.1640002}
+  m_LocalRotation: {x: -0, y: -0.0000029653306, z: -0, w: -1}
+  m_LocalPosition: {x: 5.2988076, y: 0.798, z: 3.987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4443334706747978}
@@ -257,6 +256,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e043a48a7804649933a6a1e48709a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   axis: 0
   objectToRotate: {fileID: 0}
   interactPoint: {fileID: 0}
@@ -265,6 +274,7 @@ MonoBehaviour:
   maxX: -0.15
   eulerAnglesMax: 335
   interactBreakDistance: 0.35
+  testHand: {fileID: 0}
 --- !u!114 &114494827646581356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,18 +288,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 6d70fdaeaa25de042934caa86a511a98, type: 2}
   renderersToExclude: []
---- !u!114 &114548521874280116
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199755264456068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53fc5482e63b24c488da58c9dcbe9f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMovement: 0.369
-  qualitySlider: {fileID: 0}
-  qualityIndex: 5
-  touched: 0

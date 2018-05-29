@@ -33,6 +33,8 @@ public class Rotatable : Interactable
     private VRInteractor interactingHand;
     private Vector3 interactingHandPos;
 
+    public VRInteractor testHand;
+
     private void Awake()
     {
         if (objectToRotate == null)
@@ -47,14 +49,14 @@ public class Rotatable : Interactable
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    Interact(testHand);
-        //}
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    DeInteract(testHand);
-        //}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Interact(testHand);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            DeInteract(testHand);
+        }
 
         if (interactingHand == null)
         {
@@ -95,6 +97,13 @@ public class Rotatable : Interactable
                 {
                     objectToRotate.localRotation *= Quaternion.Euler(0, rotationChange * 100, 0);
                 }
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(deltaDistance) > 0.085f)
+            {
+                print("DeltaDistance over threshold");
             }
         }
     }
