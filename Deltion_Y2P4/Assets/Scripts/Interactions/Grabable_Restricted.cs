@@ -16,12 +16,6 @@ public class Grabable_Restricted : Grabable
     }
     [SerializeField]
     private AxisToRestrict axisToRestrict;
-
-    private Vector3 restrictedAxis;
-    private Quaternion restrictedRot;
-
-    private Vector3 defaultPos;
-
     [SerializeField]
     private Transform interactPoint;
 
@@ -30,11 +24,16 @@ public class Grabable_Restricted : Grabable
     [SerializeField]
     private float moveMultiplier = 200f;
     [SerializeField]
-    private float maxMoveAmount = 5f;
+    private float maxMoveAmount = 1f;
     [SerializeField]
     private float interactBreakDistance = 0.5f;
+    [SerializeField]
+    private Vector3 startingLocalPosition;
 
     private VRInteractor interactingHand;
+    private Vector3 restrictedAxis;
+    private Quaternion restrictedRot;
+    private Vector3 defaultPos;
     private Vector3 interactingHandPos;
 
     public override void Awake()
@@ -47,6 +46,8 @@ public class Grabable_Restricted : Grabable
         {
             interactPoint = transform;
         }
+
+        transform.localPosition = startingLocalPosition;
     }
 
     private void Update()
@@ -77,40 +78,47 @@ public class Grabable_Restricted : Grabable
         float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
         float deltaChange = (deltaDistance * Time.deltaTime) * moveMultiplier;
 
+        Vector3 currentPos = transform.localPosition;
+        Vector3 targetPos = currentPos;
+
         switch (axisToRestrict)
         {
             case AxisToRestrict.X:
 
-                transform.localPosition += new Vector3(0, deltaChange, deltaChange);
-                //transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaChange, "y"), GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
+                targetPos = (currentPos += new Vector3(0, deltaChange, deltaChange));
+                targetPos.y = GetClampedAxis(targetPos.y, "y");
+                targetPos.z = GetClampedAxis(targetPos.z, "z");
                 break;
             case AxisToRestrict.XY:
 
-                transform.localPosition += new Vector3(0, 0, deltaChange);
-                //transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
+                targetPos = (currentPos += new Vector3(0, 0, deltaChange));
+                targetPos.z = GetClampedAxis(targetPos.z, "z");
                 break;
             case AxisToRestrict.XZ:
 
-                transform.localPosition += new Vector3(0, deltaChange, 0);
-                //transform.localPosition = new Vector3(transform.localPosition.x, GetClampedAxis(transform.localPosition.y + deltaChange, "y"), transform.localPosition.z);
+                targetPos = (currentPos += new Vector3(0, deltaChange, 0));
+                targetPos.y = GetClampedAxis(targetPos.y, "y");
                 break;
             case AxisToRestrict.Y:
 
-                transform.localPosition += new Vector3(deltaChange, 0, deltaChange);
-                //transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), transform.localPosition.y, GetClampedAxis(transform.localPosition.z + deltaChange, "z"));
+                targetPos = (currentPos += new Vector3(deltaChange, 0, deltaChange));
+                targetPos.x = GetClampedAxis(targetPos.x, "x");
+                targetPos.z = GetClampedAxis(targetPos.z, "z");
                 break;
             case AxisToRestrict.YZ:
 
-                transform.localPosition += new Vector3(deltaChange, 0, 0);
-                //transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), transform.localPosition.y, transform.localPosition.z);
+                targetPos = (currentPos += new Vector3(deltaChange, 0, 0));
+                targetPos.x = GetClampedAxis(targetPos.x, "x");
                 break;
             case AxisToRestrict.Z:
 
-                transform.localPosition += new Vector3(deltaChange, deltaChange, 0);
-                //transform.localPosition = new Vector3(GetClampedAxis(transform.localPosition.x + deltaChange, "x"), GetClampedAxis(transform.localPosition.y + deltaChange, "y"), transform.localPosition.z);
+                targetPos = (currentPos += new Vector3(deltaChange, deltaChange, 0));
+                targetPos.x = GetClampedAxis(targetPos.x, "x");
+                targetPos.y = GetClampedAxis(targetPos.y, "y");
                 break;
         }
 
+        transform.localPosition = targetPos;
         transform.rotation = restrictedRot;
     }
 		
@@ -156,24 +164,22 @@ public class Grabable_Restricted : Grabable
 
     private float GetClampedAxis(float axisVar, string axisName)
     {
-        float f = axisVar;
-
         switch (axisName)
         {
             case "x":
 
-                f = Mathf.Clamp(f, defaultPos.x - maxMoveAmount, defaultPos.x + maxMoveAmount);
+                axisVar = Mathf.Clamp(axisVar, defaultPos.x - maxMoveAmount, defaultPos.x + maxMoveAmount);
                 break;
             case "y":
 
-                f = Mathf.Clamp(f, defaultPos.y - maxMoveAmount, defaultPos.y + maxMoveAmount);
+                axisVar = Mathf.Clamp(axisVar, defaultPos.y - maxMoveAmount, defaultPos.y + maxMoveAmount);
                 break;
             case "z":
 
-                f = Mathf.Clamp(f, defaultPos.z - maxMoveAmount, defaultPos.z + maxMoveAmount);
+                axisVar = Mathf.Clamp(axisVar, defaultPos.z - maxMoveAmount, defaultPos.z + maxMoveAmount);
                 break;
         }
 
-        return f;
+        return axisVar;
     }
 }

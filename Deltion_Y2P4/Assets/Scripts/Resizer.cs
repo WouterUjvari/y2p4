@@ -43,6 +43,11 @@ public class Resizer : MonoBehaviour
 
     public void ChangeResizerSetting()
     {
+        if (!canResize)
+        {
+            return;
+        }
+
         int nextSetting = (int)resizeSetting + 1;
 
         if (nextSetting > 2)

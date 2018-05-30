@@ -25,6 +25,8 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private float stopTime = 2f;
     private float currentStopTime;
+    [SerializeField]
+    private float minumumHeight;
 
     private Vector3 destination = Vector3.zero;
 
@@ -109,9 +111,12 @@ public class Drone : MonoBehaviour
         {
             Vector3 newDestination = Random.insideUnitSphere * moveUpdateRadius;
 
-            if (!Physics.Linecast(transform.position, newDestination))
+            if (newDestination.y >= minumumHeight)
             {
-                validDestination = newDestination;
+                if (!Physics.Linecast(transform.position, newDestination))
+                {
+                    validDestination = newDestination;
+                }
             }
         }
 

@@ -7,26 +7,27 @@ public class Flask : MonoBehaviour
 
     [SerializeField]
     private string myColorName;
-
     [SerializeField]
     private List<Colors> colors = new List<Colors>();
-    [Space(10)]
 
-    private Color myCurrentColor;
+    [Space(10)]
 
     [SerializeField]
     private ParticleSystem liquidParticle;
     [SerializeField]
     private ParticleSystem bubbleParticle;
-
     [SerializeField]
     private Transform staticLiquid;
-
     [SerializeField]
     private float staticLiquidFlowSpeed = 0.5f;
     [SerializeField]
     private float liquidColorLerpSpeed = 1f;
+    [SerializeField]
+    private Transform liquidEntrancePos;
+    [SerializeField]
+    private float liquidDestroyAtEntranceRange = 0.1f;
 
+    private Color myCurrentColor;
     private Renderer staticLiquidRenderer;
     private ParticleSystem.MainModule liquidModule;
     private ParticleSystem.EmissionModule liquidEmissionModule;
@@ -107,16 +108,16 @@ public class Flask : MonoBehaviour
 
     public void AddLiquid(Color color)
     {
-        if (staticLiquid.localScale.z < 1)
-        {
-            staticLiquid.localScale += new Vector3(0, 0, Time.deltaTime * staticLiquidFlowSpeed);
-        }
-
         if (!isLerpingColor && color != myCurrentColor)
         {
             //Color newColor = (myCurrentColor + color) / 2;
-            Color newColor = GetMixedColor(color);
+            Color newColor = (staticLiquid.localScale.z == 0) ? myCurrentColor : GetMixedColor(color);
             StartCoroutine(LerpColor(myCurrentColor, newColor));
+        }
+
+        if (staticLiquid.localScale.z < 1)
+        {
+            staticLiquid.localScale += new Vector3(0, 0, Time.deltaTime * staticLiquidFlowSpeed);
         }
     }
 
@@ -353,5 +354,21 @@ public class Flask : MonoBehaviour
         }
 
         return mixedColor;
+    }
+
+    public void DestroyNearbyParticles(ParticleSystem pSystem)
+    {
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[pSystem.main.maxParticles];
+        int aliveParticles = pSystem.GetParticles(particles);
+
+        for (int i = 0; i < aliveParticles; i++)
+        {
+            if (Vector3.Distance(particles[i].position, liquidEntrancePos.position) < liquidDestroyAtEntranceRange)
+            {
+                particles[i].remainingLifetime = 0.04f;
+            }
+        }
+
+        pSystem.SetParticles(particles, aliveParticles);
     }
 }

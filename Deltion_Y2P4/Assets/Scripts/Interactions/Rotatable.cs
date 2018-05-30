@@ -5,13 +5,16 @@ using UnityEngine;
 public class Rotatable : Interactable
 {
 
-    private enum Axis
-    {
-        X,
-        Y
-    }
+    private enum Axis { X, Y, Z}
     [SerializeField]
     private Axis axis;
+
+    private enum Type { Delta, LookRotation }
+    [SerializeField]
+    private Type type;
+
+    [Space(10)]
+
     [SerializeField]
     private Transform objectToRotate;
     [SerializeField]
@@ -19,14 +22,19 @@ public class Rotatable : Interactable
 
     [Space(10)]
 
+    [Header("Delta Settings")]
     [SerializeField]
     private float rotateMultiplier = 200f;
     [SerializeField]
-    private float minX;
-    [SerializeField]
-    private float maxX;
-    [SerializeField]
     private float eulerAnglesMax = 330;
+    [Header("LookRotation Settings")]
+    [SerializeField]
+    private float minRot;
+    [SerializeField]
+    private float maxRot;
+
+    [Space(10)]
+
     [SerializeField]
     private float interactBreakDistance = 0.5f;
 
@@ -69,41 +77,60 @@ public class Rotatable : Interactable
             return;
         }
 
-        Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
-        interactingHandPos = interactingHand.transform.position;
-
-        float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
-
-        if (deltaDistance != 0 && Mathf.Abs(deltaDistance) < 0.085f)
+        if (type == Type.LookRotation)
         {
-            float rotationChange = (deltaDistance * Time.deltaTime) * rotateMultiplier;
+            Quaternion targetRot = Quaternion.LookRotation(interactingHand.transform.position - objectToRotate.transform.position);
+            Vector3 newRot = objectToRotate.eulerAngles;
 
-            Quaternion currentRot = objectToRotate.localRotation;
-
-            if (axis == Axis.X)
+            switch (axis)
             {
-                Quaternion desiredRot = currentRot *= Quaternion.Euler(rotationChange * 100, 0, 0);
+                case Axis.X:
 
-                if (desiredRot.eulerAngles.x < eulerAnglesMax)
-                {
-                    objectToRotate.localRotation *= Quaternion.Euler(rotationChange * 100, 0, 0);
-                }
-            }
-            else if (axis == Axis.Y)
-            {
-                Quaternion desiredRot = currentRot *= Quaternion.Euler(0, rotationChange * 100, 0);
+                    newRot.x = GetPositiveClampedAngle(targetRot.eulerAngles.x);
+                    break;
+                case Axis.Y:
 
-                if (desiredRot.eulerAngles.y < eulerAnglesMax)
-                {
-                    objectToRotate.localRotation *= Quaternion.Euler(0, rotationChange * 100, 0);
-                }
+                    newRot.y = GetPositiveClampedAngle(targetRot.eulerAngles.y);
+                    break;
+                case Axis.Z:
+
+                    newRot.z = GetPositiveClampedAngle(targetRot.eulerAngles.z);
+                    break;
             }
+
+            objectToRotate.eulerAngles = newRot;
         }
-        else
+        else if (type == Type.Delta)
         {
-            if (Mathf.Abs(deltaDistance) > 0.085f)
+            Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
+            interactingHandPos = interactingHand.transform.position;
+
+            float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
+
+            if (deltaDistance != 0 && Mathf.Abs(deltaDistance) < 0.05f)
             {
-                print("DeltaDistance over threshold");
+                float rotationChange = (deltaDistance * Time.deltaTime) * rotateMultiplier;
+
+                Quaternion currentRot = objectToRotate.localRotation;
+
+                if (axis == Axis.X)
+                {
+                    Quaternion desiredRot = currentRot *= Quaternion.Euler(rotationChange * 100, 0, 0);
+
+                    if (desiredRot.eulerAngles.x < eulerAnglesMax)
+                    {
+                        objectToRotate.localRotation *= Quaternion.Euler(rotationChange * 100, 0, 0);
+                    }
+                }
+                else if (axis == Axis.Y)
+                {
+                    Quaternion desiredRot = currentRot *= Quaternion.Euler(0, rotationChange * 100, 0);
+
+                    if (desiredRot.eulerAngles.y < eulerAnglesMax)
+                    {
+                        objectToRotate.localRotation *= Quaternion.Euler(0, rotationChange * 100, 0);
+                    }
+                }
             }
         }
     }
@@ -121,5 +148,20 @@ public class Rotatable : Interactable
         base.DeInteract(hand);
 
         interactingHand = null;
+    }
+
+    private float GetPositiveClampedAngle(float angle)
+    {
+        if (angle < 90 || angle > 270)
+        {
+            angle = (angle > 180) ? angle - 360 : angle;
+            maxRot = (maxRot > 180) ? maxRot - 360 : maxRot;
+            minRot = (minRot > 180) ? minRot - 360 : minRot;
+        }
+
+        angle = Mathf.Clamp(angle, minRot, maxRot);
+        angle = (angle < 0) ? angle + 360 : angle;
+
+        return angle;
     }
 }

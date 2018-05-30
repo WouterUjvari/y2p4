@@ -5,7 +5,7 @@ public class Clickable : Interactable
 {
 
     [SerializeField]
-    private UnityEvent interactEvent;
+    private UnityEvent onValidButtonClick;
 
     private bool canInteract = true;
 
@@ -22,7 +22,7 @@ public class Clickable : Interactable
 
         if (canInteract)
         {
-            interactEvent.Invoke();
+            onValidButtonClick.Invoke();
 
             anim.SetTrigger("Interact");
             canInteract = false;

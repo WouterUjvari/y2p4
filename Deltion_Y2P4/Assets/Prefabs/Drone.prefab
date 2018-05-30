@@ -566,6 +566,7 @@ MonoBehaviour:
   moveUpdateRadius: 4
   stoppingDistance: 0.1
   stopTime: 2
+  minumumHeight: 1.25
 --- !u!114 &114562591708460030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,6 +612,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 1
   collidersToTurnOff: []
+  testHand: {fileID: 0}
 --- !u!135 &135498634924925732
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Liquid : MonoBehaviour 
+public class Liquid : MonoBehaviour
 {
 
     private Flask myFlask;
+    private ParticleSystem pSystem;
     private ParticleSystem.MainModule psModule;
 
     private void Awake()
     {
         myFlask = GetComponentInParent<Flask>();
-        psModule = GetComponent<ParticleSystem>().main;
+        pSystem = GetComponent<ParticleSystem>();
+        psModule = pSystem.main;
     }
 
     private void OnParticleCollision(GameObject other)
@@ -18,6 +20,7 @@ public class Liquid : MonoBehaviour
         Flask flask = other.GetComponent<Flask>();
         if (flask != null && flask != myFlask)
         {
+            flask.DestroyNearbyParticles(pSystem);
             flask.AddLiquid(psModule.startColor.color);
         }
 
