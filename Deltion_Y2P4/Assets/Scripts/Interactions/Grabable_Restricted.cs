@@ -29,6 +29,8 @@ public class Grabable_Restricted : Grabable
     private float interactBreakDistance = 0.5f;
     [SerializeField]
     private Vector3 startingLocalPosition;
+    [SerializeField]
+    private bool ignoreHandYMovment;
 
     private VRInteractor interactingHand;
     private Vector3 restrictedAxis;
@@ -75,7 +77,15 @@ public class Grabable_Restricted : Grabable
         Vector3 deltaPos = interactingHand.transform.position - interactingHandPos;
         interactingHandPos = interactingHand.transform.position;
 
-        float deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
+        float deltaDistance = 0;
+        if (ignoreHandYMovment)
+        {
+            deltaDistance = (deltaPos.x + deltaPos.z) / 2;
+        }
+        else
+        {
+            deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
+        }
         float deltaChange = (deltaDistance * Time.deltaTime) * moveMultiplier;
 
         Vector3 currentPos = transform.localPosition;
