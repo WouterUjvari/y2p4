@@ -15,12 +15,18 @@ public class ObjectSnapSpot : MonoBehaviour
     public Transform snappedObject;
     private bool snappedObjectKinematic;
 
+    public Transform desiredObject;
+    [HideInInspector]
+    public bool isLookingForSpecificObject;
+
     private void Awake()
     {
         if (snappedObject != null)
         {
             SnapObject(snappedObject);
         }
+
+        isLookingForSpecificObject = (desiredObject != null) ? true : false;
     }
 
     public void SnapObject(Transform obj)
@@ -28,6 +34,15 @@ public class ObjectSnapSpot : MonoBehaviour
         if (state != State.Available)
         {
             return;
+        }
+
+        if (isLookingForSpecificObject && obj != desiredObject)
+        {
+            return;
+        }
+        else
+        {
+            // Object to snap is the desired object and this spot is available. Hurray, fire an event or something.
         }
 
         obj.transform.position = transform.position;

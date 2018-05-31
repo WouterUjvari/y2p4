@@ -20,6 +20,11 @@ public class ObjectSnapper : MonoBehaviour
             if (Vector3.Distance(snapSpots[i].transform.position, obj.position) < snapRange)
             {
                 closestSnapSpot = snapSpots[i];
+
+                if (snapSpots[i].isLookingForSpecificObject && obj == snapSpots[i].desiredObject)
+                {
+                    break;
+                }
             }
         }
 
