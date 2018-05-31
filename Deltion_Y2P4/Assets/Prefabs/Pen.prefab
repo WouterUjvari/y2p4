@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118573386631480}
   m_LocalRotation: {x: -0, y: 0.21181826, z: -0, w: 0.9773091}
-  m_LocalPosition: {x: 0.416, y: 0.986, z: 1.863}
+  m_LocalPosition: {x: 2.01, y: 0.536, z: -3.859}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4029125855721860}
@@ -90,7 +90,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: adbc256aab6212c42a3e248473638d26, type: 3}
+  - {fileID: 2100000, guid: 5011d64bd20104740a16edb6d4fe45d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,8 +167,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fcab5667f47ed4aa287b53d05612c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   reparent: 1
   collidersToTurnOff: []
+  testHand: {fileID: 0}
 --- !u!114 &114508854558762760
 MonoBehaviour:
   m_ObjectHideFlags: 1
