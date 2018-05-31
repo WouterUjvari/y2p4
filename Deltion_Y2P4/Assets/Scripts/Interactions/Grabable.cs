@@ -34,13 +34,20 @@ public class Grabable : Interactable
     {
         base.Interact(hand);
 
+        interactingHand = hand;
         Grab(hand);
     }
 
     public override void DeInteract(VRInteractor hand)
     {
+        if (hand == null)
+        {
+            hand = interactingHand;
+        }
+
         base.DeInteract(hand);
 
+        interactingHand = null;
         Release(hand);
     }
 

@@ -9,6 +9,8 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField]
     private UnityEvent onDeInteract;
 
+    protected VRInteractor interactingHand;
+
     public virtual void Interact(VRInteractor hand)
     {
         onInteract.Invoke();

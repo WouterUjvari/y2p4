@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ObjectSnapper : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class ObjectSnapper : MonoBehaviour
     [SerializeField]
     private float snapRange = 0.2f;
 
+    [SerializeField]
+    private UnityEvent onAllCorrectObjectsSnapped;
+
     public void SnapObject(Transform obj)
     {
         ObjectSnapSpot closestSnapSpot = null;
@@ -19,11 +23,14 @@ public class ObjectSnapper : MonoBehaviour
         {
             if (Vector3.Distance(snapSpots[i].transform.position, obj.position) < snapRange)
             {
-                closestSnapSpot = snapSpots[i];
-
                 if (snapSpots[i].isLookingForSpecificObject && obj == snapSpots[i].desiredObject)
                 {
+                    closestSnapSpot = snapSpots[i];
                     break;
+                }
+                else if (!snapSpots[i].isLookingForSpecificObject)
+                {
+                    closestSnapSpot = snapSpots[i];
                 }
             }
         }
@@ -34,6 +41,11 @@ public class ObjectSnapper : MonoBehaviour
             {
                 closestSnapSpot.SnapObject(obj);
             }
+        }
+
+        if (AreAllSpecificObjectsCorrectlySnapped() == true)
+        {
+            onAllCorrectObjectsSnapped.Invoke();
         }
     }
 
@@ -46,5 +58,28 @@ public class ObjectSnapper : MonoBehaviour
                 snapSpots[i].UnSnapObject();
             }
         }
+    }
+
+    private bool AreAllSpecificObjectsCorrectlySnapped()
+    {
+        for (int i = 0; i < snapSpots.Count; i++)
+        {
+            if (snapSpots[i].isLookingForSpecificObject)
+            {
+                if (snapSpots[i].snappedObject != snapSpots[i].desiredObject)
+                {
+                    return false;
+                }
+                else
+                {
+                    if (i == snapSpots.Count - 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

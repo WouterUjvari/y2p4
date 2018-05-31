@@ -32,7 +32,6 @@ public class Grabable_Restricted : Grabable
     [SerializeField]
     private bool ignoreHandYMovment;
 
-    private VRInteractor interactingHand;
     private Vector3 restrictedAxis;
     private Quaternion restrictedRot;
     private Vector3 defaultPos;

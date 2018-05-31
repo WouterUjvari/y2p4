@@ -28,10 +28,16 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private float minumumHeight;
 
+    private bool isBroken = true;
     private Vector3 destination = Vector3.zero;
 
     private void Update()
     {
+        if (isBroken)
+        {
+            return;
+        }
+
         switch (state)
         {
             case State.Patroling:
@@ -131,5 +137,10 @@ public class Drone : MonoBehaviour
     public void DroneReleased()
     {
         state = State.Patroling;
+    }
+
+    public void RepairDrone()
+    {
+        isBroken = false;
     }
 }

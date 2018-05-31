@@ -24,10 +24,22 @@ public class Resizer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI resizeSettingText;
 
+    [SerializeField]
+    private Transform resizerSettingTurnSwitch;
+    private bool changingResizerSetting;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         resizeSettingText.text = resizeSetting.ToString();
+    }
+
+    private void Update()
+    {
+        if (changingResizerSetting)
+        {
+            ChangeResizerSetting(resizerSettingTurnSwitch.localEulerAngles.z);
+        }
     }
 
     public void StartResize()
@@ -39,6 +51,11 @@ public class Resizer : MonoBehaviour
 
         canResize = false;
         anim.SetTrigger("Resize");
+    }
+
+    public void ChangeResizerSettingTurnSwitch(bool b)
+    {
+        changingResizerSetting = b;
     }
 
     public void ChangeResizerSetting()
@@ -56,6 +73,27 @@ public class Resizer : MonoBehaviour
         }
 
         resizeSetting = (Setting)nextSetting;
+        resizeSettingText.text = resizeSetting.ToString();
+    }
+
+    private void ChangeResizerSetting(float angle)
+    {
+        angle = (angle > 0) ? angle - 360 : angle;
+        angle = (angle < 0) ? angle + 360 : angle;
+
+        if (angle > 0 && angle < 160)
+        {
+            resizeSetting = Setting.Shrink;
+        }
+        else if (angle > 200 && angle < 360)
+        {
+            resizeSetting = Setting.Enlarge;
+        }
+        else
+        {
+            resizeSetting = Setting.Normal;
+        }
+
         resizeSettingText.text = resizeSetting.ToString();
     }
 
