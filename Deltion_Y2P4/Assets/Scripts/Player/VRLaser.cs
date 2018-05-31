@@ -45,9 +45,11 @@ public class VRLaser : MonoBehaviour
     {
         laser = Instantiate(laserPrefab);
         laserTransform = laser.transform;
+        laser.SetActive(false);
 
         teleportReticle = Instantiate(teleportReticlePrefab);
         teleportReticleTransform = teleportReticle.transform;
+        teleportReticle.SetActive(false);
     }
 
     private void Update()

@@ -38,7 +38,6 @@ public class Rotatable : Interactable
     [SerializeField]
     private float interactBreakDistance = 0.5f;
 
-    private VRInteractor interactingHand;
     private Vector3 interactingHandPos;
 
     public VRInteractor testHand;
@@ -159,7 +158,11 @@ public class Rotatable : Interactable
             minRot = (minRot > 180) ? minRot - 360 : minRot;
         }
 
-        angle = Mathf.Clamp(angle, minRot, maxRot);
+        if (minRot != 0 && maxRot != 0)
+        {
+            angle = Mathf.Clamp(angle, minRot, maxRot);
+        }
+
         angle = (angle < 0) ? angle + 360 : angle;
 
         return angle;

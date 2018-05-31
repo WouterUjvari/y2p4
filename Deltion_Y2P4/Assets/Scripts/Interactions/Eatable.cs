@@ -15,8 +15,6 @@ public class Eatable : Grabable
     [SerializeField]
     private GameObject eatParticle;
 
-	private VRInteractor interactingHand;
-
     private void Update()
     {
         if (!trackPosition)
