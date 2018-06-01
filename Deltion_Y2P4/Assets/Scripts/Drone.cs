@@ -9,7 +9,8 @@ public class Drone : MonoBehaviour
     {
         Patroling,
         Idling,
-        GrabbedByPlayer
+        GrabbedByPlayer,
+        Stunned
     }
     [SerializeField]
     private State state;
@@ -27,12 +28,34 @@ public class Drone : MonoBehaviour
     private float currentStopTime;
     [SerializeField]
     private float minumumHeight;
+    [SerializeField]
+    private bool canStabilize;
+    [SerializeField]
+    private float stabilizeSpeed = 2f;
+    [SerializeField]
+    private float stunnedAfterGrabTime = 1f;
 
     public bool isBroken = true;
     private Vector3 destination = Vector3.zero;
+    private Rigidbody rb;
+    private float stunnedAfterGrabCooldown;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            DroneGrabbed();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            DroneReleased();
+        }
+
         if (isBroken)
         {
             return;
@@ -48,6 +71,25 @@ public class Drone : MonoBehaviour
 
                 Idle();
                 break;
+            case State.Stunned:
+
+                if (stunnedAfterGrabCooldown > 0)
+                {
+                    stunnedAfterGrabCooldown -= Time.deltaTime;
+                }
+                else
+                {
+                    EndStun();
+                }
+
+                break;
+        }
+
+        if (canStabilize)
+        {
+            float rotX = transform.eulerAngles.x - transform.eulerAngles.x;
+            float rotZ = transform.eulerAngles.z - transform.eulerAngles.z;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotX, 0, rotZ), Time.deltaTime * stabilizeSpeed);
         }
     }
 
@@ -63,7 +105,7 @@ public class Drone : MonoBehaviour
 
                 Vector3 targetDir = destination - transform.position;
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
-                transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(newDir).eulerAngles.y, 0);
+                transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
 
                 if (Physics.Linecast(transform.position, destination))
                 {
@@ -129,18 +171,31 @@ public class Drone : MonoBehaviour
         return validDestination;
     }
 
+    private void EndStun()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        state = State.Patroling;
+    }
+
     public void DroneGrabbed()
     {
         state = State.GrabbedByPlayer;
+        canStabilize = false;
     }
 
     public void DroneReleased()
     {
-        state = State.Patroling;
+        stunnedAfterGrabCooldown = stunnedAfterGrabTime;
+        state = State.Stunned;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        canStabilize = true;
     }
 
     public void RepairDrone()
     {
         isBroken = false;
+        canStabilize = true;
     }
 }

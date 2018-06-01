@@ -40,6 +40,11 @@ public class ObjectSnapper : MonoBehaviour
             if (closestSnapSpot.state == ObjectSnapSpot.State.Available)
             {
                 closestSnapSpot.SnapObject(obj);
+
+                if (closestSnapSpot.isLookingForSpecificObject && obj == closestSnapSpot.desiredObject)
+                {
+                    obj.transform.SetParent(closestSnapSpot.transform);
+                }
             }
         }
 
