@@ -36,8 +36,8 @@ public class Rotator : Interactable
         float deltaRotatorLocalYRot = rotator.localEulerAngles.y - rotatorLocalYRot;
         rotatorLocalYRot = rotator.localEulerAngles.y;
 
-        float newEulerZ = invertRotation ? toRotate.transform.eulerAngles.z - deltaRotatorLocalYRot : toRotate.transform.eulerAngles.z + deltaRotatorLocalYRot;
-        toRotate.transform.eulerAngles = new Vector3(0, 0, newEulerZ);
+        float newEulerZ = invertRotation ? toRotate.localEulerAngles.z + deltaRotatorLocalYRot : toRotate.localEulerAngles.z - deltaRotatorLocalYRot;
+        toRotate.localEulerAngles = new Vector3(toRotate.localEulerAngles.x, toRotate.localEulerAngles.y, newEulerZ);
     }
 
     public override void Interact(VRInteractor hand)

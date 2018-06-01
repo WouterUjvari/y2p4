@@ -83,11 +83,11 @@ public class Resizer : MonoBehaviour
 
         if (angle > 0 && angle < 160)
         {
-            resizeSetting = Setting.Shrink;
+            resizeSetting = Setting.Enlarge;
         }
         else if (angle > 200 && angle < 360)
         {
-            resizeSetting = Setting.Enlarge;
+            resizeSetting = Setting.Shrink;
         }
         else
         {

@@ -55,6 +55,18 @@ public class VRPlayerMovementManager : MonoBehaviour
         }
     }
 
+    public void SwitchMovementType()
+    {
+        if (movementType == MovementType.TouchpadWalking)
+        {
+            movementType = MovementType.Teleportation;
+        }
+        else
+        {
+            movementType = MovementType.TouchpadWalking;
+        }
+    }
+
     public void SwapHands()
     {
         Transform leftHandModel = leftHand.GetChild(0);
