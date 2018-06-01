@@ -28,7 +28,7 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private float minumumHeight;
 
-    private bool isBroken = true;
+    public bool isBroken = true;
     private Vector3 destination = Vector3.zero;
 
     private void Update()
@@ -115,7 +115,7 @@ public class Drone : MonoBehaviour
 
         while (validDestination == Vector3.zero)
         {
-            Vector3 newDestination = Random.insideUnitSphere * moveUpdateRadius;
+            Vector3 newDestination = (Random.insideUnitSphere * moveUpdateRadius) + transform.position;
 
             if (newDestination.y >= minumumHeight)
             {

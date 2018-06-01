@@ -27,7 +27,8 @@ public class SettingsSound : MonoBehaviour {
 	{
 		sliderMin = transform.position;
 		resultMultiplier = -80 / maxMovement;
-	}
+        persentage.text = 100 + "%";
+    }
 
 	void Update()
 	{

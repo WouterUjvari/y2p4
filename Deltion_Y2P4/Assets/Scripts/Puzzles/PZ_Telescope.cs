@@ -36,13 +36,23 @@ public class PZ_Telescope : MonoBehaviour
 
     public void ChangeHorizontalRot(Transform t)
     {
-        horizontalReference = (t != null) ? t : null;
+        horizontalReference = t;
         horizontalReferenceZRot = t.localEulerAngles.z;
+    }
+
+    public void StopChaingHorizontalRot()
+    {
+        horizontalReference = null;
     }
 
     public void ChangeVerticalRot(Transform t)
     {
-        verticalReference = (t != null) ? t : null;
+        verticalReference = t;
         verticalReferenceZRot = t.localEulerAngles.z;
+    }
+
+    public void StopChangingVerticalRot()
+    {
+        verticalReference = null;
     }
 }
