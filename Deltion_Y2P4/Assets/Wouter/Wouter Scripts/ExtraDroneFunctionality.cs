@@ -13,7 +13,9 @@ public class ExtraDroneFunctionality : MonoBehaviour {
 
     public void SpawnInClaw()
     {
-        if(giftingItem == null)
+        //claw.GetComponent<FixedJoint>().connectedBody = null;
+        Destroy(claw.GetComponent<FixedJoint>());
+        if (giftingItem == null)
         {
             giftingItem = listOfItems[0];
         }
@@ -29,6 +31,12 @@ public class ExtraDroneFunctionality : MonoBehaviour {
         joint.breakTorque = Mathf.Infinity;
 
         joint.connectedBody = g.GetComponent<Rigidbody>();
+    }
+
+    public void DestroyJoints()
+    {
+        //claw.GetComponent<FixedJoint>().connectedBody = null;
+        Destroy(claw.GetComponent<FixedJoint>());
     }
         
 
