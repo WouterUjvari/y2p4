@@ -15,6 +15,7 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private State state;
 
+    [Header("Movement")]
     [SerializeField]
     private float moveSpeed = 1f;
     [SerializeField]
@@ -26,8 +27,15 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private float stopTime = 2f;
     private float currentStopTime;
+
+    [Space(10)]
+
     [SerializeField]
     private float minumumHeight;
+    [SerializeField]
+    private float maximumHeight;
+
+    [Header("Stabilizing")]
     [SerializeField]
     private bool canStabilize;
     [SerializeField]
@@ -35,14 +43,22 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private float stunnedAfterGrabTime = 1f;
 
+    [Header("Creation")]
+    [SerializeField]
+    private GameObject repairedDrone;
+    [SerializeField]
+    private Transform repairedDroneSpawn;
+
     public bool isBroken = true;
     private Vector3 destination = Vector3.zero;
     private Rigidbody rb;
     private float stunnedAfterGrabCooldown;
+    private ObjectSnapper objSnapper;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        maximumHeight = (maximumHeight < minumumHeight) ? minumumHeight + 1 : maximumHeight;
     }
 
     private void Update()
@@ -159,7 +175,7 @@ public class Drone : MonoBehaviour
         {
             Vector3 newDestination = (Random.insideUnitSphere * moveUpdateRadius) + transform.position;
 
-            if (newDestination.y >= minumumHeight)
+            if (newDestination.y >= minumumHeight && newDestination.y <= maximumHeight)
             {
                 if (!Physics.Linecast(transform.position, newDestination))
                 {
@@ -195,6 +211,13 @@ public class Drone : MonoBehaviour
 
     public void RepairDrone()
     {
+        objSnapper.DestroySnappedObjects();
+        Destroy(objSnapper);
+        Instantiate(repairedDrone, repairedDroneSpawn.position, repairedDroneSpawn.rotation, repairedDroneSpawn);
+
+        rb.useGravity = true;
+        rb.isKinematic = false;
+
         isBroken = false;
         canStabilize = true;
     }

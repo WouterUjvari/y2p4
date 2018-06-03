@@ -124,7 +124,7 @@ public class PZ_Telescope : MonoBehaviour
                 searchingForObjectsOverlay.SetActive(false);
 
                 spaceObjectNameText.text = so.objectName;
-                spaceObjectMassText.text = "Mass: " + so.objectMass.ToString() + " 10^24kg";
+                spaceObjectMassText.text = "Mass: " + so.objectMass.ToString() + " x 10^24kg";
                 spaceObjectDistanceText.text = "Dist. " + so.objectDistance.ToString() + "M km";
 
                 spaceObjectInfoOverlay.SetActive(true);

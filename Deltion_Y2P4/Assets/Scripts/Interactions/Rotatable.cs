@@ -5,11 +5,13 @@ using UnityEngine;
 public class Rotatable : Interactable
 {
 
-    private enum Axis { X, Y, Z}
+    private enum Axis { X, Y, Z }
     [SerializeField]
     private Axis axis;
+    [SerializeField]
+    private Axis lookRotationLock;
 
-    private enum Type { Delta, LookRotation, LookAt }
+    private enum Type { Delta, LookRotation }
     [SerializeField]
     private Type type;
 
@@ -84,26 +86,46 @@ public class Rotatable : Interactable
 
         if (type == Type.LookRotation)
         {
-            Quaternion targetRot = Quaternion.LookRotation(interactingHand.transform.position - objectToRotate.transform.position);
-            Vector3 newRot = objectToRotate.localEulerAngles;
-
-            switch (axis)
+            Vector3 relativePos = interactingHand.transform.position - objectToRotate.position;
+            switch (lookRotationLock)
             {
                 case Axis.X:
 
-                    newRot.x = GetPositiveClampedAngle(targetRot.eulerAngles.x);
+                    relativePos.x = 0;
                     break;
                 case Axis.Y:
 
-                    newRot.y = GetPositiveClampedAngle(targetRot.eulerAngles.y);
+                    relativePos.y = 0;
                     break;
                 case Axis.Z:
 
-                    newRot.z = GetPositiveClampedAngle(targetRot.eulerAngles.z);
+                    relativePos.z = 0;
                     break;
             }
 
-            objectToRotate.localEulerAngles = newRot;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            Vector3 rotationEuler = rotation.eulerAngles;
+
+            if (clampAngle)
+            {
+                switch (axis)
+                {
+                    case Axis.X:
+
+                        rotationEuler.x = ClampAngle(rotationEuler.x, minRot, maxRot);
+                        break;
+                    case Axis.Y:
+
+                        rotationEuler.y = ClampAngle(rotationEuler.y, minRot, maxRot);
+                        break;
+                    case Axis.Z:
+
+                        rotationEuler.z = ClampAngle(rotationEuler.z, minRot, maxRot);
+                        break;
+                }
+            }
+
+            objectToRotate.eulerAngles = rotationEuler;
         }
         else if (type == Type.Delta)
         {
@@ -138,22 +160,6 @@ public class Rotatable : Interactable
                 }
             }
         }
-        else if (type == Type.LookAt)
-        {
-            Vector3 target = interactingHand.transform.position;
-            target.y = objectToRotate.transform.position.y;
-
-            float angle = Quaternion.Angle(objectToRotate.localRotation, Quaternion.Euler(startRot));
-            if (angle < maxRot)
-            {
-                lastValidRot = objectToRotate.localEulerAngles;
-                objectToRotate.LookAt(target);
-            }
-            else
-            {
-                objectToRotate.localEulerAngles = lastValidRot;
-            }
-        }
     }
 
     public override void Interact(VRInteractor hand)
@@ -171,21 +177,50 @@ public class Rotatable : Interactable
         interactingHand = null;
     }
 
-    private float GetPositiveClampedAngle(float angle)
+    public float ClampAngle(float angle, float min, float max)
     {
-        if (angle < 90 || angle > 270)
+        angle = Mathf.Repeat(angle, 360);
+        min = Mathf.Repeat(min, 360);
+        max = Mathf.Repeat(max, 360);
+
+        bool inverse = false;
+        float tmin = min;
+        float tangle = angle;
+        if (min > 180)
         {
-            angle = (angle > 180) ? angle - 360 : angle;
-            maxRot = (maxRot > 180) ? maxRot - 360 : maxRot;
-            minRot = (minRot > 180) ? minRot - 360 : minRot;
+            inverse = !inverse;
+            tmin -= 180;
+        }
+        if (angle > 180)
+        {
+            inverse = !inverse;
+            tangle -= 180;
+        }
+        bool result = !inverse ? tangle > tmin : tangle < tmin;
+        if (!result)
+        {
+            angle = min;
         }
 
-        if (clampAngle)
+        inverse = false;
+        tangle = angle;
+        float tmax = max;
+        if (angle > 180)
         {
-            angle = Mathf.Clamp(angle, minRot, maxRot);
+            inverse = !inverse;
+            tangle -= 180;
+        }
+        if (max > 180)
+        {
+            inverse = !inverse;
+            tmax -= 180;
         }
 
-        angle = (angle < 0) ? angle + 360 : angle;
+        result = !inverse ? tangle < tmax : tangle > tmax;
+        if (!result)
+        {
+            angle = max;
+        }
 
         return angle;
     }

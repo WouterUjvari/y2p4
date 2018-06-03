@@ -87,4 +87,15 @@ public class ObjectSnapper : MonoBehaviour
 
         return false;
     }
+
+    public void DestroySnappedObjects()
+    {
+        for (int i = 0; i < snapSpots.Count; i++)
+        {
+            if (snapSpots[i].snappedObject != null)
+            {
+                Destroy(snapSpots[i].snappedObject);
+            }
+        }
+    }
 }
