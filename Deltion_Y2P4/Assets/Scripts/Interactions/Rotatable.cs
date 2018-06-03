@@ -9,7 +9,7 @@ public class Rotatable : Interactable
     [SerializeField]
     private Axis axis;
 
-    private enum Type { Delta, LookRotation }
+    private enum Type { Delta, LookRotation, LookAt }
     [SerializeField]
     private Type type;
 
@@ -29,6 +29,8 @@ public class Rotatable : Interactable
     private float eulerAnglesMax = 330;
     [Header("LookRotation Settings")]
     [SerializeField]
+    private bool clampAngle;
+    [SerializeField]
     private float minRot;
     [SerializeField]
     private float maxRot;
@@ -39,6 +41,8 @@ public class Rotatable : Interactable
     private float interactBreakDistance = 0.5f;
 
     private Vector3 interactingHandPos;
+    private Vector3 startRot;
+    private Vector3 lastValidRot;
 
     public VRInteractor testHand;
 
@@ -52,6 +56,8 @@ public class Rotatable : Interactable
         {
             interactPoint = transform;
         }
+
+        startRot = objectToRotate.localEulerAngles;
     }
 
     private void Update()
@@ -79,7 +85,7 @@ public class Rotatable : Interactable
         if (type == Type.LookRotation)
         {
             Quaternion targetRot = Quaternion.LookRotation(interactingHand.transform.position - objectToRotate.transform.position);
-            Vector3 newRot = objectToRotate.eulerAngles;
+            Vector3 newRot = objectToRotate.localEulerAngles;
 
             switch (axis)
             {
@@ -97,7 +103,7 @@ public class Rotatable : Interactable
                     break;
             }
 
-            objectToRotate.eulerAngles = newRot;
+            objectToRotate.localEulerAngles = newRot;
         }
         else if (type == Type.Delta)
         {
@@ -132,6 +138,22 @@ public class Rotatable : Interactable
                 }
             }
         }
+        else if (type == Type.LookAt)
+        {
+            Vector3 target = interactingHand.transform.position;
+            target.y = objectToRotate.transform.position.y;
+
+            float angle = Quaternion.Angle(objectToRotate.localRotation, Quaternion.Euler(startRot));
+            if (angle < maxRot)
+            {
+                lastValidRot = objectToRotate.localEulerAngles;
+                objectToRotate.LookAt(target);
+            }
+            else
+            {
+                objectToRotate.localEulerAngles = lastValidRot;
+            }
+        }
     }
 
     public override void Interact(VRInteractor hand)
@@ -158,7 +180,7 @@ public class Rotatable : Interactable
             minRot = (minRot > 180) ? minRot - 360 : minRot;
         }
 
-        if (minRot != 0 && maxRot != 0)
+        if (clampAngle)
         {
             angle = Mathf.Clamp(angle, minRot, maxRot);
         }

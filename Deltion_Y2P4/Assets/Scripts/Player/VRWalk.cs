@@ -34,7 +34,7 @@ public class VRWalk : MonoBehaviour
             float speed = Time.deltaTime * moveSpeed;
 
 			Vector3 nextPos = (VRPlayerMovementManager.instance.headTransform.transform.right * (touchpad.x * speed) + VRPlayerMovementManager.instance.headTransform.transform.forward * (touchpad.y * speed)) * Time.deltaTime;
-			nextPos.y = VRPlayerMovementManager.instance.cameraRigTransform.transform.position.y;
+			nextPos.y = 0;
 			VRPlayerMovementManager.instance.cameraRigTransform.transform.position += nextPos;
 		}
     }
