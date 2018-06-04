@@ -18,7 +18,7 @@ public class VRInteractor : MonoBehaviour
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
     }
 
-    private void Awake()
+    public void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         handActions = GetComponentInChildren<HandActions>();

@@ -7,6 +7,7 @@ public class Resizer : MonoBehaviour
 {
 
     private bool canResize = true;
+    private bool doorClosed = true;
     private Animator anim;
 
     private List<Resizable> toResize = new List<Resizable>();
@@ -23,15 +24,23 @@ public class Resizer : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI resizeSettingText;
+    [SerializeField]
+    private TextMeshProUGUI doorStateText;
 
     [SerializeField]
     private Transform resizerSettingTurnSwitch;
     private bool changingResizerSetting;
 
+    [SerializeField]
+    private Transform doorPivot;
+    [SerializeField]
+    private Interactable doorHandleInteractable;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         resizeSettingText.text = resizeSetting.ToString();
+        CheckDoorState();
     }
 
     private void Update()
@@ -44,12 +53,13 @@ public class Resizer : MonoBehaviour
 
     public void StartResize()
     {
-        if (!canResize)
+        if (!canResize || !doorClosed)
         {
             return;
         }
 
         canResize = false;
+        doorHandleInteractable.Lock(true);
         anim.SetTrigger("Resize");
     }
 
@@ -150,5 +160,14 @@ public class Resizer : MonoBehaviour
     public void ResetCanResize()
     {
         canResize = true;
+        doorHandleInteractable.Lock(false);
+    }
+
+    public void CheckDoorState()
+    {
+        float doorEulerY = doorPivot.localEulerAngles.y;
+        doorClosed = (doorEulerY > 88) ? true : false;
+
+        doorStateText.text = doorClosed ? "DOOR CLOSED. SYSTEM READY." : "WARNING: DOOR OPEN!";
     }
 }

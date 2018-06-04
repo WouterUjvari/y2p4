@@ -24,9 +24,9 @@ public class VRPlayerMovementManager : MonoBehaviour
     [Space(10)]
 
     [SerializeField]
-    private Transform leftHand;
+    private VRInteractor leftHand;
     [SerializeField]
-    private Transform rightHand;
+    private VRInteractor rightHand;
 
     private Vector3 handBasePos;
 
@@ -44,7 +44,7 @@ public class VRPlayerMovementManager : MonoBehaviour
         cameraRigTransform = transform;
 		headTransform = Camera.main.transform;
 
-        handBasePos = leftHand.GetChild(0).transform.localPosition;
+        handBasePos = leftHand.transform.GetChild(0).transform.localPosition;
     }
 
     private void Update()
@@ -69,14 +69,17 @@ public class VRPlayerMovementManager : MonoBehaviour
 
     public void SwapHands()
     {
-        Transform leftHandModel = leftHand.GetChild(0);
+        Transform leftHandModel = leftHand.transform.GetChild(0);
 
-        rightHand.GetChild(0).SetParent(leftHand);
-        leftHandModel.SetParent(rightHand);
+        rightHand.transform.GetChild(0).SetParent(leftHand.transform);
+        leftHandModel.SetParent(rightHand.transform);
 
-        leftHand.GetChild(0).transform.localPosition = handBasePos;
-        leftHand.GetChild(0).transform.localRotation = Quaternion.Euler(Vector3.zero);
-        rightHand.GetChild(0).transform.localPosition = handBasePos;
-        rightHand.GetChild(0).transform.localRotation = Quaternion.Euler(Vector3.zero);
+        leftHand.transform.GetChild(0).transform.localPosition = handBasePos;
+        leftHand.transform.GetChild(0).transform.localRotation = Quaternion.Euler(Vector3.zero);
+        rightHand.transform.GetChild(0).transform.localPosition = handBasePos;
+        rightHand.transform.GetChild(0).transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+        leftHand.Awake();
+        rightHand.Awake();
     }
 }

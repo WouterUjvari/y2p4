@@ -4,6 +4,8 @@ using UnityEngine.Events;
 public abstract class Interactable : MonoBehaviour
 {
 
+    protected bool locked;
+
     [SerializeField]
     private UnityEvent onInteract;
     [SerializeField]
@@ -19,5 +21,10 @@ public abstract class Interactable : MonoBehaviour
     public virtual void DeInteract(VRInteractor hand)
     {
         onDeInteract.Invoke();
+    }
+
+    public void Lock(bool b)
+    {
+        locked = b;
     }
 }

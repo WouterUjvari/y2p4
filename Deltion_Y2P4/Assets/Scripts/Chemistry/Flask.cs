@@ -365,7 +365,7 @@ public class Flask : MonoBehaviour
         {
             if (Vector3.Distance(particles[i].position, liquidEntrancePos.position) < liquidDestroyAtEntranceRange)
             {
-                particles[i].remainingLifetime = 0.02f;
+                particles[i].remainingLifetime = 0.015f;
             }
         }
 

@@ -32,6 +32,11 @@ public class Grabable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
+        if (locked)
+        {
+            return;
+        }
+
         base.Interact(hand);
 
         interactingHand = hand;
