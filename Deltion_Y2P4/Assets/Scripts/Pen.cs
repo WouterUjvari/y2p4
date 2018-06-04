@@ -53,7 +53,7 @@ public class Pen : MonoBehaviour
                 EndLine();
             }
 
-            CreateNewLine();
+            CreateNewLine(other.transform);
             currentDrawingSurface = other.transform;
         }
     }
@@ -69,9 +69,10 @@ public class Pen : MonoBehaviour
         }
     }
 
-    private void CreateNewLine()
+    private void CreateNewLine(Transform surface)
     {
         GameObject newLine = new GameObject();
+        newLine.transform.SetParent(surface);
         newLine.transform.position = penPoint.position;
         currentLine = newLine.AddComponent<LineRenderer>();
         lineRendererPreset.ApplyTo(currentLine);
@@ -84,7 +85,7 @@ public class Pen : MonoBehaviour
     private void AddPenPoint()
     {
         currentLine.positionCount = currentPositionIndex + 1;
-        currentLine.SetPosition(currentPositionIndex, penPoint.position);
+        currentLine.SetPosition(currentPositionIndex, currentLine.transform.InverseTransformPoint(penPoint.position));
         currentPositionIndex++;
     }
 
