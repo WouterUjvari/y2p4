@@ -943,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 1352256928046764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.84000003, y: 0.84000003, z: 0.84000003}
   m_Children:
   - {fileID: 4489018878581856}
   - {fileID: 4884395862322792}
@@ -2468,8 +2468,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.4385712, z: 0.075}
-  m_Center: {x: 0, y: 0.104286194, z: 0.00076431036}
+  m_Size: {x: 0.075, y: 0.41954887, z: 0.075}
+  m_Center: {x: 0, y: 0.11379737, z: 0.00076431036}
 --- !u!65 &65143629623354396
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2612,8 +2612,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15518132, y: 0.438321, z: 0.15297496}
-  m_Center: {x: 0, y: 0.10416108, z: 0.00076431036}
+  m_Size: {x: 0.15518132, y: 0.41992557, z: 0.15297496}
+  m_Center: {x: 0, y: 0.113358796, z: 0.00076431036}
 --- !u!65 &65867825407797724
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2684,6 +2684,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114086443601306414
@@ -2708,6 +2709,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114127313031495932
@@ -2828,6 +2830,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114451363596965940
@@ -2893,6 +2896,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114534398663344736
@@ -2964,6 +2968,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114652958881875428
