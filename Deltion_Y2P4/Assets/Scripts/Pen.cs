@@ -8,7 +8,8 @@ public class Pen : MonoBehaviour
     private bool isDrawing;
     private LineRenderer currentLine;
     private int currentPositionIndex;
-    private Collider currentDrawingSurface;
+    private Transform currentDrawingSurface;
+    private Vector3 penHitPoint;
 
     [SerializeField]
     private Transform penPoint;
@@ -16,16 +17,39 @@ public class Pen : MonoBehaviour
     private Preset lineRendererPreset;
     [SerializeField]
     private float distanceBetweenDrawPoints = 0.01f;
+    [SerializeField]
+    private LayerMask drawLayerMask;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        Debug.DrawRay(penPoint.transform.position, penPoint.transform.forward * 0.05f, Color.red);
+
+        if (!canDraw)
         {
-            GrabPenEvent(true);
+            return;
         }
-        if (Input.GetKeyDown(KeyCode.X))
+
+        RaycastHit hit;
+        if (Physics.Raycast(penPoint.transform.position, penPoint.transform.forward, out hit, 0.05f, drawLayerMask))
         {
-            GrabPenEvent(false);
+            penHitPoint = hit.point;
+
+            if (!isDrawing)
+            {
+                CreateNewLine(hit.transform);
+                currentDrawingSurface = hit.transform;
+            }
+            else
+            {
+                if (hit.transform != currentDrawingSurface)
+                {
+                    EndLine();
+                }
+            }
+        }
+        else
+        {
+            EndLine();
         }
 
         if (!isDrawing)
@@ -33,39 +57,9 @@ public class Pen : MonoBehaviour
             return;
         }
 
-        if (Vector3.Distance(penPoint.position, currentLine.GetPosition(currentPositionIndex - 1)) > distanceBetweenDrawPoints)
+        if (Vector3.Distance(penHitPoint, currentLine.transform.TransformPoint(currentLine.GetPosition(currentPositionIndex - 1))) > distanceBetweenDrawPoints)
         {
             AddPenPoint();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!canDraw)
-        {
-            return;
-        }
-
-        if (other.GetComponent<DrawableSurface>() != null)
-        {
-            if (other != currentDrawingSurface)
-            {
-                EndLine();
-            }
-
-            CreateNewLine(other.transform);
-            currentDrawingSurface = other;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (isDrawing)
-        {
-            if (other.transform == currentDrawingSurface)
-            {
-                EndLine();
-            }
         }
     }
 
@@ -85,7 +79,7 @@ public class Pen : MonoBehaviour
     private void AddPenPoint()
     {
         currentLine.positionCount = currentPositionIndex + 1;
-        currentLine.SetPosition(currentPositionIndex, currentLine.transform.InverseTransformPoint(penPoint.position));
+        currentLine.SetPosition(currentPositionIndex, currentLine.transform.InverseTransformPoint(penHitPoint));
         currentPositionIndex++;
     }
 

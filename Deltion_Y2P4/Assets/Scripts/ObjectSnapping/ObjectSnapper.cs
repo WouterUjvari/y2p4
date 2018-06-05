@@ -79,7 +79,10 @@ public class ObjectSnapper : MonoBehaviour
                 {
                     if (i == snapSpots.Count - 1)
                     {
-                        return true;
+                        if (snapSpots[i].snappedObject == snapSpots[i].desiredObject)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
@@ -94,6 +97,15 @@ public class ObjectSnapper : MonoBehaviour
         {
             if (snapSpots[i].snappedObject != null)
             {
+                if (VRPlayerMovementManager.instance.leftHand.interactingObject == snapSpots[i].snappedObject)
+                {
+                    VRPlayerMovementManager.instance.leftHand.DeInteract();
+                }
+                if (VRPlayerMovementManager.instance.rightHand.interactingObject == snapSpots[i].snappedObject)
+                {
+                    VRPlayerMovementManager.instance.rightHand.DeInteract();
+                }
+
                 Destroy(snapSpots[i].snappedObject);
             }
         }

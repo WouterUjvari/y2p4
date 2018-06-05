@@ -23,10 +23,8 @@ public class VRPlayerMovementManager : MonoBehaviour
 
     [Space(10)]
 
-    [SerializeField]
-    private VRInteractor leftHand;
-    [SerializeField]
-    private VRInteractor rightHand;
+    public VRInteractor leftHand;
+    public VRInteractor rightHand;
 
     private Vector3 handBasePos;
 

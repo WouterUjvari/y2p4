@@ -9,6 +9,8 @@ public class Grabable : Interactable
 
     [SerializeField]
     protected bool reparent;
+    [SerializeField]
+    protected bool setKinematic;
 
     [SerializeField]
     protected List<Collider> collidersToTurnOff = new List<Collider>();
@@ -61,7 +63,7 @@ public class Grabable : Interactable
         AddFixedJoint(hand);
         transform.SetParent(reparent ? hand.transform : transform.parent);
         rb.useGravity = false;
-        rb.isKinematic = true;
+        rb.isKinematic = setKinematic ? true : rb.isKinematic;
 
         for (int i = 0; i < collidersToTurnOff.Count; i++)
         {
@@ -73,7 +75,7 @@ public class Grabable : Interactable
     {
         transform.SetParent(reparent ? originalParent : transform.parent);
         rb.useGravity = gravity ? true : false;
-        rb.isKinematic = false;
+        rb.isKinematic = setKinematic ? false : rb.isKinematic;
 
         for (int i = 0; i < collidersToTurnOff.Count; i++)
         {

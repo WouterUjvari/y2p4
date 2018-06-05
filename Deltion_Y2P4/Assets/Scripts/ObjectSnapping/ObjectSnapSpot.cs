@@ -46,7 +46,7 @@ public class ObjectSnapSpot : MonoBehaviour
         }
 
         obj.transform.position = transform.position;
-        obj.SetParent(transform);
+        obj.transform.rotation = transform.rotation;
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         snappedObjectKinematic = (rb.isKinematic) ? true : false;
