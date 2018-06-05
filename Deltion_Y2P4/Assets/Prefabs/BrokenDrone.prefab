@@ -855,8 +855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626579464568236}
   - component: {fileID: 54852465614161234}
-  - component: {fileID: 135604312119076426}
-  - component: {fileID: 135476821914008920}
+  - component: {fileID: 65011123663710086}
   - component: {fileID: 114455043869442398}
   - component: {fileID: 114540689276414562}
   - component: {fileID: 114147282370348570}
@@ -1603,7 +1602,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649110322771706}
   m_LocalRotation: {x: 0.0000000037252903, y: -5.820766e-11, z: 0.999878, w: 0.015624173}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.361, y: 0.929, z: -3.131}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4563428575000272}
@@ -1764,14 +1763,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381478668628390}
-  m_LocalRotation: {x: -0.49999946, y: -0.500003, z: -0.49999517, w: -0.5000024}
-  m_LocalPosition: {x: -1.165, y: 0.314, z: 0.514}
+  m_LocalRotation: {x: -0.69999814, y: -0.69999653, z: -0.100014985, w: -0.10002284}
+  m_LocalPosition: {x: -0.835, y: 0.96, z: -1.524}
   m_LocalScale: {x: 0.23689082, y: 0.23689108, z: 0.23689091}
   m_Children:
   - {fileID: 4358106757223466}
   m_Father: {fileID: 4678116073715250}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.02, y: -1980, z: 89.99999}
+  m_LocalEulerAnglesHint: {x: 0.001, y: -1996.263, z: 90.00001}
 --- !u!4 &4801761457604760
 Transform:
   m_ObjectHideFlags: 1
@@ -3753,7 +3752,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -3767,8 +3766,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -3857,8 +3856,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -3902,7 +3901,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.5499957, y: 0.0000010595643, z: -0.72999823}
+  m_ConnectedAnchor: {x: 1.5500028, y: -0.0000014736333, z: -0.7299996}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3936,7 +3935,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.16433415, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.9279019, y: 0.16195112, z: 0.71445376}
+  m_ConnectedAnchor: {x: 1.9279032, y: 0.16194636, z: 0.71444786}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3988,6 +3987,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 10e758e4caeb0c84b91cfc54125e4c37, type: 3}
+--- !u!65 &65011123663710086
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649110322771706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36136898, y: 0.093605116, z: 0.35452268}
+  m_Center: {x: 0.012760873, y: 0.106514394, z: -0.0031202747}
 --- !u!65 &65045475097212374
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4775,30 +4786,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!135 &135476821914008920
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649110322771706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135604312119076426
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649110322771706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.15
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222359521493647638
 CanvasRenderer:
   m_ObjectHideFlags: 1
