@@ -106,7 +106,7 @@ public class ObjectSnapper : MonoBehaviour
                     VRPlayerMovementManager.instance.rightHand.DeInteract();
                 }
 
-                Destroy(snapSpots[i].snappedObject);
+                Destroy(snapSpots[i].snappedObject.gameObject);
             }
         }
     }

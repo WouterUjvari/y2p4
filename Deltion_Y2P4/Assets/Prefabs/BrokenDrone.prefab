@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4154315984153166}
   - component: {fileID: 114148370388149342}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: LegSnapSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,8 +333,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4678116073715250}
-  m_Layer: 2
-  m_Name: BrokenDroneTest
+  m_Layer: 0
+  m_Name: BrokenDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4635799535557882}
   - component: {fileID: 114449314959849146}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: LegSnapSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4919738262285360}
   - component: {fileID: 114590515028083812}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: LegSnapSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4060590355153004}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: SnapSpots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 114455043869442398}
   - component: {fileID: 114540689276414562}
   - component: {fileID: 114147282370348570}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4633963033540890}
   - component: {fileID: 114195438059339298}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: LegSnapSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1578,7 @@ Transform:
   m_GameObject: {fileID: 1696247361720068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.17199999, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4626579464568236}
   m_RootOrder: 1
@@ -1691,7 +1691,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198977579407006}
   m_LocalRotation: {x: -0, y: 0.99823725, z: -0, w: 0.059350178}
-  m_LocalPosition: {x: -1.8095, y: 0, z: 0}
+  m_LocalPosition: {x: -0.36, y: 0.148, z: -9.214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4758227694310814}
@@ -3902,7 +3902,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.5499995, y: 0.0000022516572, z: -0.72999924}
+  m_ConnectedAnchor: {x: 1.5499957, y: 0.0000010595643, z: -0.72999823}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3936,7 +3936,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.16433415, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.9279025, y: 0.16195112, z: 0.714452}
+  m_ConnectedAnchor: {x: 1.9279019, y: 0.16195112, z: 0.71445376}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -4178,6 +4178,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114147282370348570
@@ -4208,17 +4209,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114455043869442398}
-        m_MethodName: DeInteract
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: VRInteractor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4274,6 +4264,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114195438059339298
@@ -4530,6 +4521,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114457831011658886
@@ -4565,6 +4557,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114506029552256278
@@ -4600,6 +4593,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114540689276414562
@@ -4627,6 +4621,7 @@ MonoBehaviour:
   repairedDrone: {fileID: 1894587526266296, guid: 38dfa5fb78b151549a77120188a46f05,
     type: 2}
   repairedDroneSpawn: {fileID: 4624723027154570}
+  brokenDroneBaseBody: {fileID: 1455632123203142}
   isBroken: 1
 --- !u!114 &114590515028083812
 MonoBehaviour:
@@ -4725,6 +4720,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114821079890359120
@@ -4760,6 +4756,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 0
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114856095295250732

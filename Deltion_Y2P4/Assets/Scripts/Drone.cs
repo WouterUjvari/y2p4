@@ -48,6 +48,8 @@ public class Drone : MonoBehaviour
     private GameObject repairedDrone;
     [SerializeField]
     private Transform repairedDroneSpawn;
+    [SerializeField]
+    private GameObject brokenDroneBaseBody;
 
     public bool isBroken = true;
     private Vector3 destination = Vector3.zero;
@@ -59,6 +61,7 @@ public class Drone : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         maximumHeight = (maximumHeight < minumumHeight) ? minumumHeight + 1 : maximumHeight;
+        objSnapper = GetComponent<ObjectSnapper>();
     }
 
     private void Update()
@@ -70,6 +73,10 @@ public class Drone : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             DroneReleased();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RepairDrone();
         }
 
         if (isBroken)
@@ -212,11 +219,11 @@ public class Drone : MonoBehaviour
     public void RepairDrone()
     {
         objSnapper.DestroySnappedObjects();
-        Destroy(objSnapper);
+        Destroy(brokenDroneBaseBody);
         Instantiate(repairedDrone, repairedDroneSpawn.position, repairedDroneSpawn.rotation, repairedDroneSpawn);
 
-        rb.useGravity = true;
-        rb.isKinematic = false;
+        rb.useGravity = false;
+        rb.isKinematic = true;
 
         isBroken = false;
         canStabilize = true;
