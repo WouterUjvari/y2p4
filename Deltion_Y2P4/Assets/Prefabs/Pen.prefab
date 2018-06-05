@@ -98,8 +98,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118573386631480}
-  m_LocalRotation: {x: -0, y: 0.7071089, z: 0.70710474, w: 0}
-  m_LocalPosition: {x: 1.736, y: 0.101, z: 1.244}
+  m_LocalRotation: {x: -0, y: 0.21181826, z: -0, w: 0.9773091}
+  m_LocalPosition: {x: 1.766, y: 0.6835, z: -3.931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4463359197110246}
@@ -247,7 +247,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65607189548362570}
   testHand: {fileID: 0}
 --- !u!114 &114508854558762760
 MonoBehaviour:

@@ -8,7 +8,7 @@ public class Pen : MonoBehaviour
     private bool isDrawing;
     private LineRenderer currentLine;
     private int currentPositionIndex;
-    private Transform currentDrawingSurface;
+    private Collider currentDrawingSurface;
 
     [SerializeField]
     private Transform penPoint;
@@ -48,13 +48,13 @@ public class Pen : MonoBehaviour
 
         if (other.GetComponent<DrawableSurface>() != null)
         {
-            if (other.transform != currentDrawingSurface)
+            if (other != currentDrawingSurface)
             {
                 EndLine();
             }
 
             CreateNewLine(other.transform);
-            currentDrawingSurface = other.transform;
+            currentDrawingSurface = other;
         }
     }
 

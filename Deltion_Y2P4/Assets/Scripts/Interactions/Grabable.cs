@@ -61,6 +61,7 @@ public class Grabable : Interactable
         AddFixedJoint(hand);
         transform.SetParent(reparent ? hand.transform : transform.parent);
         rb.useGravity = false;
+        rb.isKinematic = true;
 
         for (int i = 0; i < collidersToTurnOff.Count; i++)
         {
@@ -72,6 +73,7 @@ public class Grabable : Interactable
     {
         transform.SetParent(reparent ? originalParent : transform.parent);
         rb.useGravity = gravity ? true : false;
+        rb.isKinematic = false;
 
         for (int i = 0; i < collidersToTurnOff.Count; i++)
         {

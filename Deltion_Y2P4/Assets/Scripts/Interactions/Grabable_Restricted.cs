@@ -31,6 +31,8 @@ public class Grabable_Restricted : Grabable
     private Vector3 startingLocalPosition;
     [SerializeField]
     private bool ignoreHandYMovment;
+    [SerializeField]
+    private bool invert;
 
     private Vector3 restrictedAxis;
     private Quaternion restrictedRot;
@@ -86,6 +88,7 @@ public class Grabable_Restricted : Grabable
             deltaDistance = (deltaPos.x + deltaPos.y + deltaPos.z) / 3;
         }
         float deltaChange = (deltaDistance * Time.deltaTime) * moveMultiplier;
+        deltaChange = invert ? -deltaChange : deltaChange;
 
         Vector3 currentPos = transform.localPosition;
         Vector3 targetPos = currentPos;
