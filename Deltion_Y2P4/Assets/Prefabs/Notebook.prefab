@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 23962389367633466}
   - component: {fileID: 65516524398820182}
   - component: {fileID: 114961964453219914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KladBlok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,14 +216,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887995104992890}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.523, y: 0.169, z: 1.296}
+  m_LocalRotation: {x: -0, y: 0.9841905, z: -0, w: 0.1771132}
+  m_LocalPosition: {x: 1.7474958, y: 0.578, z: -3.7474935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4494210324121940}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 159.597, z: 0}
 --- !u!4 &4483406775481800
 Transform:
   m_ObjectHideFlags: 1
@@ -745,6 +745,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114961964453219914
