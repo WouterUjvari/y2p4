@@ -31,12 +31,14 @@ public class ExtraDroneFunctionality : MonoBehaviour {
         joint.breakTorque = Mathf.Infinity;
 
         joint.connectedBody = g.GetComponent<Rigidbody>();
+        //g.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
     }
 
     public void DestroyJoints()
     {
         //claw.GetComponent<FixedJoint>().connectedBody = null;
         Destroy(claw.GetComponent<FixedJoint>());
+        
     }
         
 

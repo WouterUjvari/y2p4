@@ -7,9 +7,9 @@ public abstract class Interactable : MonoBehaviour
     protected bool locked;
 
     [SerializeField]
-    private UnityEvent onInteract;
+    public UnityEvent onInteract;
     [SerializeField]
-    private UnityEvent onDeInteract;
+    public UnityEvent onDeInteract;
 
     protected VRInteractor interactingHand;
 
