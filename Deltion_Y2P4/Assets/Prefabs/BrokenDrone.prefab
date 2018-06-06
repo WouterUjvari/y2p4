@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 114455043869442398}
   - component: {fileID: 114540689276414562}
   - component: {fileID: 114147282370348570}
+  - component: {fileID: 114703608160451662}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -1298,7 +1299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156313833577862}
   m_LocalRotation: {x: -0.5000006, y: -0.49999934, z: -0.49999934, w: 0.50000066}
-  m_LocalPosition: {x: 0.328, y: 0.04, z: -0.486}
+  m_LocalPosition: {x: 0.936, y: 0.04, z: -5.146}
   m_LocalScale: {x: 0.0023400048, y: 0.0023400052, z: 0.0023400025}
   m_Children:
   - {fileID: 4313065503096544}
@@ -1463,15 +1464,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203537363503932}
-  m_LocalRotation: {x: -0.6878775, y: -0.1637819, z: -0.16378184, w: 0.68787766}
-  m_LocalPosition: {x: 0.495, y: 0.056, z: 0.66}
+  m_LocalRotation: {x: -0.70460415, y: -0.059438456, z: -0.059438333, w: 0.7046043}
+  m_LocalPosition: {x: -0.33, y: 0.056, z: -2.889}
   m_LocalScale: {x: 0.002338416, y: 0.0023384118, z: 0.0023384104}
   m_Children:
   - {fileID: 4531093318782328}
   - {fileID: 4089677134494068}
   m_Father: {fileID: 4678116073715250}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -26.785002}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -9.644}
 --- !u!4 &4488057924469196
 Transform:
   m_ObjectHideFlags: 1
@@ -1532,15 +1533,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010588328472504}
-  m_LocalRotation: {x: -0.66923124, y: -0.22831893, z: -0.22831887, w: 0.66923136}
-  m_LocalPosition: {x: 1.352, y: 0.04, z: -0.352}
+  m_LocalRotation: {x: -0.6844481, y: 0.17756888, z: 0.17756914, w: 0.6844482}
+  m_LocalPosition: {x: -0.933, y: 0.292, z: -1.411}
   m_LocalScale: {x: 0.0023384125, y: 0.0023384106, z: 0.0023384087}
   m_Children:
   - {fileID: 4406650776465662}
   - {fileID: 4194817957946172}
   m_Father: {fileID: 4678116073715250}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -37.676003}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 29.088001}
 --- !u!4 &4599385125494440
 Transform:
   m_ObjectHideFlags: 1
@@ -1658,7 +1659,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892003049429500}
   m_LocalRotation: {x: -0.6288906, y: 0.32325935, z: 0.32325947, w: 0.6288907}
-  m_LocalPosition: {x: -0.515, y: 0.056, z: 0.864}
+  m_LocalPosition: {x: -1.14, y: 0.056, z: 0.99}
   m_LocalScale: {x: 0.0023400087, y: 0.002340008, z: 0.0023400048}
   m_Children:
   - {fileID: 4386334435326786}
@@ -1903,7 +1904,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864494468229270}
   m_LocalRotation: {x: 0.50000435, y: -0.4999994, z: -0.49999824, w: -0.49999797}
-  m_LocalPosition: {x: -0.941, y: -0.09, z: 0.032}
+  m_LocalPosition: {x: -0.927, y: 0.032, z: -1.195}
   m_LocalScale: {x: 0.8453622, y: 0.8453617, z: 0.046964515}
   m_Children: []
   m_Father: {fileID: 4678116073715250}
@@ -4242,6 +4243,7 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4475672539983014}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114188523486853270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4293,6 +4295,7 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4173082715623092}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114226150707922858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4334,6 +4337,7 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4758227694310814}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114280865743756256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4488,6 +4492,7 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4651814759060502}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114455043869442398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4501,34 +4506,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114540689276414562}
-        m_MethodName: DroneGrabbed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onDeInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114540689276414562}
-        m_MethodName: DroneReleased
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
@@ -4649,12 +4632,26 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4596103830086658}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114646425370415142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892003049429500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMat: {fileID: 2100000, guid: dd11a884e9b826342b379ebf8c4aeff2, type: 2}
+  renderersToExclude: []
+--- !u!114 &114703608160451662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649110322771706}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
@@ -4698,6 +4695,7 @@ MonoBehaviour:
   snappedObject: {fileID: 0}
   desiredObject: {fileID: 4863830106564986}
   isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114765777244526798
 MonoBehaviour:
   m_ObjectHideFlags: 1
