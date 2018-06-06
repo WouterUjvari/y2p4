@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour {
+public class PuzzleAudioPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
