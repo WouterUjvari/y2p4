@@ -43,6 +43,8 @@ public class VRPlayerMovementManager : MonoBehaviour
 		headTransform = Camera.main.transform;
 
         handBasePos = leftHand.transform.GetChild(0).transform.localPosition;
+
+        cameraRigTransform.position -= headTransform.position;
     }
 
     private void Update()

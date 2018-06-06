@@ -18,6 +18,8 @@ public class ObjectSnapSpot : MonoBehaviour
     public Transform desiredObject;
     [HideInInspector]
     public bool isLookingForSpecificObject;
+    [SerializeField]
+    private bool removeInteractionComponentsOnDesiredSnap;
 
     private void Awake()
     {
@@ -42,7 +44,10 @@ public class ObjectSnapSpot : MonoBehaviour
         }
         else
         {
-            // Object to snap is the desired object and this spot is available. Hurray, fire an event or something.
+            if (removeInteractionComponentsOnDesiredSnap)
+            {
+                RemoveInteractionComponents(obj);
+            }
         }
 
         obj.transform.position = transform.position;
@@ -68,5 +73,15 @@ public class ObjectSnapSpot : MonoBehaviour
         snappedObject = null;
 
         state = State.Available;
+    }
+
+    private void RemoveInteractionComponents(Transform obj)
+    {
+        Destroy(obj.GetComponent<Interactable>());
+        Highlightable highlightable = obj.GetComponent<Highlightable>();
+        if (highlightable != null)
+        {
+            Destroy(highlightable);
+        }
     }
 }
