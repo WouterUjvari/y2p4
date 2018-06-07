@@ -4210,7 +4210,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65933006642696702}
   testHand: {fileID: 0}
 --- !u!114 &114195438059339298
 MonoBehaviour:
@@ -4254,7 +4255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   snappedObject: {fileID: 0}
-  desiredObject: {fileID: 0}
+  desiredObject: {fileID: 4358106757223466}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 1
 --- !u!114 &114280865743756256
@@ -4425,12 +4426,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114540689276414562}
+        m_MethodName: DroneGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onDeInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114540689276414562}
+        m_MethodName: DroneReleased
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
@@ -4471,7 +4494,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65158224797329580}
   testHand: {fileID: 0}
 --- !u!114 &114506029552256278
 MonoBehaviour:
@@ -4507,7 +4531,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65849917696037928}
   testHand: {fileID: 0}
 --- !u!114 &114540689276414562
 MonoBehaviour:
@@ -4575,7 +4600,7 @@ MonoBehaviour:
         m_MethodName: SnapObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 4358106757223466}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4586,7 +4611,10 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 64588593423159632}
+  - {fileID: 64283096927888022}
+  - {fileID: 65158734298805056}
   testHand: {fileID: 0}
 --- !u!114 &114646425370415142
 MonoBehaviour:
@@ -4685,7 +4713,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65207496564671312}
   testHand: {fileID: 0}
 --- !u!114 &114821079890359120
 MonoBehaviour:

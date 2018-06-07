@@ -19,10 +19,12 @@ public class Pen : MonoBehaviour
     private float distanceBetweenDrawPoints = 0.01f;
     [SerializeField]
     private LayerMask drawLayerMask;
+    [SerializeField]
+    private float drawRayLength = 0.05f;
 
     private void Update()
     {
-        Debug.DrawRay(penPoint.transform.position, penPoint.transform.forward * 0.05f, Color.red);
+        Debug.DrawRay(penPoint.transform.position, penPoint.transform.forward * drawRayLength, Color.red);
 
         if (!canDraw)
         {
@@ -30,7 +32,7 @@ public class Pen : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(penPoint.transform.position, penPoint.transform.forward, out hit, 0.05f, drawLayerMask))
+        if (Physics.Raycast(penPoint.transform.position, penPoint.transform.forward, out hit, drawRayLength, drawLayerMask))
         {
             penHitPoint = hit.point;
 
