@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135787798608967372}
   - component: {fileID: 114115626280828596}
   - component: {fileID: 114548470844081324}
+  - component: {fileID: 114126316418917238}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Untagged
@@ -159,6 +160,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: dd11a884e9b826342b379ebf8c4aeff2, type: 2}
   renderersToExclude: []
+--- !u!114 &114126316418917238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025398582367558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1f70304c77ac34e912fb8fe809fbe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resizeSpeed: 1
+  smallSize: 0.5
+  bigSize: 1.8
+  resizeSetting: 0
 --- !u!114 &114548470844081324
 MonoBehaviour:
   m_ObjectHideFlags: 1

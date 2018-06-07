@@ -71,22 +71,6 @@
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>PuzzleManager</Name>
-        <Access>Public</Access>
-        <Location left="490" top="41" />
-        <Size width="162" height="216" />
-        <Collapsed>False</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>BananaManager</Name>
-        <Access>Public</Access>
-        <Location left="278" top="301" />
-        <Size width="162" height="202" />
-        <Collapsed>False</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
         <Name>Highlightable</Name>
         <Access>Public</Access>
         <Location left="74" top="702" />
@@ -112,7 +96,7 @@
       <Entity type="Class">
         <Name>Grabable</Name>
         <Access>Public</Access>
-        <Location left="1210" top="526" />
+        <Location left="1046" top="526" />
         <Size width="162" height="84" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -120,7 +104,7 @@
       <Entity type="Class">
         <Name>Clickable</Name>
         <Access>Public</Access>
-        <Location left="1428" top="526" />
+        <Location left="1248" top="526" />
         <Size width="162" height="84" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -128,7 +112,7 @@
       <Entity type="Class">
         <Name>Eatable</Name>
         <Access>Public</Access>
-        <Location left="1122" top="685" />
+        <Location left="958" top="685" />
         <Size width="162" height="83" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -136,34 +120,78 @@
       <Entity type="Class">
         <Name>Grabable_Restricted</Name>
         <Access>Public</Access>
-        <Location left="1301" top="685" />
+        <Location left="1137" top="685" />
         <Size width="162" height="83" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Rotator</Name>
+        <Access>Public</Access>
+        <Location left="1449" top="526" />
+        <Size width="162" height="79" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Rotatable</Name>
+        <Access>Public</Access>
+        <Location left="1636" top="525" />
+        <Size width="162" height="80" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameFlowManager</Name>
+        <Access>Public</Access>
+        <Location left="278" top="301" />
+        <Size width="162" height="206" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObjectSnapper</Name>
+        <Access>Public</Access>
+        <Location left="76" top="1003" />
+        <Size width="162" height="150" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObjectSnapSpot</Name>
+        <Access>Public</Access>
+        <Location left="74" top="1209" />
+        <Size width="162" height="88" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="3">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="5" second="7">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
-      <Relationship type="Dependency" first="12" second="13">
-        <Label>
-        </Label>
+      <Relationship type="Dependency" first="10" second="11">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -171,11 +199,13 @@
           <Y>491</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1290</X>
+          <X>1126</X>
           <Y>501</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Dependency" first="12" second="14">
+      <Relationship type="Dependency" first="10" second="12">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -183,13 +213,39 @@
           <Y>491</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Dependency" first="13" second="15">
+      <Relationship type="Dependency" first="11" second="13">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Dependency" first="13" second="16">
+      <Relationship type="Dependency" first="11" second="14">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="15">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="16">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="18" second="19">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>157</X>
+          <Y>1154</Y>
+        </BendPoint>
       </Relationship>
     </Relationships>
   </ProjectItem>
