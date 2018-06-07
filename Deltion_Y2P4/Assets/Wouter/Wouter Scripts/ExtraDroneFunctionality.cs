@@ -32,6 +32,7 @@ public class ExtraDroneFunctionality : MonoBehaviour {
 
         joint.connectedBody = g.GetComponent<Rigidbody>();
         //g.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
+        Destroy(g.GetComponent<Rigidbody>());
     }
 
     public void DestroyJoints()
