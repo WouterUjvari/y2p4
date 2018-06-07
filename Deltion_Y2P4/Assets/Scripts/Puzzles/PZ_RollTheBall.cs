@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PZ_RollTheBall : MonoBehaviour 
 {
 
     [SerializeField]
     private Animator arenaAnim;
+    [SerializeField]
+    private Animator armAnim;
 
     [SerializeField]
     private GameObject ball;
@@ -18,13 +21,13 @@ public class PZ_RollTheBall : MonoBehaviour
     private bool ballCanTp = true;
     private float ballTpCooldown;
 
-    private void Awake()
-    {
-        activeBall = Instantiate(ball, ballStart.position, Quaternion.identity, arenaAnim.transform);
-    }
-
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            StartPuzzle();
+        }
         if (!ballCanTp)
         {
             if (ballTpCooldown > 0)
@@ -36,6 +39,20 @@ public class PZ_RollTheBall : MonoBehaviour
                 ballCanTp = true;
             }
         }
+    }
+
+    public void StartPuzzle()
+    {
+        StartCoroutine(OpenPuzzle());
+    }
+
+    private IEnumerator OpenPuzzle()
+    {
+        armAnim.SetTrigger("Open");
+
+        yield return new WaitForSeconds(1.5f);
+
+        activeBall = Instantiate(ball, ballStart.position, Quaternion.identity, arenaAnim.transform);
     }
 
     public void RotateArenaRight()
