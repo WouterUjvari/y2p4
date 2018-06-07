@@ -4,6 +4,9 @@ using UnityEngine;
 public class Liquid : MonoBehaviour
 {
 
+    [HideInInspector]
+    public Color myColor;
+
     private Flask myFlask;
     private ParticleSystem pSystem;
     private ParticleSystem.MainModule psModule;
@@ -21,13 +24,13 @@ public class Liquid : MonoBehaviour
         if (flask != null && flask != myFlask)
         {
             flask.DestroyNearbyParticles(pSystem);
-            flask.AddLiquid(psModule.startColor.color);
+            flask.AddLiquid(myColor);
         }
 
         Colourable colourable = other.GetComponent<Colourable>();
         if (colourable != null)
         {
-            colourable.ReColor(psModule.startColor.color);
+            colourable.ReColor(myColor);
         }
     }
 }

@@ -55,15 +55,6 @@ public class Grabable_Restricted : Grabable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Interact(testHand);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            DeInteract(testHand);
-        }
-
         if (!restrict)
         {
             return;

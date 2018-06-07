@@ -9,6 +9,8 @@ public class Flask : MonoBehaviour
     private string myColorName;
     [SerializeField]
     private List<Colors> colors = new List<Colors>();
+    [SerializeField]
+    private Liquid myLiquid;
 
     [Space(10)]
 
@@ -56,6 +58,7 @@ public class Flask : MonoBehaviour
             if (colors[i].name == myColorName)
             {
                 myCurrentColor = colors[i].color;
+                myLiquid.myColor = myCurrentColor;
             }
         }
 
@@ -136,6 +139,7 @@ public class Flask : MonoBehaviour
             yield return null;
         }
         myCurrentColor = newColor;
+        myLiquid.myColor = newColor;
 
         isLerpingColor = false;
     }

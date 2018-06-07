@@ -12,16 +12,21 @@ public class VRInteractor : MonoBehaviour
     private VRInteractor otherHand;
     private HandActions handActions;
 
+    //[HideInInspector]
+    //public SteamVR_Controller.Device Controller
+    //{
+    //    get { return SteamVR_Controller.Input((int)trackedObj.index); }
+    //}
+
     [HideInInspector]
-    public SteamVR_Controller.Device Controller
-    {
-        get { return SteamVR_Controller.Input((int)trackedObj.index); }
-    }
+    public SteamVR_Controller.Device controller;
 
     public void Awake()
     {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
         handActions = GetComponentInChildren<HandActions>();
+
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        controller = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
     private void Update()
@@ -35,7 +40,7 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (interactingObject != null)
             {
@@ -44,11 +49,16 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
-        Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+        if (controller == null)
+        {
+            return;
+        }
+
+        Vector2 triggerAxis = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
         handActions.timeline = triggerAxis.x;
 
         // If the trigger gets pressed down and there is a colliding object, interact with it.
-        if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        if (controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (collidingObject != null)
             {
@@ -57,7 +67,7 @@ public class VRInteractor : MonoBehaviour
         }
 
         // If the trigger gets pressed up and the player is interacting with an object, deinteract with it.
-        if (Controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        if (controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
             if (interactingObject != null)
             {
@@ -99,7 +109,11 @@ public class VRInteractor : MonoBehaviour
                 if (highlightable != null)
                 {
                     highlightable.Highlight();
-                    Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
+
+                    if (controller != null)
+                    {
+                        controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
+                    }
                 }
             }
         }

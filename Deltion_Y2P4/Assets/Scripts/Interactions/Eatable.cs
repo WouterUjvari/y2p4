@@ -56,7 +56,7 @@ public class Eatable : Grabable
             Instantiate(eatParticle, transform.position, Quaternion.identity);
         }
 
-		interactingHand.DeInteract ();
+		interactingHand.DeInteract();
 
         Destroy(gameObject);
     }

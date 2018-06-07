@@ -32,6 +32,18 @@ public class Grabable : Interactable
         gravity = rb.useGravity;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Interact(testHand);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            DeInteract(testHand);
+        }
+    }
+
     public override void Interact(VRInteractor hand)
     {
         if (locked)
@@ -47,11 +59,6 @@ public class Grabable : Interactable
 
     public override void DeInteract(VRInteractor hand)
     {
-        if (hand == null)
-        {
-            hand = interactingHand;
-        }
-
         base.DeInteract(hand);
 
         interactingHand = null;
@@ -104,8 +111,8 @@ public class Grabable : Interactable
             joint.connectedBody = null;
             Destroy(joint);
 
-            rb.velocity = (hand.Controller != null) ? hand.Controller.velocity : Vector3.zero;
-            rb.angularVelocity = (hand.Controller != null) ? hand.Controller.angularVelocity : Vector3.zero;
+            rb.velocity = (hand.controller != null) ? hand.controller.velocity : Vector3.zero;
+            rb.angularVelocity = (hand.controller != null) ? hand.controller.angularVelocity : Vector3.zero;
         }
     }
 }

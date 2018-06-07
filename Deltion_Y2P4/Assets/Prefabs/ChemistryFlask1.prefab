@@ -200,14 +200,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427398879066114}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.026, y: 0.19332689, z: 0.162}
+  m_LocalRotation: {x: -0, y: -0.99975634, z: -0, w: 0.02207601}
+  m_LocalPosition: {x: -0.22061858, y: 1.13, z: -0.85412186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4072559158004820}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -27.470001, z: 0}
 --- !u!4 &4371841899271412
 Transform:
   m_ObjectHideFlags: 1
@@ -505,6 +505,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   reparent: 1
+  setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
 --- !u!114 &114125716489822138
@@ -533,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382e6623562b32c44ac1e7ab06a33aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114328087987264706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94a048fb1ff97f45934bc43ee08b208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myColorName: purple
+  myColorName: red
   colors:
   - color: {r: 1, g: 0, b: 0, a: 1}
     name: red
@@ -573,6 +575,7 @@ MonoBehaviour:
     name: purple
   - color: {r: 0.6603774, g: 0.33027843, b: 0, a: 1}
     name: brown
+  myLiquid: {fileID: 114245526545437700}
   liquidParticle: {fileID: 198376951531927338}
   bubbleParticle: {fileID: 198631928899828596}
   staticLiquid: {fileID: 4651477920002900}
@@ -1150,7 +1153,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.15
       minScalar: 0
       maxCurve:
         serializedVersion: 2

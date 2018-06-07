@@ -4,17 +4,15 @@ public class VRWalk : MonoBehaviour
 {
 
     private SteamVR_TrackedObject trackedObj;
+    private SteamVR_Controller.Device controller;
 
-    private SteamVR_Controller.Device Controller
-    {
-        get { return SteamVR_Controller.Input((int)trackedObj.index); }
-    }
-
-    public float moveSpeed;
+    [SerializeField]
+    private float moveSpeed;
 
     private void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        controller = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
     private void Update()
@@ -27,9 +25,9 @@ public class VRWalk : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            Vector2 touchpad = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+            Vector2 touchpad = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
             float speed = Time.deltaTime * moveSpeed;
 

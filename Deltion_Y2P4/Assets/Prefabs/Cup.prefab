@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4865533271035834}
   - component: {fileID: 54596071969470792}
-  - component: {fileID: 135787798608967372}
   - component: {fileID: 114115626280828596}
   - component: {fileID: 114548470844081324}
   - component: {fileID: 114126316418917238}
+  - component: {fileID: 135333103981950670}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Untagged
@@ -200,7 +200,7 @@ MonoBehaviour:
   setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
---- !u!135 &135787798608967372
+--- !u!135 &135333103981950670
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -210,5 +210,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.09
   m_Center: {x: 0, y: 0.06, z: 0}
