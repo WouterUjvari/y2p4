@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: planet
-  m_Shader: {fileID: 4800000, guid: fdc14daa2ecabe746902542b8024589d, type: 3}
-  m_ShaderKeywords: BOOLEAN_2BBB7752_ON BOOLEAN_8BCC386C_ON
+  m_Name: plennet
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,14 +18,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture_3D35A3C6:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture_B81F449D:
-        m_Texture: {fileID: 2800000, guid: 3f5b1161d8d8fe54e95b56ad41371edf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -47,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a9445b025e45b53448e755eef01a5f05, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -62,24 +54,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_155D27DE_Texture:
-        m_Texture: {fileID: 2800000, guid: a9445b025e45b53448e755eef01a5f05, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Boolean_2BBB7752: 1
-    - Boolean_8BCC386C: 1
-    - Vector1_18D883AF: 1
-    - Vector1_2C058B1C: 30
-    - Vector1_7AC71E62: 0
-    - Vector1_7E664D77: 0.3
-    - Vector1_8BF3C7E4: 0.2
-    - Vector1_993999EC: 2
-    - Vector1_BD5B954B: 5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -101,9 +80,6 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_8D469A6C: {r: 0.06132076, g: 0.6745725, b: 1, a: 1}
-    - Color_A9D05887: {r: 0, g: 0.09286616, b: 1, a: 1}
-    - Color_B9F2F76D: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
