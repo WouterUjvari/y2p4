@@ -1668,7 +1668,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198977579407006}
   m_LocalRotation: {x: -0, y: 0.99823725, z: -0, w: 0.059350178}
-  m_LocalPosition: {x: 13.52, y: 0, z: -3.32}
+  m_LocalPosition: {x: -0.36, y: 0.148, z: -9.214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4863830106564986}
@@ -4314,7 +4314,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 1
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65011123663710086}
   testHand: {fileID: 0}
 --- !u!114 &114457831011658886
 MonoBehaviour:
@@ -4468,9 +4469,7 @@ MonoBehaviour:
   reparent: 0
   setKinematic: 0
   collidersToTurnOff:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 65734052126796062}
   testHand: {fileID: 0}
 --- !u!114 &114646425370415142
 MonoBehaviour:

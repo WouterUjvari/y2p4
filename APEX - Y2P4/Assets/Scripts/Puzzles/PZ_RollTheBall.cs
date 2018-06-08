@@ -48,7 +48,7 @@ public class PZ_RollTheBall : MonoBehaviour
 
     private IEnumerator OpenPuzzle()
     {
-        armAnim.SetTrigger("Open");
+        armAnim.SetTrigger("OpenClose");
 
         yield return new WaitForSeconds(1.5f);
 
