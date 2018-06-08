@@ -192,7 +192,6 @@ GameObject:
   - component: {fileID: 33590887079635826}
   - component: {fileID: 23962389367633466}
   - component: {fileID: 65516524398820182}
-  - component: {fileID: 114961964453219914}
   m_Layer: 9
   m_Name: KladBlok
   m_TagString: Untagged
@@ -246,7 +245,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887995104992890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.523, y: 0.169, z: 1.296}
+  m_LocalPosition: {x: 1.41, y: 0.169, z: 1.296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4494210324121940}
@@ -714,8 +713,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32210535, y: 0.01200667, z: 0.20241986}
-  m_Center: {x: 0, y: 0.030800387, z: 0}
+  m_Size: {x: 0.34463617, y: 0.02154231, z: 0.20241986}
+  m_Center: {x: -0.011265412, y: 0.035568208, z: 0}
 --- !u!65 &65516524398820182
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -726,8 +725,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32152617, y: 0.20060132, z: 0.0360989}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.32152617, y: 0.20060132, z: 0.044852857}
+  m_Center: {x: 0, y: -6.848493e-18, z: 0.004376985}
 --- !u!114 &114200384359572582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -781,17 +780,6 @@ MonoBehaviour:
   setKinematic: 0
   collidersToTurnOff: []
   testHand: {fileID: 0}
---- !u!114 &114961964453219914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956135935618272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a633581dc883124082b1462db174538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212341192918154606
 SpriteRenderer:
   m_ObjectHideFlags: 1
