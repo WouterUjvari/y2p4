@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1038330375744534}
   m_LocalRotation: {x: -0.49999854, y: -0.5, z: 0.5, w: 0.5000015}
-  m_LocalPosition: {x: 1.584, y: 1.182, z: 4.9539986}
+  m_LocalPosition: {x: 1.074, y: 1.182, z: 4.953999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4532285430012398}
@@ -275,7 +275,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8c7fe3121dc21478d9bd5f824ad386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactEvent:
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onValidButtonClick:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -291,4 +301,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 2100000, guid: dd11a884e9b826342b379ebf8c4aeff2, type: 2}
+  highlightMat: {fileID: 2100000, guid: b6047aa879ef7ca4facc95d1bfb63126, type: 2}
+  renderersToExclude: []

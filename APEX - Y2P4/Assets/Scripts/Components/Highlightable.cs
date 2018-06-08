@@ -46,7 +46,7 @@ public class Highlightable : MonoBehaviour
             return;
         }
 
-        highlightMat.SetFloat("_Alpha", 0.35f);
+        highlightMat.SetFloat("_Alpha", 0.5f);
 		isHighlighted = true;
     }
 

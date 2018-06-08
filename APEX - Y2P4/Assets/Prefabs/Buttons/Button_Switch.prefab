@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 95933368249477258}
   - component: {fileID: 65816563406060004}
   - component: {fileID: 54528873820491268}
-  - component: {fileID: 114519804634502206}
   m_Layer: 0
   m_Name: Button_Switch
   m_TagString: Untagged
@@ -291,19 +290,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114519804634502206
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860168275153656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b40bfee182381f4a903e67b4474b882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleport: {fileID: 0}
-  smooth: {fileID: 0}
 --- !u!114 &114557007914120212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,5 +301,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 2100000, guid: dd11a884e9b826342b379ebf8c4aeff2, type: 2}
+  highlightMat: {fileID: 2100000, guid: b6047aa879ef7ca4facc95d1bfb63126, type: 2}
   renderersToExclude: []
