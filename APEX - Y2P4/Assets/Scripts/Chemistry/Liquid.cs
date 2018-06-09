@@ -32,5 +32,10 @@ public class Liquid : MonoBehaviour
         {
             colourable.ReColor(myColor);
         }
+
+        if (other.transform.tag == "Pen")
+        {
+            other.GetComponentInChildren<Pen>().ChangeColor(myColor);
+        }
     }
 }

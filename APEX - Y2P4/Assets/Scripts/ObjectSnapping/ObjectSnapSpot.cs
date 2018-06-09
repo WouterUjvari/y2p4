@@ -83,5 +83,11 @@ public class ObjectSnapSpot : MonoBehaviour
         {
             Destroy(highlightable);
         }
+
+        Collider[] colliders = obj.GetComponentsInChildren<Collider>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Destroy(colliders[i]);
+        }
     }
 }

@@ -37,19 +37,28 @@ public class Rotatable : Interactable
     [SerializeField]
     private float maxRot;
 
+    [Header("Rotation Smoothing")]
+    [SerializeField]
+    private bool lerpRotation;
+    [SerializeField]
+    private float smoothSpeed = 15f;
+
     [Space(10)]
 
     [SerializeField]
     private float interactBreakDistance = 0.5f;
+    [SerializeField]
+    private bool addTorque;
 
     private Vector3 interactingHandPos;
-    private Vector3 startRot;
-    private Vector3 lastValidRot;
+    private Rigidbody rb;
 
     public VRInteractor testHand;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+
         if (objectToRotate == null)
         {
             objectToRotate = transform;
@@ -58,19 +67,20 @@ public class Rotatable : Interactable
         {
             interactPoint = transform;
         }
-
-        startRot = objectToRotate.localEulerAngles;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (testHand != null)
         {
-            Interact(testHand);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            DeInteract(testHand);
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Interact(testHand);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                DeInteract(testHand);
+            }
         }
 
         if (interactingHand == null)
@@ -125,7 +135,14 @@ public class Rotatable : Interactable
                 }
             }
 
-            objectToRotate.eulerAngles = rotationEuler;
+            if (lerpRotation)
+            {
+                objectToRotate.eulerAngles = Vector3.Lerp(objectToRotate.eulerAngles, rotationEuler, Time.deltaTime * smoothSpeed);
+            }
+            else
+            {
+                objectToRotate.eulerAngles = rotationEuler;
+            }
         }
         else if (type == Type.Delta)
         {
@@ -178,6 +195,11 @@ public class Rotatable : Interactable
     public override void DeInteract(VRInteractor hand)
     {
         base.DeInteract(hand);
+
+        if (addTorque)
+        {
+            rb.AddTorque(hand.Controller.velocity);
+        }
 
         interactingHand = null;
     }

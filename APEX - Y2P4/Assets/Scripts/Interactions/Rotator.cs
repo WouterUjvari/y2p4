@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotator : Interactable 
+public class Rotator : Interactable
 {
 
     private bool rotate;
@@ -19,13 +19,16 @@ public class Rotator : Interactable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (testHand != null)
         {
-            Interact(testHand);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            DeInteract(testHand);
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Interact(testHand);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                DeInteract(testHand);
+            }
         }
 
         if (!rotate)

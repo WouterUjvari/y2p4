@@ -57,6 +57,11 @@ public class VRInteractor : MonoBehaviour
         Vector2 triggerAxis = Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
         handActions.timeline = triggerAxis.x;
 
+        HandleButtonPresses();
+    }
+
+    private void HandleButtonPresses()
+    {
         // If the trigger gets pressed down and there is a colliding object, interact with it.
         if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {

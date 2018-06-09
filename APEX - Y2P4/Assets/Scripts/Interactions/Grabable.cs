@@ -34,13 +34,16 @@ public class Grabable : Interactable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (testHand != null)
         {
-            Interact(testHand);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            DeInteract(testHand);
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Interact(testHand);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                DeInteract(testHand);
+            }
         }
     }
 

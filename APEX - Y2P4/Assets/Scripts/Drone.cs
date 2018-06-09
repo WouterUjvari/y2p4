@@ -66,14 +66,6 @@ public class Drone : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            DroneGrabbed();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            DroneReleased();
-        }
         if (Input.GetKeyDown(KeyCode.X))
         {
             RepairDrone();
@@ -177,20 +169,26 @@ public class Drone : MonoBehaviour
     private Vector3 GetDestination()
     {
         Vector3 validDestination = Vector3.zero;
+        int tries = 0;
 
         while (validDestination == Vector3.zero)
         {
             Vector3 newDestination = (Random.insideUnitSphere * moveUpdateRadius) + transform.position;
+            tries++;
 
             if (newDestination.y >= minumumHeight && newDestination.y <= maximumHeight)
             {
-                if (!Physics.Linecast(transform.position, newDestination))
+                if (!Physics.Linecast(transform.position, newDestination) || tries > 500)
                 {
                     validDestination = newDestination;
                 }
             }
         }
 
+        if (tries > 100)
+        {
+            print("Drone found new destination in " + tries + " tries.");
+        }
         return validDestination;
     }
 

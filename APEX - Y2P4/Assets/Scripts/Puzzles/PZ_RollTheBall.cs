@@ -24,7 +24,7 @@ public class PZ_RollTheBall : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             StartPuzzle();
         }
@@ -55,6 +55,12 @@ public class PZ_RollTheBall : MonoBehaviour
         activeBall = Instantiate(ball, ballStart.position, Quaternion.identity, arenaAnim.transform);
     }
 
+    private IEnumerator ClosePuzzle()
+    {
+        yield return new WaitForSeconds(2f);
+        armAnim.SetTrigger("OpenClose");
+    }
+
     public void RotateArenaRight()
     {
         arenaAnim.SetTrigger("RotateRight");
@@ -79,5 +85,6 @@ public class PZ_RollTheBall : MonoBehaviour
     public void CompletePuzzle()
     {
         Destroy(activeBall);
+        StartCoroutine(ClosePuzzle());
     }
 }

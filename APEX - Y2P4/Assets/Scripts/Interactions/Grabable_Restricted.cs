@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Grabable_Restricted : Grabable 
+public class Grabable_Restricted : Grabable
 {
 
     private bool restrict;
@@ -55,6 +55,18 @@ public class Grabable_Restricted : Grabable
 
     private void Update()
     {
+        if (testHand != null)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Interact(testHand);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                DeInteract(testHand);
+            }
+        }
+
         if (!restrict)
         {
             return;
@@ -124,7 +136,7 @@ public class Grabable_Restricted : Grabable
         transform.localPosition = targetPos;
         transform.rotation = restrictedRot;
     }
-		
+
     public override void Interact(VRInteractor hand)
     {
         if (locked)

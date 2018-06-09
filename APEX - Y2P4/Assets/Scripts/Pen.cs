@@ -10,6 +10,7 @@ public class Pen : MonoBehaviour
     private int currentPositionIndex;
     private Transform currentDrawingSurface;
     private Vector3 penHitPoint;
+    private Color inkColor;
 
     [SerializeField]
     private Transform penPoint;
@@ -21,6 +22,11 @@ public class Pen : MonoBehaviour
     private LayerMask drawLayerMask;
     [SerializeField]
     private float drawRayLength = 0.05f;
+
+    private void Awake()
+    {
+        inkColor = Color.blue;
+    }
 
     private void Update()
     {
@@ -70,8 +76,11 @@ public class Pen : MonoBehaviour
         GameObject newLine = new GameObject();
         newLine.transform.SetParent(surface);
         newLine.transform.position = penPoint.position;
+
         currentLine = newLine.AddComponent<LineRenderer>();
         lineRendererPreset.ApplyTo(currentLine);
+        currentLine.materials[0].color = inkColor;
+
         currentPositionIndex = 0;
 
         AddPenPoint();
@@ -94,5 +103,10 @@ public class Pen : MonoBehaviour
     public void GrabPenEvent(bool canDraw)
     {
         this.canDraw = canDraw;
+    }
+
+    public void ChangeColor(Color color)
+    {
+        inkColor = color;
     }
 }
