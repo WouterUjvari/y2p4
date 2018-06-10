@@ -56,6 +56,7 @@ public class Drone : MonoBehaviour
     private Rigidbody rb;
     private float stunnedAfterGrabCooldown;
     private ObjectSnapper objSnapper;
+    private Animator droneAnim;
 
     private void Awake()
     {
@@ -218,7 +219,12 @@ public class Drone : MonoBehaviour
     {
         objSnapper.DestroySnappedObjects();
         Destroy(brokenDroneBaseBody);
-        Instantiate(repairedDrone, repairedDroneSpawn.position, repairedDroneSpawn.rotation, repairedDroneSpawn);
+        GameObject drone = Instantiate(repairedDrone, repairedDroneSpawn.position, repairedDroneSpawn.rotation, repairedDroneSpawn);
+        droneAnim = drone.GetComponent<Animator>();
+        if (droneAnim != null)
+        {
+            droneAnim.SetTrigger("Search");
+        }
 
         rb.useGravity = false;
         rb.isKinematic = true;

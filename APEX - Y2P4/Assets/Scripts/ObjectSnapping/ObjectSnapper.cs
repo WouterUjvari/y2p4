@@ -19,18 +19,34 @@ public class ObjectSnapper : MonoBehaviour
     {
         ObjectSnapSpot closestSnapSpot = null;
 
+        // Loop through snapspots.
         for (int i = 0; i < snapSpots.Count; i++)
         {
+            // If obj is in range of current snapspot.
             if (Vector3.Distance(snapSpots[i].transform.position, obj.position) < snapRange)
             {
+                // If current snapspot is looking for this obj, then this is the right snapspot, break out of the loop.
                 if (snapSpots[i].isLookingForSpecificObject && obj == snapSpots[i].desiredObject)
                 {
                     closestSnapSpot = snapSpots[i];
                     break;
                 }
+                // Else if snapspot is not looking for a specific obj.
                 else if (!snapSpots[i].isLookingForSpecificObject)
                 {
-                    closestSnapSpot = snapSpots[i];
+                    // If there isnt a closest snapspot yet, make this the one and continue the loop.
+                    if (closestSnapSpot == null)
+                    {
+                        closestSnapSpot = snapSpots[i];
+                    }
+                    else
+                    {
+                        // If there is already a closest snapspot, check if the current snapspot is closer to the object, if it is, make this the new closest snapspot.
+                        if (Vector3.Distance(snapSpots[i].transform.position, obj.position) < Vector3.Distance(closestSnapSpot.transform.position, obj.position))
+                        {
+                            closestSnapSpot = snapSpots[i];
+                        }
+                    }
                 }
             }
         }

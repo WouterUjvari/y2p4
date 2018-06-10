@@ -5,6 +5,7 @@ public class VRInteractor : MonoBehaviour
 
     private SteamVR_TrackedObject trackedObj;
 
+    //private LastHitObject lastHitObj;
     public GameObject collidingObject;
     public Interactable interactingObject;
 
@@ -20,6 +21,20 @@ public class VRInteractor : MonoBehaviour
 
     //[HideInInspector]
     //public SteamVR_Controller.Device Controller;
+
+    //private class LastHitObject
+    //{
+    //    public Transform transform;
+    //    public Interactable interactable;
+    //    public Highlightable highlightable;
+
+    //    public LastHitObject(Transform obj)
+    //    {
+    //        transform = obj;
+    //        interactable = obj.GetComponent<Interactable>();
+    //        highlightable = obj.GetComponent<Highlightable>();
+    //    }
+    //}
 
     public void Awake()
     {
@@ -80,6 +95,40 @@ public class VRInteractor : MonoBehaviour
             }
         }
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (interactingObject != null)
+    //    {
+    //        return;
+    //    }
+
+    //    if (lastHitObj.transform != other.transform)
+    //    {
+    //        if (lastHitObj.highlightable != null)
+    //        {
+    //            lastHitObj.highlightable.DeHighlight();
+    //        }
+
+    //        lastHitObj = new LastHitObject(other.transform);
+    //    }
+
+    //    if (lastHitObj.highlightable != null)
+    //    {
+    //        lastHitObj.highlightable.Highlight();
+
+    //        if (Controller != null)
+    //        {
+    //            Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
+    //        }
+    //    }
+
+    //    if (lastHitObj.interactable != null)
+    //    {
+    //        collidingObject = other.gameObject;
+    //        handActions.press = (lastHitObj.interactable is Clickable ? true : false);
+    //    }
+    //}
 
     public void OnTriggerEnter(Collider other)
     {
