@@ -40,10 +40,13 @@ public class RotateAround : MonoBehaviour
 
     public void CheckChildRA()
     {
-        RotateAround ra = GetComponentInChildren<RotateAround>();
-        if (ra)
+        RotateAround[] ra = GetComponentsInChildren<RotateAround>();
+        for (int i = 0; i < ra.Length; i++)
         {
-            ra.canRotate = true;
+            if (ra[i] != this)
+            {
+                ra[i].canRotate = true;
+            }
         }
     }
 }

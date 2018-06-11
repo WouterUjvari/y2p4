@@ -53,8 +53,6 @@ public class Rotatable : Interactable
     private Vector3 interactingHandPos;
     private Rigidbody rb;
 
-    public VRInteractor testHand;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -71,18 +69,6 @@ public class Rotatable : Interactable
 
     private void Update()
     {
-        if (testHand != null)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Interact(testHand);
-            }
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                DeInteract(testHand);
-            }
-        }
-
         if (interactingHand == null)
         {
             return;

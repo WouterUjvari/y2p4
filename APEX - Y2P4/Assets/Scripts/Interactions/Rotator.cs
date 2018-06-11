@@ -15,22 +15,8 @@ public class Rotator : Interactable
     private Transform rotator;
     private float rotatorLocalYRot;
 
-    public VRInteractor testHand;
-
     private void Update()
     {
-        if (testHand != null)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Interact(testHand);
-            }
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                DeInteract(testHand);
-            }
-        }
-
         if (!rotate)
         {
             return;

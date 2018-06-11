@@ -22,29 +22,12 @@ public class Grabable : Interactable
 
     private bool gravity;
 
-    public VRInteractor testHand;
-
     public virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         originalParent = transform.parent;
 
         gravity = rb.useGravity;
-    }
-
-    private void Update()
-    {
-        if (testHand != null)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Interact(testHand);
-            }
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                DeInteract(testHand);
-            }
-        }
     }
 
     public override void Interact(VRInteractor hand)
@@ -62,10 +45,10 @@ public class Grabable : Interactable
 
     public override void DeInteract(VRInteractor hand)
     {
-        base.DeInteract(hand);
-
         interactingHand = null;
         Release(hand);
+
+        base.DeInteract(hand);
     }
 
     public virtual void Grab(VRInteractor hand)
