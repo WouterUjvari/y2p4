@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ObjectSnapSpot : MonoBehaviour 
 {
@@ -20,6 +21,8 @@ public class ObjectSnapSpot : MonoBehaviour
     public bool isLookingForSpecificObject;
     [SerializeField]
     private bool removeInteractionComponentsOnDesiredSnap;
+    [SerializeField]
+    private UnityEvent onSnap;
 
     private void Awake()
     {
@@ -52,6 +55,7 @@ public class ObjectSnapSpot : MonoBehaviour
 
         obj.transform.position = transform.position;
         obj.transform.rotation = transform.rotation;
+        obj.SetParent(transform);
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         snappedObjectKinematic = (rb.isKinematic) ? true : false;
@@ -60,6 +64,8 @@ public class ObjectSnapSpot : MonoBehaviour
         snappedObject = obj;
 
         state = State.Taken;
+
+        onSnap.Invoke();
     }
 
     public void UnSnapObject()

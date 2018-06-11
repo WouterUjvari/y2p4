@@ -3,11 +3,11 @@
 public class RotateAround : MonoBehaviour 
 {
 
+    public bool canRotate = true;
+
     private enum Axis { X, Y, Z}
     [SerializeField]
     private Axis axis;
-    [SerializeField]
-    private bool canRotate = true;
     [SerializeField]
     private float speed;
 
@@ -36,5 +36,14 @@ public class RotateAround : MonoBehaviour
     public void SetRotation(bool b)
     {
         canRotate = b;
+    }
+
+    public void CheckChildRA()
+    {
+        RotateAround ra = GetComponentInChildren<RotateAround>();
+        if (ra)
+        {
+            ra.canRotate = true;
+        }
     }
 }

@@ -1004,7 +1004,6 @@ GameObject:
   - component: {fileID: 114821079890359120}
   - component: {fileID: 54186235531868930}
   - component: {fileID: 65400204063467952}
-  - component: {fileID: 65283124670146768}
   m_Layer: 0
   m_Name: StandFBX
   m_TagString: Untagged
@@ -3870,18 +3869,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 54.74, y: 392.27, z: 74.8}
   m_Center: {x: -0.00026595592, y: -0.00022888184, z: -0.00000011921196}
---- !u!65 &65283124670146768
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1864494468229270}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.39392307, y: 0.40000004, z: 4.387214}
-  m_Center: {x: 0.000000950039, y: 0.0000002386088, z: 2.1938682}
 --- !u!65 &65400204063467952
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4605,7 +4592,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   reparent: 0
   setKinematic: 0
-  collidersToTurnOff: []
+  collidersToTurnOff:
+  - {fileID: 65400204063467952}
   testHand: {fileID: 0}
 --- !u!114 &114856095295250732
 MonoBehaviour:

@@ -41,7 +41,7 @@ public class VRInteractor : MonoBehaviour
         handActions = GetComponentInChildren<HandActions>();
 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-        //controller = SteamVR_Controller.Input((int)trackedObj.index);
+        //Controller = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
     private void Update()
@@ -96,41 +96,7 @@ public class VRInteractor : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (interactingObject != null)
-    //    {
-    //        return;
-    //    }
-
-    //    if (lastHitObj.transform != other.transform)
-    //    {
-    //        if (lastHitObj.highlightable != null)
-    //        {
-    //            lastHitObj.highlightable.DeHighlight();
-    //        }
-
-    //        lastHitObj = new LastHitObject(other.transform);
-    //    }
-
-    //    if (lastHitObj.highlightable != null)
-    //    {
-    //        lastHitObj.highlightable.Highlight();
-
-    //        if (Controller != null)
-    //        {
-    //            Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
-    //        }
-    //    }
-
-    //    if (lastHitObj.interactable != null)
-    //    {
-    //        collidingObject = other.gameObject;
-    //        handActions.press = (lastHitObj.interactable is Clickable ? true : false);
-    //    }
-    //}
-
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         // If the player is already interacting with an object, ignore new collisions.
         if (interactingObject != null)
@@ -179,6 +145,56 @@ public class VRInteractor : MonoBehaviour
             handActions.press = (interactable is Clickable ? true : false);
         }
     }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    // If the player is already interacting with an object, ignore new collisions.
+    //    if (interactingObject != null)
+    //    {
+    //        return;
+    //    }
+
+    //    // Try to find an interactable component on the colliding object.
+    //    Interactable interactable = other.gameObject.GetComponent<Interactable>();
+
+    //    // If theres already a colliding object, check if were colliding with another interactable and if collidingObject has a highlight component and if so, dehighlight it.
+    //    if (collidingObject != null)
+    //    {
+    //        if (interactable != null)
+    //        {
+    //            Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
+    //            if (highlightable != null)
+    //            {
+    //                highlightable.DeHighlight();
+    //            }
+    //        }
+    //    }
+
+    //    // If were currently not colliding with the object our other hand is colliding with, highlight our current object.
+    //    if (otherHand != null)
+    //    {
+    //        if (otherHand.interactingObject == null || otherHand.interactingObject.gameObject != other.gameObject)
+    //        {
+    //            Highlightable highlightable = other.gameObject.GetComponent<Highlightable>();
+    //            if (highlightable != null)
+    //            {
+    //                highlightable.Highlight();
+
+    //                if (Controller != null)
+    //                {
+    //                    Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
+    //    if (interactable != null)
+    //    {
+    //        collidingObject = other.gameObject;
+    //        handActions.press = (interactable is Clickable ? true : false);
+    //    }
+    //}
 
     public void OnTriggerExit(Collider other)
     {

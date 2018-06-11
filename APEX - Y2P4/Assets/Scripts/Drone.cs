@@ -103,9 +103,7 @@ public class Drone : MonoBehaviour
 
         if (canStabilize)
         {
-            float rotX = transform.eulerAngles.x - transform.eulerAngles.x;
-            float rotZ = transform.eulerAngles.z - transform.eulerAngles.z;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotX, 0, rotZ), Time.deltaTime * stabilizeSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0, transform.localEulerAngles.y, 0), Time.deltaTime * stabilizeSpeed);
         }
     }
 
