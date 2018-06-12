@@ -1684,7 +1684,6 @@ Transform:
   m_Children:
   - {fileID: 4562541066779144}
   - {fileID: 4370716817521550}
-  - {fileID: 4963313074004154}
   m_Father: {fileID: 4863299868664806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
@@ -2084,12 +2083,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117645065116368}
-  m_LocalRotation: {x: 0.70710665, y: -0, z: 0.000000029802326, w: 0.707107}
-  m_LocalPosition: {x: 0.02, y: 0.1197, z: 0.4551}
-  m_LocalScale: {x: 0.028, y: 0.028, z: 1}
+  m_LocalRotation: {x: -0.00000004214655, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.030717872, y: 0.29164848, z: -0.10950789}
+  m_LocalScale: {x: 0.04666657, y: 0.062222224, z: 99.99983}
   m_Children: []
-  m_Father: {fileID: 4287523505936862}
-  m_RootOrder: 2
+  m_Father: {fileID: 224188784789380434}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4980139232503704
 Transform:
@@ -3831,8 +3830,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 0}
-  renderersToExclude: []
+  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
+  renderersToExclude:
+  - {fileID: 23931061710031570}
 --- !u!114 &114073187209392538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4096,8 +4096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 0}
-  renderersToExclude: []
+  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
+  renderersToExclude:
+  - {fileID: 23365434526800722}
 --- !u!114 &114256554291697108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4403,10 +4404,9 @@ MonoBehaviour:
   reparent: 0
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
   axisToRestrict: 1
   interactPoint: {fileID: 4849762076544272}
-  moveMultiplier: 225
+  moveMultiplier: 200
   maxMoveAmount: 0.1
   interactBreakDistance: 0.13
   startingLocalPosition: {x: 0, y: 0, z: -0.1}
@@ -4423,8 +4423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 0}
-  renderersToExclude: []
+  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
+  renderersToExclude:
+  - {fileID: 23723033385049170}
 --- !u!114 &114416228624290454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4577,7 +4578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 0}
+  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
   renderersToExclude: []
 --- !u!114 &114463848676817778
 MonoBehaviour:
@@ -5447,7 +5448,7 @@ MonoBehaviour:
   type: 0
   objectToRotate: {fileID: 0}
   interactPoint: {fileID: 0}
-  rotateMultiplier: 500
+  rotateMultiplier: 400
   eulerAnglesMax: 335
   clampAngle: 0
   minRot: 0
@@ -5456,7 +5457,6 @@ MonoBehaviour:
   smoothSpeed: 15
   interactBreakDistance: 0.3
   addTorque: 0
-  testHand: {fileID: 0}
 --- !u!114 &114761405366344000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5829,7 +5829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 0}
+  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
   renderersToExclude: []
 --- !u!114 &114865202982720076
 MonoBehaviour:
@@ -6764,7 +6764,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224188784789380434}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7027,6 +7027,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4963313074004154}
   - {fileID: 224028515327783516}
   m_Father: {fileID: 224635636544821082}
   m_RootOrder: 0
