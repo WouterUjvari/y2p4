@@ -2068,7 +2068,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326408118242656}
-  m_Mesh: {fileID: 4300024, guid: 5cc0137f8262d114a8d71c75df8f25fd, type: 3}
+  m_Mesh: {fileID: 4300024, guid: 890588cb94d885d489ab2adac4a11f7c, type: 3}
 --- !u!33 &33821209528009612
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2183,7 +2183,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 5cc0137f8262d114a8d71c75df8f25fd, type: 3}
@@ -2342,7 +2342,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114470480494600786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2432,7 +2431,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114494079409401024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2536,7 +2534,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114526186873609658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2608,7 +2605,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114577409582237916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2725,7 +2721,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114655883198072904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2783,7 +2778,6 @@ MonoBehaviour:
   reparent: 1
   setKinematic: 0
   collidersToTurnOff: []
-  testHand: {fileID: 0}
 --- !u!114 &114672759792565902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3069,7 +3063,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135358816941220872
 SphereCollider:
@@ -3081,7 +3075,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135390863831871754
 SphereCollider:
@@ -3117,7 +3111,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135565411235882086
 SphereCollider:
@@ -3129,7 +3123,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135667601523285314
 SphereCollider:
@@ -3141,7 +3135,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135767132528762658
 SphereCollider:
@@ -3165,7 +3159,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136879549008595102
 CapsuleCollider:

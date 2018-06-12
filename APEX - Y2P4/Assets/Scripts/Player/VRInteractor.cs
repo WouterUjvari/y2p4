@@ -13,14 +13,14 @@ public class VRInteractor : MonoBehaviour
     private VRInteractor otherHand;
     private HandActions handActions;
 
-    [HideInInspector]
-    public SteamVR_Controller.Device Controller
-    {
-        get { return SteamVR_Controller.Input((int)trackedObj.index); }
-    }
-
     //[HideInInspector]
-    //public SteamVR_Controller.Device Controller;
+    //public SteamVR_Controller.Device Controller
+    //{
+    //    get { return SteamVR_Controller.Input((int)trackedObj.index); }
+    //}
+
+    [HideInInspector]
+    public SteamVR_Controller.Device Controller;
 
     //private class LastHitObject
     //{
@@ -41,7 +41,7 @@ public class VRInteractor : MonoBehaviour
         handActions = GetComponentInChildren<HandActions>();
 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-        //Controller = SteamVR_Controller.Input((int)trackedObj.index);
+        Controller = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
     private void Update()
@@ -128,12 +128,12 @@ public class VRInteractor : MonoBehaviour
                 Highlightable highlightable = other.gameObject.GetComponent<Highlightable>();
                 if (highlightable != null)
                 {
-                    highlightable.Highlight();
-
-                    if (Controller != null)
+                    if (Controller != null && !highlightable.isHighlighted)
                     {
                         Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
                     }
+
+                    highlightable.Highlight();
                 }
             }
         }

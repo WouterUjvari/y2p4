@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlickerTex:
-        m_Texture: {fileID: 2800000, guid: 7c7ee6e01c7f84f4daa1ead20a8799d2, type: 3}
+        m_Texture: {fileID: 2800000, guid: cd1141aa727648e418f62450a0e39092, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -86,7 +86,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Flicker: 0
-    - _FlickerSpeed: 2
+    - _FlickerSpeed: 0.3
     - _Fold: 63
     - _Glitch: 0
     - _GlitchIntensity: 0.05
@@ -101,9 +101,9 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimFallness: 0.5
-    - _RimPower: 5
+    - _RimPower: 1
     - _RimStrength: 1
-    - _ScanSpeed: -0.54
+    - _ScanSpeed: 0.5
     - _ScanTiling: 300
     - _Scanline: 0
     - _ScanlineSpeed: 0.05
