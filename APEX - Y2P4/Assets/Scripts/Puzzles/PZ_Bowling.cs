@@ -5,86 +5,105 @@ using UnityEngine;
 public class PZ_Bowling : MonoBehaviour 
 {
 
-    public bool canSpawn;
+    private bool isResettingPins;
+    private int pinsHit;
+    private Collider[] ballCheckCollidersInRange = new Collider[15];
 
     [SerializeField]
-    private float spawnTimer;
-    private float spawnCooldown;
+    private Animator doorAnim;
     [SerializeField]
-    private float pinActiveTime;
-
-    private List<PZ_BowlingPin> pins = new List<PZ_BowlingPin>();
-
+    private float collisionTimeBeforeResetting = 4f;
     [SerializeField]
     private GameObject pin;
-
     [SerializeField]
-    private List<Transform> pinSpawns = new List<Transform>();
+    private List<Transform> pinsSpawns = new List<Transform>();
+    private List<Rigidbody> pinRbs = new List<Rigidbody>();
+    [SerializeField]
+    private Transform ballCheckArea;
+    [SerializeField]
+    private float ballCheckRadius = 2f;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(ballCheckArea.position, ballCheckRadius);
+    }
 
     private void Awake()
     {
-        PlacePins();
+        SpawnPins();
     }
-
     private void Update()
     {
-        if (!canSpawn)
-        {
-            return;
-        }
 
-        if (spawnCooldown > 0)
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            spawnCooldown -= Time.deltaTime;
+            CheckForBallInArea();
         }
-        else
+    }
+    public void ToggleDoor()
+    {
+        doorAnim.SetTrigger("Trigger");
+    }
+
+    public void PinsHit()
+    {
+        if (!isResettingPins)
         {
-            spawnCooldown = Random.Range((float)(0.75 * spawnTimer), (float)(1.25 * spawnTimer));
-            SpawnPin();
+            StartCoroutine(ResetPins());
         }
     }
 
-    private void PlacePins()
+    private IEnumerator ResetPins()
     {
-        if (pins.Count > 0)
+        isResettingPins = true;
+
+        yield return new WaitForSeconds(collisionTimeBeforeResetting);
+
+        pinsHit = 0;
+        for (int i = 0; i < pinRbs.Count; i++)
         {
-            for (int i = 0; i < pins.Count; i++)
+            if (pinRbs[i].velocity != Vector3.zero)
             {
-                Destroy(pins[i].gameObject);
-            }
-
-            pins.Clear();
-        }
-
-        for (int i = 0; i < pinSpawns.Count; i++)
-        {
-            GameObject newPin = Instantiate(pin, pinSpawns[i].position, Quaternion.identity);
-            PZ_BowlingPin newPinComponent = newPin.GetComponent<PZ_BowlingPin>();
-            newPinComponent.activeTime = pinActiveTime;
-            pins.Add(newPinComponent);
-
-            CollisionEventZone colEZ = newPin.GetComponent<CollisionEventZone>();
-            colEZ.collisionEvent.AddListener(BallHitPin);
-        }
-    }
-
-    private void SpawnPin()
-    {
-        PZ_BowlingPin inActivePin = null;
-        while (inActivePin == null)
-        {
-            int i = Random.Range(0, pins.Count);
-            if (!pins[i].isActive)
-            {
-                inActivePin = pins[i];
+                pinsHit++;
             }
         }
 
-        inActivePin.Activate();
+        CheckForBallInArea();
+        SpawnPins();
+
+        isResettingPins = false;
     }
 
-    public void BallHitPin()
+    private void SpawnPins()
     {
-        canSpawn = false;
+        pinRbs.Clear();
+
+        for (int i = 0; i < pinsSpawns.Count; i++)
+        {
+            if (pinsSpawns[i].childCount > 0)
+            {
+                Destroy(pinsSpawns[i].GetChild(0).gameObject);
+            }
+
+            GameObject newPin = Instantiate(pin, pinsSpawns[i].position, pinsSpawns[i].rotation, pinsSpawns[i]);
+
+            Rigidbody rb = newPin.GetComponent<Rigidbody>();
+            pinRbs.Add(rb);
+
+            newPin.GetComponent<CollisionEventZone>().collisionEvent.AddListener(PinsHit);
+        }
+    }
+
+    private void CheckForBallInArea()
+    {
+        int collidersFound = Physics.OverlapSphereNonAlloc(ballCheckArea.position, ballCheckRadius, ballCheckCollidersInRange);
+
+        for (int i = 0; i < collidersFound; i++)
+        {
+            if (ballCheckCollidersInRange[i].transform.tag == "BowlingBall")
+            {
+                Destroy(ballCheckCollidersInRange[i].gameObject);
+            }
+        }
     }
 }
