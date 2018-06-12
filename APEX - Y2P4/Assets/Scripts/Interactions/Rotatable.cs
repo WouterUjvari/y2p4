@@ -51,11 +51,11 @@ public class Rotatable : Interactable
     private bool addTorque;
 
     private Vector3 interactingHandPos;
-    private Rigidbody rb;
+    private Rigidbody objectToRotateRb;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //objectToRotateRb = objectToRotate.GetComponent<Rigidbody>();
 
         if (objectToRotate == null)
         {
@@ -182,10 +182,10 @@ public class Rotatable : Interactable
     {
         base.DeInteract(hand);
 
-        if (addTorque)
-        {
-            rb.AddTorque(hand.Controller.velocity);
-        }
+        //if (addTorque && objectToRotateRb)
+        //{
+        //    objectToRotateRb.AddTorque(hand.Controller.velocity);
+        //}
 
         interactingHand = null;
     }

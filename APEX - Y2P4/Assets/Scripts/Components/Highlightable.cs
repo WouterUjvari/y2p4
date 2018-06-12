@@ -13,7 +13,7 @@ public class Highlightable : MonoBehaviour
 
     private MeshRenderer[] renderers;
 
-	private bool isHighlighted;
+	public bool isHighlighted { private set; get; }
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class Highlightable : MonoBehaviour
 
     public void Highlight()
     {
-        if (highlightMat == null)
+        if (highlightMat == null || isHighlighted)
         {
             return;
         }
@@ -52,7 +52,7 @@ public class Highlightable : MonoBehaviour
 
     public void DeHighlight()
     {
-        if (highlightMat == null)
+        if (highlightMat == null || !isHighlighted)
         {
             return;
         }
