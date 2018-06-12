@@ -5,7 +5,6 @@ public class VRInteractor : MonoBehaviour
 
     private SteamVR_TrackedObject trackedObj;
 
-    //private LastHitObject lastHitObj;
     public GameObject collidingObject;
     public Interactable interactingObject;
 
@@ -13,35 +12,28 @@ public class VRInteractor : MonoBehaviour
     private VRInteractor otherHand;
     private HandActions handActions;
 
-    //[HideInInspector]
-    //public SteamVR_Controller.Device Controller
-    //{
-    //    get { return SteamVR_Controller.Input((int)trackedObj.index); }
-    //}
+#if !TEST
+    [HideInInspector]
+    public SteamVR_Controller.Device Controller
+    {
+        get { return SteamVR_Controller.Input((int)trackedObj.index); }
+    }
+#endif
 
+#if TEST
     [HideInInspector]
     public SteamVR_Controller.Device Controller;
-
-    //private class LastHitObject
-    //{
-    //    public Transform transform;
-    //    public Interactable interactable;
-    //    public Highlightable highlightable;
-
-    //    public LastHitObject(Transform obj)
-    //    {
-    //        transform = obj;
-    //        interactable = obj.GetComponent<Interactable>();
-    //        highlightable = obj.GetComponent<Highlightable>();
-    //    }
-    //}
+#endif
 
     public void Awake()
     {
         handActions = GetComponentInChildren<HandActions>();
 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+
+#if TEST
         Controller = SteamVR_Controller.Input((int)trackedObj.index);
+#endif
     }
 
     private void Update()
