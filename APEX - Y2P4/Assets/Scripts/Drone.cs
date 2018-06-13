@@ -10,7 +10,8 @@ public class Drone : MonoBehaviour
         Patroling,
         Idling,
         GrabbedByPlayer,
-        Stunned
+        Stunned,
+        LookAtPlayer
     }
     [SerializeField]
     private State state;
@@ -97,7 +98,10 @@ public class Drone : MonoBehaviour
                 {
                     EndStun();
                 }
+                break;
+            case State.LookAtPlayer:
 
+                LookAtPlayer();
                 break;
         }
 
@@ -123,7 +127,7 @@ public class Drone : MonoBehaviour
 
                 if (Physics.Linecast(transform.position, destination))
                 {
-                    destination = GetDestination();
+                    destination = GetDestination(transform, moveUpdateRadius);
                 }
             }
             else
@@ -134,7 +138,7 @@ public class Drone : MonoBehaviour
         }
         else
         {
-            destination = GetDestination();
+            destination = GetDestination(transform, moveUpdateRadius);
         }
     }
 
@@ -147,6 +151,28 @@ public class Drone : MonoBehaviour
         else
         {
             GetNewState();
+        }
+    }
+
+    private void LookAtPlayer()
+    {
+        GetDestination(VRPlayerMovementManager.instance.headTransform, 2);
+
+        Debug.DrawLine(transform.position, destination, Color.green);
+
+        if (Vector3.Distance(destination, transform.position) > stoppingDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
+
+            Vector3 targetDir = destination - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
+            transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
+        }
+        else
+        {
+            Vector3 targetDir = VRPlayerMovementManager.instance.headTransform.position - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
+            transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
         }
     }
 
@@ -165,14 +191,14 @@ public class Drone : MonoBehaviour
         }
     }
 
-    private Vector3 GetDestination()
+    private Vector3 GetDestination(Transform center, float radius)
     {
         Vector3 validDestination = Vector3.zero;
         int tries = 0;
 
         while (validDestination == Vector3.zero)
         {
-            Vector3 newDestination = (Random.insideUnitSphere * moveUpdateRadius) + transform.position;
+            Vector3 newDestination = (Random.insideUnitSphere * radius) + center.position;
             tries++;
 
             if (newDestination.y >= minumumHeight && newDestination.y <= maximumHeight)
