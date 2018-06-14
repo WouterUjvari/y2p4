@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class VRPlayerMovementManager : MonoBehaviour 
 {
@@ -25,6 +23,8 @@ public class VRPlayerMovementManager : MonoBehaviour
 
     public VRInteractor leftHand;
     public VRInteractor rightHand;
+    [SerializeField]
+    private Transform eyeTransform;
 
     private Vector3 handBasePos;
 
@@ -44,7 +44,13 @@ public class VRPlayerMovementManager : MonoBehaviour
 
         handBasePos = leftHand.transform.GetChild(0).transform.localPosition;
 
-        cameraRigTransform.position -= headTransform.position;
+        Valve.VR.OpenVR.System.ResetSeatedZeroPose();
+        Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
+    }
+
+    private void Start()
+    {
+        transform.position -= new Vector3(eyeTransform.localPosition.x, 0, eyeTransform.localPosition.z);
     }
 
     private void Update()

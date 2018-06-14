@@ -42,7 +42,7 @@ public class PZ_Bowling : MonoBehaviour
     }
     public void ToggleDoor()
     {
-        doorAnim.SetTrigger("Trigger");
+        doorAnim.SetTrigger("Toggle");
     }
 
     public void PinsHit()

@@ -100,7 +100,7 @@ public class VRInteractor : MonoBehaviour
         Interactable interactable = other.gameObject.GetComponent<Interactable>();
 
         // If theres already a colliding object, check if were colliding with another interactable and if collidingObject has a highlight component and if so, dehighlight it.
-        if (collidingObject != null)
+        if (collidingObject != null && collidingObject != other.gameObject)
         {
             if (interactable != null)
             {
