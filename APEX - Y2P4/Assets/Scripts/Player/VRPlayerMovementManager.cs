@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
-public class VRPlayerMovementManager : MonoBehaviour 
+public class VRPlayerMovementManager : MonoBehaviour
 {
 
     public static VRPlayerMovementManager instance;
@@ -14,8 +17,8 @@ public class VRPlayerMovementManager : MonoBehaviour
 
     [HideInInspector]
     public Transform cameraRigTransform;
-	[HideInInspector]
-	public Transform headTransform;
+    [HideInInspector]
+    public Transform headTransform;
 
     public float controllerHapticPulse = 500f;
 
@@ -25,6 +28,10 @@ public class VRPlayerMovementManager : MonoBehaviour
     public VRInteractor rightHand;
     [SerializeField]
     private Transform eyeTransform;
+
+    [Header("Editor Testing")]
+    [SerializeField]
+    private bool editorTesting;
 
     private Vector3 handBasePos;
 
@@ -39,8 +46,12 @@ public class VRPlayerMovementManager : MonoBehaviour
             Destroy(this);
         }
 
+#if UNITY_EDITOR
+        SetupEditorSymbols();
+#endif
+
         cameraRigTransform = transform;
-		headTransform = Camera.main.transform;
+        headTransform = Camera.main.transform;
 
         handBasePos = leftHand.transform.GetChild(0).transform.localPosition;
 
@@ -87,5 +98,29 @@ public class VRPlayerMovementManager : MonoBehaviour
 
         leftHand.Awake();
         rightHand.Awake();
+    }
+
+    private void SetupEditorSymbols()
+    {
+        string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+        List<string> allDefines = definesString.Split(';').ToList();
+        bool containsTestSymbol = allDefines.Contains("TEST");
+
+        if (editorTesting)
+        {
+            if (!containsTestSymbol)
+            {
+                allDefines.Add("TEST");
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", allDefines.ToArray()));
+            }
+        }
+        else
+        {
+            if (containsTestSymbol)
+            {
+                allDefines.Remove("TEST");
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", allDefines.ToArray()));
+            }
+        }
     }
 }

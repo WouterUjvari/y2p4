@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829968041896514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0.704}
+  m_LocalPosition: {x: 0, y: 0, z: 0.617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4885429356733594}
@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952248943865702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.341, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4072559158004820}
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 1992648684329836}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.5500005, z: 0.5500005}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_Children:
   - {fileID: 4569374197742932}
   - {fileID: 4371841899271412}
@@ -457,8 +457,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 0.01563251, z: 0.08}
-  m_Center: {x: 0, y: 0.33719236, z: 0}
+  m_Size: {x: 0.06161724, y: 0.0091664195, z: 0.057759654}
+  m_Center: {x: -4.431579e-12, y: 0.32740524, z: -0.00094573566}
 --- !u!65 &65499200029230290
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -481,8 +481,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.4385712, z: 0.075}
-  m_Center: {x: 0, y: 0.104286194, z: 0.00076431036}
+  m_Size: {x: 0.075, y: 0.43458056, z: 0.075}
+  m_Center: {x: 2.6444515e-12, y: 0.10229087, z: 0.00076431036}
 --- !u!114 &114070379761990990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -581,7 +581,7 @@ MonoBehaviour:
   staticLiquidFlowSpeed: 0.3
   liquidColorLerpSpeed: 0.8
   liquidEntrancePos: {fileID: 4831738319680814}
-  liquidDestroyAtEntranceRange: 0.1
+  liquidDestroyAtEntranceRange: 0.05
 --- !u!198 &198376951531927338
 ParticleSystem:
   m_ObjectHideFlags: 1

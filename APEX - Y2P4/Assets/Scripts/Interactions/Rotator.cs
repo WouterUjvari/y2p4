@@ -15,10 +15,21 @@ public class Rotator : Interactable
     private Transform rotator;
     private float rotatorLocalYRot;
 
+    [Space(10)]
+
+    [SerializeField]
+    private float interactBreakDistance = 0.5f;
+
     private void Update()
     {
         if (!rotate)
         {
+            return;
+        }
+
+        if (Vector3.Distance(interactingHand.transform.position, transform.position) > interactBreakDistance)
+        {
+            DeInteract(interactingHand);
             return;
         }
 
@@ -33,6 +44,7 @@ public class Rotator : Interactable
     {
         base.Interact(hand);
 
+        interactingHand = hand;
         StartRotating(hand.transform);
     }
 
@@ -40,6 +52,7 @@ public class Rotator : Interactable
     {
         base.DeInteract(hand);
 
+        interactingHand = null;
         StopRotating();
     }
 

@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Colourable : MonoBehaviour 
 {
 
     [SerializeField]
     private float colorLerpSpeed = 1f;
+    [SerializeField]
+    private UnityEvent onLerpColor;
 
     private bool isLerpingColor;
     private List<Material> myMaterials = new List<Material>();
@@ -28,6 +31,7 @@ public class Colourable : MonoBehaviour
         }
 
         StartCoroutine(ChangeColor(newColor));
+        onLerpColor.Invoke();
     }
 
     private IEnumerator ChangeColor(Color newColor)
