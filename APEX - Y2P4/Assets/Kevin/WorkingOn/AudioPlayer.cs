@@ -8,9 +8,9 @@ public class AudioPlayer : MonoBehaviour {
 	public List<AudioClip> clips = new List<AudioClip>();
 
 	private bool nextClip;
-
 	public bool playAllClips;
 	private int currentClip;
+	public AudioClip playerName;
 
 	void Awake()
 	{

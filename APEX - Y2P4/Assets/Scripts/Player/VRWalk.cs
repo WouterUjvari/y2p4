@@ -5,6 +5,7 @@ public class VRWalk : MonoBehaviour
 
     private SteamVR_TrackedObject trackedObj;
     //private SteamVR_Controller.Device controller;
+    public RaycastHit hit;
 
     private SteamVR_Controller.Device controller
     {
@@ -36,9 +37,15 @@ public class VRWalk : MonoBehaviour
 
             float speed = Time.deltaTime * moveSpeed;
 
-			Vector3 nextPos = (VRPlayerMovementManager.instance.headTransform.transform.right * (touchpad.x * speed) + VRPlayerMovementManager.instance.headTransform.transform.forward * (touchpad.y * speed)) * Time.deltaTime;
-			nextPos.y = 0;
-			VRPlayerMovementManager.instance.cameraRigTransform.transform.position += nextPos;
-		}
+            Vector3 nextPos = (VRPlayerMovementManager.instance.headTransform.transform.right * (touchpad.x * speed) + VRPlayerMovementManager.instance.headTransform.transform.forward * (touchpad.y * speed)) * Time.deltaTime;
+            nextPos.y = 0;
+            if(Physics.Raycast(nextPos,Vector3.down,out hit))
+            {
+                if(hit.transform.tag == "TheFloor")
+                {
+                    VRPlayerMovementManager.instance.cameraRigTransform.transform.position += nextPos;
+                }   
+            }
+        }
     }
 }
