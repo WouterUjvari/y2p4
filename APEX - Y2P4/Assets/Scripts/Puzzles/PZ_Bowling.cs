@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PZ_Bowling : MonoBehaviour 
 {
@@ -9,19 +10,37 @@ public class PZ_Bowling : MonoBehaviour
     private int pinsHit;
     private Collider[] ballCheckCollidersInRange = new Collider[15];
 
+    private int requiredPoints;
+    private int currentPoints;
+
     [SerializeField]
     private Animator doorAnim;
-    [SerializeField]
-    private float collisionTimeBeforeResetting = 4f;
+
+    [Header("Gameplay")]
+
     [SerializeField]
     private GameObject pin;
     [SerializeField]
     private List<Transform> pinsSpawns = new List<Transform>();
-    private List<Rigidbody> pinRbs = new List<Rigidbody>();
+    [SerializeField]
+    private float collisionTimeBeforeResetting = 4f;
     [SerializeField]
     private Transform ballCheckArea;
     [SerializeField]
     private float ballCheckRadius = 2f;
+    [SerializeField]
+    private Transform ballSpawn;
+
+    [Header("Points")]
+
+    [SerializeField]
+    private int minReqPoints;
+    [SerializeField]
+    private int maxReqPoints;
+    [SerializeField]
+    private TextMeshProUGUI requiredPointsText;
+    [SerializeField]
+    private TextMeshProUGUI currentPointsText;
 
     private void OnDrawGizmos()
     {
@@ -30,16 +49,13 @@ public class PZ_Bowling : MonoBehaviour
 
     private void Awake()
     {
+        requiredPoints = Random.Range(minReqPoints, maxReqPoints);
+        requiredPointsText.text = requiredPoints.ToString();
+        currentPointsText.text = currentPoints.ToString();
+
         SpawnPins();
     }
-    private void Update()
-    {
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            CheckForBallInArea();
-        }
-    }
     public void ToggleDoor()
     {
         doorAnim.SetTrigger("Toggle");
@@ -60,24 +76,27 @@ public class PZ_Bowling : MonoBehaviour
         yield return new WaitForSeconds(collisionTimeBeforeResetting);
 
         pinsHit = 0;
-        for (int i = 0; i < pinRbs.Count; i++)
+        for (int i = 0; i < pinsSpawns.Count; i++)
         {
-            if (pinRbs[i].velocity != Vector3.zero)
+            if (pinsSpawns[i].childCount > 0)
             {
-                pinsHit++;
+                if (pinsSpawns[i].GetChild(0).transform.up.y < -0.05f ||
+                    pinsSpawns[i].GetChild(0).transform.up.y > 0.05f)
+                {
+                    pinsHit++;
+                }
             }
         }
 
         CheckForBallInArea();
         SpawnPins();
+        CalculatePoints(pinsHit);
 
         isResettingPins = false;
     }
 
     private void SpawnPins()
     {
-        pinRbs.Clear();
-
         for (int i = 0; i < pinsSpawns.Count; i++)
         {
             if (pinsSpawns[i].childCount > 0)
@@ -86,10 +105,6 @@ public class PZ_Bowling : MonoBehaviour
             }
 
             GameObject newPin = Instantiate(pin, pinsSpawns[i].position, pinsSpawns[i].rotation, pinsSpawns[i]);
-
-            Rigidbody rb = newPin.GetComponent<Rigidbody>();
-            pinRbs.Add(rb);
-
             newPin.GetComponent<CollisionEventZone>().collisionEvent.AddListener(PinsHit);
         }
     }
@@ -102,8 +117,27 @@ public class PZ_Bowling : MonoBehaviour
         {
             if (ballCheckCollidersInRange[i].transform.tag == "BowlingBall")
             {
-                Destroy(ballCheckCollidersInRange[i].gameObject);
+                Rigidbody ballRb = ballCheckCollidersInRange[i].GetComponent<Rigidbody>();
+                ballRb.velocity = Vector3.zero;
+                ballCheckCollidersInRange[i].transform.position = ballSpawn.position;
+                ballRb.AddForce(ballSpawn.forward, ForceMode.Impulse);
             }
         }
+    }
+
+    private void CalculatePoints(int amount)
+    {
+        currentPoints += amount;
+        currentPointsText.text = currentPoints.ToString();
+
+        if (currentPoints >= requiredPoints)
+        {
+            CompletePuzzle();
+        }
+    }
+
+    private void CompletePuzzle()
+    {
+
     }
 }
