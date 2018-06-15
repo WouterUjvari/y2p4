@@ -243,6 +243,16 @@ public class Drone : MonoBehaviour
     {
         objSnapper.DestroySnappedObjects();
         Destroy(brokenDroneBaseBody);
+
+        if (VRPlayerMovementManager.instance.leftHand.interactingObject == GetComponent<Interactable>())
+        {
+            VRPlayerMovementManager.instance.leftHand.DeInteract();
+        }
+        if (VRPlayerMovementManager.instance.rightHand.interactingObject == GetComponent<Interactable>())
+        {
+            VRPlayerMovementManager.instance.rightHand.DeInteract();
+        }
+
         GameObject drone = Instantiate(repairedDrone, repairedDroneSpawn.position, repairedDroneSpawn.rotation, repairedDroneSpawn);
         droneAnim = drone.GetComponent<Animator>();
         if (droneAnim != null)

@@ -39,9 +39,11 @@ public class VRWalk : MonoBehaviour
 
             Vector3 nextPos = (VRPlayerMovementManager.instance.headTransform.transform.right * (touchpad.x * speed) + VRPlayerMovementManager.instance.headTransform.transform.forward * (touchpad.y * speed)) * Time.deltaTime;
             nextPos.y = 0;
-            if(Physics.Raycast(nextPos,Vector3.down,out hit))
+            Vector3 newPos = nextPos + VRPlayerMovementManager.instance.headTransform.transform.position + new Vector3(0, 0, 0);
+            Debug.DrawRay(newPos, Vector3.down, Color.red);
+            if (Physics.Raycast(newPos,Vector3.down,out hit))
             {
-                if(hit.transform.tag == "TheFloor")
+                if(hit.transform.tag != "CantMove")
                 {
                     VRPlayerMovementManager.instance.cameraRigTransform.transform.position += nextPos;
                 }   
