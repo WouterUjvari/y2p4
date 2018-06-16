@@ -6,8 +6,7 @@ using UnityEngine.Events;
 public class ObjectSnapper : MonoBehaviour
 {
 
-    [SerializeField]
-    private List<ObjectSnapSpot> snapSpots = new List<ObjectSnapSpot>();
+    public List<ObjectSnapSpot> snapSpots = new List<ObjectSnapSpot>();
 
     [SerializeField]
     private float snapRange = 0.2f;

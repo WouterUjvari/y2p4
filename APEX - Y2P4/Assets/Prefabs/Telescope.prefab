@@ -1042,7 +1042,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879514705322788}
   m_LocalRotation: {x: -0, y: 0.0019987077, z: -0, w: 0.99999803}
-  m_LocalPosition: {x: -4.75, y: 0, z: -4.79}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000798107603850}
@@ -3154,6 +3154,28 @@ MonoBehaviour:
   spaceObjectDistanceText: {fileID: 114623657603855600}
   searchingForObjectsOverlay: {fileID: 1079884318134984}
   spaceObjectInfoOverlay: {fileID: 1337365891890988}
+  puzzleAnim: {fileID: 0}
+  planets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objSnapper: {fileID: 0}
+  puzzle:
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
+  - snapSpot: {fileID: 0}
+    planet: {fileID: 0}
 --- !u!114 &114963110017775950
 MonoBehaviour:
   m_ObjectHideFlags: 1

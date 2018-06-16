@@ -8,7 +8,7 @@ public class PZ_Bowling : MonoBehaviour
 
     private bool isResettingPins;
     private int pinsHit;
-    private Collider[] ballCheckCollidersInRange = new Collider[15];
+    private Collider[] ballCheckCollidersInRange = new Collider[30];
 
     private int requiredPoints;
     private int currentPoints;

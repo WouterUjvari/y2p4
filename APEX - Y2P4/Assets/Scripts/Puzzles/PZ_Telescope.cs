@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class PZ_Telescope : MonoBehaviour 
 {
@@ -46,6 +47,16 @@ public class PZ_Telescope : MonoBehaviour
     [SerializeField]
     private GameObject spaceObjectInfoOverlay;
 
+    [Header("Other")]
+    [SerializeField]
+    private Animator puzzleAnim;
+    [SerializeField]
+    private List<Interactable> planets = new List<Interactable>();
+    [SerializeField]
+    private ObjectSnapper objSnapper;
+    [SerializeField]
+    private List<PuzzlePiece> puzzle = new List<PuzzlePiece>();
+
     private Transform lastSpaceObjectHit;
     private enum TelescopeOptions { Horizontal, Vertical, FOV }
     private Transform fovReference;
@@ -54,10 +65,24 @@ public class PZ_Telescope : MonoBehaviour
     private Transform verticalReference;
     private float verticalReferenceZRot;
 
+    [System.Serializable]
+    private struct PuzzlePiece
+    {
+        public ObjectSnapSpot snapSpot;
+        public Transform planet;
+    }
+
     private void Awake()
     {
         telescopeCam.fieldOfView = ((minFOV + maxFOV) / 2) + 0.47219f;
         fovText.text = (telescopeCam.fieldOfView < 10) ? "fov 0" + telescopeCam.fieldOfView : "fov " + telescopeCam.fieldOfView;
+
+        planets.Shuffle();
+        for (int i = 0; i < planets.Count; i++)
+        {
+            planets[i].Lock(true);
+            objSnapper.snapSpots[i].snappedObject = planets[i].transform;
+        }
     }
 
     private void Update()
@@ -101,7 +126,7 @@ public class PZ_Telescope : MonoBehaviour
     {
         if (fovReference != null)
         {
-            telescopeCam.fieldOfView = Remap(fovReference.localPosition.z, -0.1f, 0.1f, minFOV, maxFOV);
+            telescopeCam.fieldOfView = fovReference.localPosition.z.Remap(-0.1f, 0.1f, minFOV, maxFOV);
             fovText.text = (telescopeCam.fieldOfView < 10) ? "fov 0" + telescopeCam.fieldOfView : "fov " + telescopeCam.fieldOfView;
         }
     }
@@ -176,6 +201,44 @@ public class PZ_Telescope : MonoBehaviour
         fovReference = null;
     }
 
+    private void StartPuzzle()
+    {
+        puzzleAnim.SetTrigger("Open");
+
+        for (int i = 0; i < planets.Count; i++)
+        {
+            planets[i].Lock(false);
+        }
+    }
+
+    public void CheckPuzzleProgress()
+    {
+        bool completed = true;
+
+        for (int i = 0; i < puzzle.Count; i++)
+        {
+            if (puzzle[i].snapSpot.snappedObject != puzzle[i].planet)
+            {
+                completed = false;
+            }
+        }
+
+        if (completed)
+        {
+            CompletePuzzle();
+        }
+    }
+
+    private void CompletePuzzle()
+    {
+        for (int i = 0; i < planets.Count; i++)
+        {
+            planets[i].Lock(true);
+        }
+
+        print("Completed Telescope Puzzle");
+    }
+
     private float GetPositiveClampedAngle(float angle)
     {
         if (angle < 90 || angle > 270)
@@ -193,10 +256,5 @@ public class PZ_Telescope : MonoBehaviour
         angle = (angle < 0) ? angle + 360 : angle;
 
         return angle;
-    }
-
-    private float Remap(float value, float from1, float to1, float from2, float to2)
-    {
-        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 }

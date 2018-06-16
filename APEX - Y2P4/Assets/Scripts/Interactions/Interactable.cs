@@ -5,6 +5,7 @@ public abstract class Interactable : MonoBehaviour
 {
 
     protected bool locked;
+    public bool Locked { get { return locked; } private set { } }
 
     [SerializeField]
     public UnityEvent onInteract;

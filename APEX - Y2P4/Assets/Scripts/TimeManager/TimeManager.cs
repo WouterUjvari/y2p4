@@ -8,8 +8,7 @@ public class TimeManager : MonoBehaviour
     public static TimeManager instance;
 
     public static float currentTime;
-
-    public bool pausedTime = true;
+    private bool pausedTime = true;
 
     private void Awake()
     {
@@ -31,5 +30,10 @@ public class TimeManager : MonoBehaviour
     public void ChangeTime(float seconds)
     {
         currentTime += seconds;
+    }
+
+    public void StartTime()
+    {
+        pausedTime = false;
     }
 }

@@ -112,6 +112,18 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
+        // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
+        if (interactable != null)
+        {
+            if (interactable.Locked)
+            {
+                return;
+            }
+
+            collidingObject = other.gameObject;
+            handActions.press = (interactable is Clickable ? true : false);
+        }
+
         // If were currently not colliding with the object our other hand is colliding with, highlight our current object.
         if (otherHand != null)
         {
@@ -128,13 +140,6 @@ public class VRInteractor : MonoBehaviour
                     highlightable.Highlight();
                 }
             }
-        }
-
-        // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
-        if (interactable != null)
-        {
-            collidingObject = other.gameObject;
-            handActions.press = (interactable is Clickable ? true : false);
         }
     }
 
