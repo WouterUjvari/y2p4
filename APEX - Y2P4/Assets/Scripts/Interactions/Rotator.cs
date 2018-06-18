@@ -20,6 +20,12 @@ public class Rotator : Interactable
     [SerializeField]
     private float interactBreakDistance = 0.5f;
 
+    [Header("Restrictions")]
+    [SerializeField]
+    private bool clampRotation;
+    public float minRot;
+    public float maxRot;
+
     private void Update()
     {
         if (!rotate)
@@ -37,6 +43,7 @@ public class Rotator : Interactable
         rotatorLocalYRot = rotator.localEulerAngles.y;
 
         float newEulerZ = invertRotation ? toRotate.localEulerAngles.z + deltaRotatorLocalYRot : toRotate.localEulerAngles.z - deltaRotatorLocalYRot;
+        newEulerZ = clampRotation ? newEulerZ.ClampAngle(minRot, maxRot) : newEulerZ;
         toRotate.localEulerAngles = new Vector3(toRotate.localEulerAngles.x, toRotate.localEulerAngles.y, newEulerZ);
     }
 

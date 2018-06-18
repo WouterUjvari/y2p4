@@ -6,11 +6,15 @@ public class PZ_Chemistry : MonoBehaviour
 {
 
     [SerializeField]
-    private Flask flask;
-    private List<Color> allColors;
+    private ColorMixingManager.Colors currentColorToMix;
 
-    private void Awake()
+    private void GetNewColorToMix()
     {
+        currentColorToMix = ColorMixingManager.instance.colors[Random.Range(0, ColorMixingManager.instance.colors.Count)];
+    }
 
+    public void StartPuzzle()
+    {
+        GetNewColorToMix();
     }
 }

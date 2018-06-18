@@ -30,6 +30,8 @@ public class PZ_Bowling : MonoBehaviour
     private float ballCheckRadius = 2f;
     [SerializeField]
     private Transform ballSpawn;
+    [SerializeField]
+    private GameObject closePuzzleDetectionZone;
 
     [Header("Points")]
 
@@ -41,6 +43,8 @@ public class PZ_Bowling : MonoBehaviour
     private TextMeshProUGUI requiredPointsText;
     [SerializeField]
     private TextMeshProUGUI currentPointsText;
+    [SerializeField]
+    private Animator pointsScreenAnim;
 
     private void OnDrawGizmos()
     {
@@ -127,6 +131,8 @@ public class PZ_Bowling : MonoBehaviour
 
     private void CalculatePoints(int amount)
     {
+        pointsScreenAnim.SetTrigger("Trigger");
+
         currentPoints += amount;
         currentPointsText.text = currentPoints.ToString();
 
@@ -138,6 +144,6 @@ public class PZ_Bowling : MonoBehaviour
 
     private void CompletePuzzle()
     {
-
+        closePuzzleDetectionZone.SetActive(true);
     }
 }

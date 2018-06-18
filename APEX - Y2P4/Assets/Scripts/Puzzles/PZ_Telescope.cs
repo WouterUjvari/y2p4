@@ -2,7 +2,7 @@
 using TMPro;
 using System.Collections.Generic;
 
-public class PZ_Telescope : MonoBehaviour 
+public class PZ_Telescope : MonoBehaviour
 {
 
     [Header("Telescope Cam")]
@@ -77,11 +77,10 @@ public class PZ_Telescope : MonoBehaviour
         telescopeCam.fieldOfView = ((minFOV + maxFOV) / 2) + 0.47219f;
         fovText.text = (telescopeCam.fieldOfView < 10) ? "fov 0" + telescopeCam.fieldOfView : "fov " + telescopeCam.fieldOfView;
 
-        planets.Shuffle();
-        for (int i = 0; i < planets.Count; i++)
+        ShufflePuzzle();
+        if (HasCompletedPuzzle())
         {
-            planets[i].Lock(true);
-            objSnapper.snapSpots[i].snappedObject = planets[i].transform;
+            ShufflePuzzle();
         }
     }
 
@@ -126,7 +125,7 @@ public class PZ_Telescope : MonoBehaviour
     {
         if (fovReference != null)
         {
-            telescopeCam.fieldOfView = fovReference.localPosition.z.Remap(-0.1f, 0.1f, minFOV, maxFOV);
+            telescopeCam.fieldOfView = Mathf.Lerp(telescopeCam.fieldOfView, fovReference.localPosition.z.Remap(-0.1f, 0.1f, minFOV, maxFOV), Time.deltaTime * 10);
             fovText.text = (telescopeCam.fieldOfView < 10) ? "fov 0" + telescopeCam.fieldOfView : "fov " + telescopeCam.fieldOfView;
         }
     }
@@ -213,6 +212,14 @@ public class PZ_Telescope : MonoBehaviour
 
     public void CheckPuzzleProgress()
     {
+        if (HasCompletedPuzzle())
+        {
+            CompletePuzzle();
+        }
+    }
+
+    private bool HasCompletedPuzzle()
+    {
         bool completed = true;
 
         for (int i = 0; i < puzzle.Count; i++)
@@ -223,9 +230,16 @@ public class PZ_Telescope : MonoBehaviour
             }
         }
 
-        if (completed)
+        return completed;
+    }
+
+    private void ShufflePuzzle()
+    {
+        planets.Shuffle();
+        for (int i = 0; i < planets.Count; i++)
         {
-            CompletePuzzle();
+            planets[i].Lock(true);
+            objSnapper.snapSpots[i].snappedObject = planets[i].transform;
         }
     }
 

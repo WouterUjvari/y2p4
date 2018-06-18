@@ -2284,7 +2284,7 @@ GameObject:
   - component: {fileID: 114740417373352882}
   m_Layer: 10
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3294,6 +3294,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1992995094963784
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4516450431856524}
+  - component: {fileID: 114124494033700460}
+  - component: {fileID: 114414506330427312}
+  m_Layer: 0
+  m_Name: Snapspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1999498702966700
 GameObject:
   m_ObjectHideFlags: 1
@@ -4246,6 +4263,7 @@ Transform:
   - {fileID: 4920380148678986}
   - {fileID: 4207930315526750}
   - {fileID: 4464686049249272}
+  - {fileID: 4516450431856524}
   - {fileID: 4941358028455902}
   m_Father: {fileID: 420908}
   m_RootOrder: 2
@@ -4782,6 +4800,19 @@ Transform:
   m_Father: {fileID: 4313332752333642}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4516450431856524
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992995094963784}
+  m_LocalRotation: {x: 0.82478374, y: 0.0070226565, z: -0.001482598, w: 0.56540275}
+  m_LocalPosition: {x: -0.0012962986, y: 0.1596963, z: 0.047158383}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_Children: []
+  m_Father: {fileID: 4315425362723014}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 111.142, y: -0.87298584, z: -1.5739746}
 --- !u!4 &4525964871197524
 Transform:
   m_ObjectHideFlags: 1
@@ -5861,7 +5892,7 @@ Transform:
   m_Children:
   - {fileID: 4503943738830874}
   m_Father: {fileID: 4315425362723014}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4954135433630416
 Transform:
@@ -6549,6 +6580,25 @@ MonoBehaviour:
   teleportReticlePrefab: {fileID: 1291757174082908, guid: 4d842ed9b656d0d40850c4ed381432b3,
     type: 2}
   teleportReticleOffset: {x: 0, y: 0.05, z: 0}
+--- !u!114 &114124494033700460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992995094963784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076adf4f7f3889e48bac73e3f49d83f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapSpots:
+  - {fileID: 114414506330427312}
+  snapRange: 0.2
+  onAllCorrectObjectsSnapped:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114140082084195854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6604,6 +6654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb5a99ff5f98f54a8c38f679cf8f7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDetectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   moveSpeed: 150
 --- !u!114 &114390841400762818
 MonoBehaviour:
@@ -6630,6 +6683,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4920380148678986}
+--- !u!114 &114414506330427312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992995094963784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e474de2112791674393d74a95e125e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  snappedObject: {fileID: 0}
+  desiredObject: {fileID: 0}
+  isLookingForSpecificObject: 0
+  removeInteractionComponentsOnDesiredSnap: 0
+  onSnap:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114461086512400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6669,6 +6743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb5a99ff5f98f54a8c38f679cf8f7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDetectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   moveSpeed: 150
 --- !u!114 &114568295914572312
 MonoBehaviour:
@@ -6800,7 +6877,7 @@ MonoBehaviour:
   leftHand: {fileID: 114925091457266110}
   rightHand: {fileID: 114151691233474794}
   eyeTransform: {fileID: 4920380148678986}
-  editorTesting: 0
+  editorTesting: 1
 --- !u!114 &114869178019261056
 MonoBehaviour:
   m_ObjectHideFlags: 1
