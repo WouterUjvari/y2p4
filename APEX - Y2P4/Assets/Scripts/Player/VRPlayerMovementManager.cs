@@ -100,6 +100,7 @@ public class VRPlayerMovementManager : MonoBehaviour
         rightHand.Awake();
     }
 
+#if UNITY_EDITOR
     private void SetupEditorSymbols()
     {
         string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
@@ -123,4 +124,5 @@ public class VRPlayerMovementManager : MonoBehaviour
             }
         }
     }
+#endif
 }

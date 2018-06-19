@@ -8,7 +8,7 @@ public class FadeInOut : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		toggleFade();	
+		//toggleFade();	
 	}
 	
 	public void toggleFade()

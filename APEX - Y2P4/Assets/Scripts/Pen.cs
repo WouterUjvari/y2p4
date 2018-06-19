@@ -1,5 +1,4 @@
-﻿using UnityEditor.Presets;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pen : MonoBehaviour
 {
@@ -14,8 +13,6 @@ public class Pen : MonoBehaviour
 
     [SerializeField]
     private Transform penPoint;
-    [SerializeField]
-    private Preset lineRendererPreset;
     [SerializeField]
     private float distanceBetweenDrawPoints = 0.01f;
     [SerializeField]
@@ -78,7 +75,10 @@ public class Pen : MonoBehaviour
         newLine.transform.position = penPoint.position;
 
         currentLine = newLine.AddComponent<LineRenderer>();
-        lineRendererPreset.ApplyTo(currentLine);
+        currentLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        currentLine.startWidth = 0.005f;
+        currentLine.numCornerVertices = 3;
+        currentLine.numCapVertices = 3;
         currentLine.materials[0].color = inkColor;
 
         currentPositionIndex = 0;

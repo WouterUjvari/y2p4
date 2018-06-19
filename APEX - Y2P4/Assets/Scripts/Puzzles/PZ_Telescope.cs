@@ -200,7 +200,7 @@ public class PZ_Telescope : MonoBehaviour
         fovReference = null;
     }
 
-    private void StartPuzzle()
+    public void StartPuzzle()
     {
         puzzleAnim.SetTrigger("Open");
 
