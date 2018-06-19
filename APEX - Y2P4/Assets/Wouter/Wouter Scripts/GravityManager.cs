@@ -20,12 +20,14 @@ public class GravityManager : MonoBehaviour {
         dograv = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         anim.SetBool("On", dograv);
 
         Physics.gravity = new Vector3(0, ygravity, 0);
     }
+
+
 
     public void Switchgrav()
     {
