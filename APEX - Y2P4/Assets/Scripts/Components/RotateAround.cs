@@ -4,6 +4,7 @@ public class RotateAround : MonoBehaviour
 {
 
     public bool canRotate = true;
+    private bool lockRotation;
 
     private enum Axis { X, Y, Z}
     [SerializeField]
@@ -31,6 +32,13 @@ public class RotateAround : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            if (lockRotation)
+            {
+                transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.localRotation.x, -90, transform.localRotation.z), Time.deltaTime * (speed * 3));
+            }
+        }
     }
 
     public void SetRotation(bool b)
@@ -48,5 +56,11 @@ public class RotateAround : MonoBehaviour
                 ra[i].canRotate = true;
             }
         }
+    }
+
+    public void LockRotation()
+    {
+        canRotate = false;
+        lockRotation = true;
     }
 }

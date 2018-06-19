@@ -248,6 +248,15 @@ public class PZ_Telescope : MonoBehaviour
         for (int i = 0; i < planets.Count; i++)
         {
             planets[i].Lock(true);
+
+            RotateAround[] rotateArounds = planets[i].GetComponentsInParent<RotateAround>();
+            for (int ii = 0; ii < rotateArounds.Length; ii++)
+            {
+                if (rotateArounds[ii].transform != planets[i].transform)
+                {
+                    rotateArounds[ii].LockRotation();
+                }
+            }
         }
 
         print("Completed Telescope Puzzle");
