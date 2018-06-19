@@ -261,4 +261,17 @@ public class ColorMixingManager : MonoBehaviour
 
         return mixedColor;
     }
+
+    public Colors[] GetSeperatedColors(string myColorName)
+    {
+        Colors[] seperatedColors = new Colors[2];
+
+        switch (myColorName)
+        {
+            default:
+                break;
+        }
+
+        return seperatedColors;
+    }
 }
