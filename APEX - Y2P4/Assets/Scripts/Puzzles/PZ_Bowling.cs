@@ -56,8 +56,12 @@ public class PZ_Bowling : MonoBehaviour
         requiredPoints = Random.Range(minReqPoints, maxReqPoints);
         requiredPointsText.text = requiredPoints.ToString();
         currentPointsText.text = currentPoints.ToString();
+    }
 
+    public void StartPuzzle()
+    {
         SpawnPins();
+        ToggleDoor();
     }
 
     public void ToggleDoor()

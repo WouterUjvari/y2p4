@@ -430,15 +430,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1953098808015508}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2695618, y: 0.264, z: 0.710752}
+  m_LocalRotation: {x: -0.0025085288, y: 0.0000002980232, z: -0.0000000683202, w: 0.99999684}
+  m_LocalPosition: {x: -1.1237, y: 1.284, z: -11.871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4210070494740666}
   - {fileID: 4270590952452336}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -179.713, y: 180, z: -180}
 --- !u!4 &4692870362057820
 Transform:
   m_ObjectHideFlags: 1
@@ -924,6 +924,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []
@@ -945,6 +946,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []
@@ -966,6 +968,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []
@@ -1013,6 +1016,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []
@@ -1088,6 +1092,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []
@@ -1109,6 +1114,7 @@ MonoBehaviour:
   desiredObject: {fileID: 0}
   isLookingForSpecificObject: 0
   removeInteractionComponentsOnDesiredSnap: 0
+  lockObjectOnSnap: 1
   onSnap:
     m_PersistentCalls:
       m_Calls: []

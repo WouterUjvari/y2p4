@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PZ_RollTheBall : MonoBehaviour 
@@ -21,13 +22,11 @@ public class PZ_RollTheBall : MonoBehaviour
     private bool ballCanTp = true;
     private float ballTpCooldown;
 
+    [SerializeField]
+    private List<Transform> puzzleLayouts = new List<Transform>();
+
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartPuzzle();
-        }
         if (!ballCanTp)
         {
             if (ballTpCooldown > 0)
@@ -48,6 +47,12 @@ public class PZ_RollTheBall : MonoBehaviour
 
     private IEnumerator OpenPuzzle()
     {
+        for (int i = 0; i < puzzleLayouts.Count; i++)
+        {
+            puzzleLayouts[i].gameObject.SetActive(false);
+        }
+        puzzleLayouts[Random.Range(0, puzzleLayouts.Count)].gameObject.SetActive(true);
+
         armAnim.SetTrigger("OpenClose");
 
         yield return new WaitForSeconds(1.5f);

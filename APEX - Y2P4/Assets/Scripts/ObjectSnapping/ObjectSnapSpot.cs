@@ -22,6 +22,8 @@ public class ObjectSnapSpot : MonoBehaviour
     [SerializeField]
     private bool removeInteractionComponentsOnDesiredSnap;
     [SerializeField]
+    private bool lockObjectOnSnap;
+    [SerializeField]
     private UnityEvent onSnap;
 
     private void Awake()
@@ -65,6 +67,11 @@ public class ObjectSnapSpot : MonoBehaviour
 
         state = State.Taken;
 
+        if (lockObjectOnSnap)
+        {
+            LockSnappedObject();
+        }
+
         onSnap.Invoke();
     }
 
@@ -95,5 +102,10 @@ public class ObjectSnapSpot : MonoBehaviour
         {
             Destroy(colliders[i]);
         }
+    }
+
+    public void LockSnappedObject()
+    {
+        snappedObject.GetComponent<Interactable>().Lock(true);
     }
 }

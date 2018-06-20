@@ -29,10 +29,6 @@ public class VRPlayerMovementManager : MonoBehaviour
     [SerializeField]
     private Transform eyeTransform;
 
-    [Header("Editor Testing")]
-    [SerializeField]
-    private bool editorTesting;
-
     private Vector3 handBasePos;
 
     private void Awake()
@@ -45,10 +41,6 @@ public class VRPlayerMovementManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-#if UNITY_EDITOR
-        SetupEditorSymbols();
-#endif
 
         cameraRigTransform = transform;
         headTransform = Camera.main.transform;
@@ -99,30 +91,4 @@ public class VRPlayerMovementManager : MonoBehaviour
         leftHand.Awake();
         rightHand.Awake();
     }
-
-#if UNITY_EDITOR
-    private void SetupEditorSymbols()
-    {
-        string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-        List<string> allDefines = definesString.Split(';').ToList();
-        bool containsTestSymbol = allDefines.Contains("TEST");
-
-        if (editorTesting)
-        {
-            if (!containsTestSymbol)
-            {
-                allDefines.Add("TEST");
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", allDefines.ToArray()));
-            }
-        }
-        else
-        {
-            if (containsTestSymbol)
-            {
-                allDefines.Remove("TEST");
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", allDefines.ToArray()));
-            }
-        }
-    }
-#endif
 }

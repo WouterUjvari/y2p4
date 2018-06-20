@@ -239,7 +239,7 @@ public class PZ_Telescope : MonoBehaviour
         for (int i = 0; i < planets.Count; i++)
         {
             planets[i].Lock(true);
-            objSnapper.snapSpots[i].snappedObject = planets[i].transform;
+            objSnapper.snapSpots[i].SnapObject(planets[i].transform);
         }
     }
 
@@ -258,8 +258,6 @@ public class PZ_Telescope : MonoBehaviour
                 }
             }
         }
-
-        print("Completed Telescope Puzzle");
     }
 
     private float GetPositiveClampedAngle(float angle)

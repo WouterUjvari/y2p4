@@ -377,7 +377,8 @@ GameObject:
   - component: {fileID: 33330052073659606}
   - component: {fileID: 23211213328731934}
   - component: {fileID: 64861461938310488}
-  m_Layer: 0
+  - component: {fileID: 65230010124672112}
+  m_Layer: 14
   m_Name: Ob_Bowling_Door_Left
   m_TagString: CantMove
   m_Icon: {fileID: 0}
@@ -581,7 +582,8 @@ GameObject:
   - component: {fileID: 33349305745420412}
   - component: {fileID: 23050630084634424}
   - component: {fileID: 64857497923606970}
-  m_Layer: 0
+  - component: {fileID: 65544097985942304}
+  m_Layer: 14
   m_Name: Ob_Bowling_Door_Right
   m_TagString: CantMove
   m_Icon: {fileID: 0}
@@ -911,6 +913,7 @@ GameObject:
   - component: {fileID: 4162599957103148}
   - component: {fileID: 65275040400706656}
   - component: {fileID: 114741942689291328}
+  - component: {fileID: 54175824035496692}
   m_Layer: 2
   m_Name: ClosePuzzleDetectionZone
   m_TagString: Untagged
@@ -3273,6 +3276,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54175824035496692
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1834008313529906}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!54 &54354230087983724
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -3706,6 +3724,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.332661, y: 0.11656821, z: 4.204432}
   m_Center: {x: 0.099065535, y: -0.038746834, z: 0.08994937}
+--- !u!65 &65230010124672112
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341894685658058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4300208, y: 1.2500002, z: 0.26312116}
+  m_Center: {x: 0.9941685, y: 0.0000004172325, z: 0.0000002980232}
 --- !u!65 &65275040400706656
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3742,6 +3772,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.332661, y: 0.55, z: 4.204432}
   m_Center: {x: 0.099065535, y: -0.038746834, z: 0.08994937}
+--- !u!65 &65544097985942304
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423573814467960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4300208, y: 1.2500002, z: 0.26312116}
+  m_Center: {x: 0.9941685, y: 0.0000004172325, z: 0.0000002980232}
 --- !u!95 &95225471276331312
 Animator:
   serializedVersion: 3
