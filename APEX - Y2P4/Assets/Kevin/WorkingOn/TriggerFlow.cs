@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerFlow : MonoBehaviour {
 
 	private FlowManager fM;
+	public bool canTrigger;
 	public bool triggerFlow;
 	public bool triggerAnouncer;
 	public bool triggerShipAI;
@@ -18,8 +19,16 @@ public class TriggerFlow : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			StartCoroutine(TimerBeforeTrigger(timeTillTrigger));
+			if(canTrigger)
+			{
+				StartCoroutine(TimerBeforeTrigger(timeTillTrigger));
+			}
 		}
+	}
+
+	public void Activate()
+	{
+		canTrigger = true;
 	}
 
 	public IEnumerator TimerBeforeTrigger(float time)
