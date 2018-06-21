@@ -8,7 +8,15 @@ public class FlowManager : MonoBehaviour {
 
 	private FlowManager instance;
 	private PuzzleEvents puzzleEvent;
+
+	public AudioPlayer shipAI;
+	public AudioPlayer anouncer;
+	public int currentAudioAnouncer;
+	public int currentAudioAI;
+
+	public List<ClipList> clipsForShipAI = new List<ClipList>();
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
+	
 	private int currentEvent;
 	public int eventAmount;
 
@@ -34,5 +42,15 @@ public class FlowManager : MonoBehaviour {
 	{
 		PuzzleEventList[currentEvent]();
 		eventAmount ++;
+	}
+	public void nextAnouncerVoice()
+	{
+		anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
+		currentAudioAnouncer += 1;
+	}
+	public void nextShipAIVoice()
+	{
+		shipAI.clips = clipsForShipAI[currentAudioAI].clips;
+		currentAudioAI += 1;
 	}
 }
