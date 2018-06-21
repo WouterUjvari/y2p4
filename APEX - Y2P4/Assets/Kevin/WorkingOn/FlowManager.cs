@@ -46,11 +46,13 @@ public class FlowManager : MonoBehaviour {
 	public void nextAnouncerVoice()
 	{
 		anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
+		anouncer.PlayMainAudio();
 		currentAudioAnouncer += 1;
 	}
 	public void nextShipAIVoice()
 	{
 		shipAI.clips = clipsForShipAI[currentAudioAI].clips;
+		shipAI.PlayMainAudio();
 		currentAudioAI += 1;
 	}
 }
