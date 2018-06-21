@@ -8,7 +8,10 @@ public class FlowManager : MonoBehaviour {
 
 	private FlowManager instance;
 	private PuzzleEvents puzzleEvent;
+
+	public List<ClipList> clipsForShipAI = new List<ClipList>();
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
+	
 	private int currentEvent;
 	public int eventAmount;
 
