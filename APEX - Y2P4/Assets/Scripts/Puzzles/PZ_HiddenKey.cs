@@ -12,16 +12,21 @@ public class PZ_HiddenKey : Puzzle
 
     private void Awake()
     {
-        hiddenKeyCollider.enabled = false;
+        TogglePuzzleItems(false);
     }
 
     public override void StartPuzzle()
     {
-        hiddenKeyCollider.enabled = true;
+        TogglePuzzleItems(true);
+    }
+
+    private void TogglePuzzleItems(bool b)
+    {
+        hiddenKeyCollider.enabled = b;
 
         for (int i = 0; i < hints.Count; i++)
         {
-            hints[i].SetActive(true);
+            hints[i].SetActive(b);
         }
     }
 

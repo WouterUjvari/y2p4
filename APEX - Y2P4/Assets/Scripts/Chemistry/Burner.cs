@@ -21,6 +21,8 @@ public class Burner : MonoBehaviour
     private Material springTubeLiquidMat;
     [SerializeField]
     private float burningLiquidEmptySpeed = 0.1f;
+    [SerializeField]
+    private Liquid springTubeLiquid;
 
     private float flameStrength = 0.3f;
     private bool changingFlameStrength;
@@ -66,6 +68,7 @@ public class Burner : MonoBehaviour
         StartCoroutine(toBurn.EmptyFlask(burningLiquidEmptySpeed));
         burnedLiquidParticleMain.startColor = burnedColor;
         springTubeLiquidMat.color = burnedColor;
+        springTubeLiquid.myColor = burnedColor;
         springTubeAnim.SetTrigger("Go");
 
         yield return new WaitForSeconds(5.3f);

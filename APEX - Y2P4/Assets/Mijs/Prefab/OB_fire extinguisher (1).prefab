@@ -162,8 +162,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475994700596626}
   m_LocalRotation: {x: -0, y: 0.999258, z: -0, w: 0.038517777}
-  m_LocalPosition: {x: -1.7514821, y: 0.2371, z: -3.274}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalPosition: {x: -0.05799994, y: 0.04012501, z: -0.0031408668}
+  m_LocalScale: {x: 0.93750083, y: 0.9375, z: 0.93750083}
   m_Children:
   - {fileID: 4694390513445602}
   - {fileID: 4445497180062096}
@@ -266,7 +266,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -710,8 +710,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 0.7
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1343,7 +1343,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1357,6 +1357,15 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.16049382
+        - serializedVersion: 3
+          time: 0.63782096
+          value: 0.61016405
+          inSlope: 0.4578259
+          outSlope: 0.4578259
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.35738784
         - serializedVersion: 3
           time: 1
           value: 1
@@ -2932,7 +2941,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3098,7 +3107,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
