@@ -89,6 +89,7 @@ public class PZ_RollTheBall : Puzzle
 
     public override void CompletePuzzle()
     {
+        FlowManager.instance.nextPuzzle();
         Destroy(activeBall);
         StartCoroutine(ClosePuzzle());
     }

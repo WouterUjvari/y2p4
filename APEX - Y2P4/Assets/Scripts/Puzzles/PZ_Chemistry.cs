@@ -20,6 +20,6 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
-        
+        FlowManager.instance.nextPuzzle();
     }
 }

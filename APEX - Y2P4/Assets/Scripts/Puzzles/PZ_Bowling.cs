@@ -148,6 +148,7 @@ public class PZ_Bowling : Puzzle
 
     public override void CompletePuzzle()
     {
+        FlowManager.instance.nextPuzzle();
         closePuzzleDetectionZone.SetActive(true);
     }
 }

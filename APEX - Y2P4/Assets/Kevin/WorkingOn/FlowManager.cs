@@ -3,26 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlowManager : MonoBehaviour {
-
-	public delegate void PuzzleEvents();
-
-	private FlowManager instance;
-	private PuzzleEvents puzzleEvent;
+	public static FlowManager instance;
 
 	public AudioPlayer shipAI;
 	public AudioPlayer anouncer;
 	private int currentAudioAnouncer;
 	private int currentAudioAI;
-
 	public List<ClipList> clipsForShipAI = new List<ClipList>();
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
 
+	private int currentPuzzle;
 	public List<Puzzle> puzzles = new List<Puzzle>();
-	
-	private int currentEvent;
-	public int eventAmount;
+	public int timeBetweenPuzzles;
 
-	public List<PuzzleEvents> PuzzleEventList = new List<PuzzleEvents>();
 	void Start () 
 	{
 		if(instance == null)
@@ -33,28 +26,30 @@ public class FlowManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-
-		for (int i = 0; i < eventAmount; i++)
-		{
-			PuzzleEventList.Add(puzzleEvent);
-		}
 	}
 
-	public void nextEvent()
+	public void nextPuzzle()
 	{
-		PuzzleEventList[currentEvent]();
-		eventAmount ++;
+		StartCoroutine(PauseBetweenPuzzles(timeBetweenPuzzles));
 	}
+
 	public void nextAnouncerVoice()
 	{
 		anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
 		anouncer.PlayMainAudio();
 		currentAudioAnouncer += 1;
 	}
+
 	public void nextShipAIVoice()
 	{
 		shipAI.clips = clipsForShipAI[currentAudioAI].clips;
 		shipAI.PlayMainAudio();
 		currentAudioAI += 1;
+	}
+
+	public IEnumerator PauseBetweenPuzzles(float time)
+	{
+		yield return new WaitForSeconds(time);
+		puzzles[currentPuzzle].StartPuzzle();
 	}
 }

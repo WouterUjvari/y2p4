@@ -36,7 +36,7 @@ public class TriggerFlow : MonoBehaviour {
 		yield return new WaitForSeconds(time);
 		if(triggerFlow)
 		{
-			fM.nextEvent();
+			fM.nextPuzzle();
 		}
 		if(triggerAnouncer)
 		{

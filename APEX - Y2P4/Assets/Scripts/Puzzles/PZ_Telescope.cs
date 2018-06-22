@@ -245,6 +245,7 @@ public class PZ_Telescope : Puzzle
 
     public override void CompletePuzzle()
     {
+        FlowManager.instance.nextPuzzle();
         for (int i = 0; i < planets.Count; i++)
         {
             planets[i].Lock(true);

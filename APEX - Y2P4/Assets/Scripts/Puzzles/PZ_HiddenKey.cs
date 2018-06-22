@@ -27,6 +27,7 @@ public class PZ_HiddenKey : Puzzle
 
     public override void CompletePuzzle()
     {
+        FlowManager.instance.nextPuzzle();
         hiddenKeyCollider.enabled = false;
     }
 }
