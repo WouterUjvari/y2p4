@@ -143,56 +143,6 @@ public class VRInteractor : MonoBehaviour
         }
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    // If the player is already interacting with an object, ignore new collisions.
-    //    if (interactingObject != null)
-    //    {
-    //        return;
-    //    }
-
-    //    // Try to find an interactable component on the colliding object.
-    //    Interactable interactable = other.gameObject.GetComponent<Interactable>();
-
-    //    // If theres already a colliding object, check if were colliding with another interactable and if collidingObject has a highlight component and if so, dehighlight it.
-    //    if (collidingObject != null)
-    //    {
-    //        if (interactable != null)
-    //        {
-    //            Highlightable highlightable = collidingObject.GetComponent<Highlightable>();
-    //            if (highlightable != null)
-    //            {
-    //                highlightable.DeHighlight();
-    //            }
-    //        }
-    //    }
-
-    //    // If were currently not colliding with the object our other hand is colliding with, highlight our current object.
-    //    if (otherHand != null)
-    //    {
-    //        if (otherHand.interactingObject == null || otherHand.interactingObject.gameObject != other.gameObject)
-    //        {
-    //            Highlightable highlightable = other.gameObject.GetComponent<Highlightable>();
-    //            if (highlightable != null)
-    //            {
-    //                highlightable.Highlight();
-
-    //                if (Controller != null)
-    //                {
-    //                    Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
-    //    if (interactable != null)
-    //    {
-    //        collidingObject = other.gameObject;
-    //        handActions.press = (interactable is Clickable ? true : false);
-    //    }
-    //}
-
     public void OnTriggerExit(Collider other)
     {
         // If the exiting object is not our collidingObject, ignore this function.
@@ -221,6 +171,8 @@ public class VRInteractor : MonoBehaviour
 
     private void Interact()
     {
+        float pitchValue;
+
         // Check if the object were supposed to interact with is indeed an interactable, if not then return.
         Interactable interactable = collidingObject.GetComponent<Interactable>();
         if (interactable == null)
@@ -247,13 +199,21 @@ public class VRInteractor : MonoBehaviour
         // Interact with the object and set the interactingObject.
         interactable.Interact(this);
         interactingObject = interactable;
+        pitchValue = Random.Range(1,1.5f);
+        GetComponent<AudioSource>().pitch = pitchValue;
+        GetComponent<AudioSource>().Play();
         //collidingObject = null;
     }
 
     public void DeInteract()
     {
+        float pitchValue;
+
         // Deinteract with the interactingObject and set it to null.
         interactingObject.DeInteract(this);
         interactingObject = null;
+        pitchValue = Random.Range(0.9f,0.7f);
+        GetComponent<AudioSource>().pitch = pitchValue;
+        GetComponent<AudioSource>().Play();
     }
 }
