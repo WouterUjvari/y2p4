@@ -12,7 +12,6 @@ public class AudioPlayer : MonoBehaviour {
 	public bool playedSound;
 	public AudioClip singleUse;
 	private bool playedSingleUse;
-	public AudioClip playerName;
 
 	void Awake()
 	{
