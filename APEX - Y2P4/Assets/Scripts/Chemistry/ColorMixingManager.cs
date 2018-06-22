@@ -14,6 +14,14 @@ public class ColorMixingManager : MonoBehaviour
     {
         public Color color;
         public string name;
+        public List<ColorMix> colorMixingOptions;
+
+        [System.Serializable]
+        public struct ColorMix
+        {
+            public string colorToMixWith;
+            public string resultColor;
+        }
     }
 
     private void Awake()
@@ -48,11 +56,20 @@ public class ColorMixingManager : MonoBehaviour
 
     public Color GetMixedColor(string myColorName, Color toMix)
     {
+        // Setting the default color to the color the player is mixing.
         Color mixedColor = new Color();
-        string mixedColorName = null;
+        for (int i = 0; i < colors.Count; i++)
+        {
+            if (colors[i].name == myColorName)
+            {
+                mixedColor = colors[i].color;
+            }
+        }
 
+        string mixedColorName = null;
         string toMixName = null;
 
+        // Getting the name of the color we have to mix.
         for (int i = 0; i < colors.Count; i++)
         {
             if (colors[i].color == toMix)
@@ -61,196 +78,23 @@ public class ColorMixingManager : MonoBehaviour
             }
         }
 
-        switch (myColorName)
+        // Finding the mixedColorName.
+        for (int i = 0; i < colors.Count; i++)
         {
-            case "red":
-
-                switch (toMixName)
+            if (colors[i].name == myColorName)
+            {
+                for (int ii = 0; ii < colors[i].colorMixingOptions.Count; ii++)
                 {
-                    case "red":
-
-                        mixedColorName = "red";
+                    if (colors[i].colorMixingOptions[ii].colorToMixWith == toMixName)
+                    {
+                        mixedColorName = colors[i].colorMixingOptions[ii].resultColor;
                         break;
-
-                    case "blue":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "green":
-
-                        mixedColorName = "brown";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "yellow";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "blue";
-                        break;
+                    }
                 }
-                break;
-            case "blue":
-
-                switch (toMixName)
-                {
-                    case "red":
-
-                        mixedColorName = "purple";
-                        break;
-
-                    case "blue":
-
-                        mixedColorName = "blue";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "brown";
-                        break;
-                    case "green":
-
-                        mixedColorName = "yellow";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "red";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "purple";
-                        break;
-                }
-                break;
-            case "yellow":
-
-                switch (toMixName)
-                {
-                    case "red":
-
-                        mixedColorName = "purple";
-                        break;
-
-                    case "blue":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "yellow";
-                        break;
-                    case "green":
-
-                        mixedColorName = "blue";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "green";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "green";
-                        break;
-                }
-                break;
-            case "green":
-
-                switch (toMixName)
-                {
-                    case "red":
-
-                        mixedColorName = "purple";
-                        break;
-
-                    case "blue":
-
-                        mixedColorName = "brown";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "red";
-                        break;
-                    case "green":
-
-                        mixedColorName = "green";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "blue";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "red";
-                        break;
-                }
-                break;
-            case "purple":
-
-                switch (toMixName)
-                {
-                    case "red":
-
-                        mixedColorName = "yellow";
-                        break;
-
-                    case "blue":
-
-                        mixedColorName = "red";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "blue";
-                        break;
-                    case "green":
-
-                        mixedColorName = "brown";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "yellow";
-                        break;
-                }
-                break;
-            case "brown":
-
-                switch (toMixName)
-                {
-                    case "red":
-
-                        mixedColorName = "blue";
-                        break;
-
-                    case "blue":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "yellow":
-
-                        mixedColorName = "red";
-                        break;
-                    case "green":
-
-                        mixedColorName = "purple";
-                        break;
-                    case "purple":
-
-                        mixedColorName = "yellow";
-                        break;
-                    case "brown":
-
-                        mixedColorName = "brown";
-                        break;
-                }
-                break;
+            }
         }
 
+        // Converting the mixedColorName to an actual color.
         for (int i = 0; i < colors.Count; i++)
         {
             if (colors[i].name == mixedColorName)
