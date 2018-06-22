@@ -287,6 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4568415342453226}
   - component: {fileID: 114895955754541616}
+  - component: {fileID: 114773630275954328}
   m_Layer: 0
   m_Name: KeyHolder
   m_TagString: Untagged
@@ -1022,6 +1023,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114773630275954328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953098808015508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8f47a7046bf6b4681fbde08d806aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keySnapper: {fileID: 114895955754541616}
+  keyHolderDisplayText: {fileID: 114054515169475436}
+  doorToOpen: {fileID: 0}
 --- !u!114 &114872090918828962
 MonoBehaviour:
   m_ObjectHideFlags: 1
