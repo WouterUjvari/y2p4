@@ -51,4 +51,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35192e6e08f0c7c4b8afc87348b9c57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors: []
+  colors:
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    name: red
+    burnsIntoColor: 
+    colorMixingOptions:
+    - colorToMixWith: blue
+      resultColor: purple
+    - colorToMixWith: yellow
+      resultColor: green
+    - colorToMixWith: green
+      resultColor: yellow
+    - colorToMixWith: purple
+      resultColor: orange
+    - colorToMixWith: orange
+      resultColor: blue
+  - color: {r: 0, g: 0.26057076, b: 1, a: 1}
+    name: blue
+    burnsIntoColor: 
+    colorMixingOptions:
+    - colorToMixWith: red
+      resultColor: purple
+    - colorToMixWith: yellow
+      resultColor: green
+    - colorToMixWith: green
+      resultColor: orange
+    - colorToMixWith: purple
+      resultColor: red
+    - colorToMixWith: orange
+      resultColor: purple
+  - color: {r: 1, g: 0.96448624, b: 0, a: 1}
+    name: yellow
+    burnsIntoColor: 
+    colorMixingOptions:
+    - colorToMixWith: red
+      resultColor: green
+    - colorToMixWith: blue
+      resultColor: green
+    - colorToMixWith: green
+      resultColor: red
+    - colorToMixWith: purple
+      resultColor: blue
+    - colorToMixWith: orange
+      resultColor: purple
+  - color: {r: 0, g: 1, b: 0.003575325, a: 1}
+    name: green
+    burnsIntoColor: yellow
+    colorMixingOptions:
+    - colorToMixWith: red
+      resultColor: yellow
+    - colorToMixWith: blue
+      resultColor: orange
+    - colorToMixWith: yellow
+      resultColor: red
+    - colorToMixWith: purple
+      resultColor: blue
+    - colorToMixWith: orange
+      resultColor: purple
+  - color: {r: 0.8263159, g: 0, b: 1, a: 1}
+    name: purple
+    burnsIntoColor: red
+    colorMixingOptions:
+    - colorToMixWith: red
+      resultColor: orange
+    - colorToMixWith: blue
+      resultColor: red
+    - colorToMixWith: yellow
+      resultColor: blue
+    - colorToMixWith: green
+      resultColor: blue
+    - colorToMixWith: orange
+      resultColor: yellow
+  - color: {r: 1, g: 0.5231712, b: 0, a: 1}
+    name: orange
+    burnsIntoColor: yellow
+    colorMixingOptions:
+    - colorToMixWith: red
+      resultColor: blue
+    - colorToMixWith: blue
+      resultColor: purple
+    - colorToMixWith: yellow
+      resultColor: purple
+    - colorToMixWith: green
+      resultColor: purple
+    - colorToMixWith: purple
+      resultColor: yellow

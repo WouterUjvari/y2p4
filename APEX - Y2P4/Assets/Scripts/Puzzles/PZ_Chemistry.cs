@@ -7,6 +7,18 @@ public class PZ_Chemistry : Puzzle
 
     [SerializeField]
     private ColorMixingManager.Colors currentColorToMix;
+    [SerializeField]
+    private List<Interactable> locks = new List<Interactable>();
+    [SerializeField]
+    private List<Interactable> interactablesToLockAtStart = new List<Interactable>();
+
+    private void Awake()
+    {
+        for (int i = 0; i < interactablesToLockAtStart.Count; i++)
+        {
+            interactablesToLockAtStart[i].Lock(true);
+        }
+    }
 
     private void GetNewColorToMix()
     {
@@ -16,6 +28,15 @@ public class PZ_Chemistry : Puzzle
     public override void StartPuzzle()
     {
         GetNewColorToMix();
+        UnlockLocks();
+    }
+
+    private void UnlockLocks()
+    {
+        for (int i = 0; i < locks.Count; i++)
+        {
+            locks[i].Lock(false);
+        }
     }
 
     public override void CompletePuzzle()

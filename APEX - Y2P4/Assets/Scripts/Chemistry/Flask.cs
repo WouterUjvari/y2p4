@@ -5,8 +5,7 @@ using UnityEngine;
 public class Flask : MonoBehaviour
 {
 
-    [SerializeField]
-    private string myColorName;
+    public string myColorName;
     [SerializeField]
     private Liquid myLiquid;
 
@@ -138,5 +137,16 @@ public class Flask : MonoBehaviour
         }
 
         pSystem.SetParticles(particles, aliveParticles);
+    }
+
+    public IEnumerator EmptyFlask(float speed)
+    {
+        while (staticLiquid.localScale.z > 0)
+        {
+            staticLiquid.localScale -= new Vector3(0, 0, Time.deltaTime * speed);
+            yield return null;
+        }
+
+        staticLiquid.localScale = emptyLiquidScale;
     }
 }

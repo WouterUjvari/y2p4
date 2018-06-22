@@ -18,6 +18,8 @@ public class KeyManager : MonoBehaviour
     private TextMeshProUGUI keyHolderDisplayText;
     [SerializeField]
     private Door doorToOpen;
+    [SerializeField]
+    private GameObject noTPZone;
 
     private void Awake()
     {
@@ -53,5 +55,6 @@ public class KeyManager : MonoBehaviour
         keyHolderDisplayText.text = "ACCESS\nGRANTED";
         doorToOpen.GetComponent<AudioPlayer>().playAudio();
         doorToOpen.OpenCloseDoor();
+        noTPZone.SetActive(false);
     }
 }

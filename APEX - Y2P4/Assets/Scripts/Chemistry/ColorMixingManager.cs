@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorMixingManager : MonoBehaviour 
+public class ColorMixingManager : MonoBehaviour
 {
 
     public static ColorMixingManager instance;
@@ -122,11 +122,14 @@ public class ColorMixingManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < colors.Count; i++)
+        if (!string.IsNullOrEmpty(burnedColorName))
         {
-            if (colors[i].name == burnedColorName)
+            for (int i = 0; i < colors.Count; i++)
             {
-                burnedColor = colors[i].color;
+                if (colors[i].name == burnedColorName)
+                {
+                    burnedColor = colors[i].color;
+                }
             }
         }
 
