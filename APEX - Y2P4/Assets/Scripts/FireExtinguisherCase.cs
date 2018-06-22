@@ -24,7 +24,7 @@ public class FireExtinguisherCase : MonoBehaviour
 
         if (hand != null)
         {
-            if (Mathf.Abs(hand.Controller.velocity.x) > 5 || Mathf.Abs(hand.Controller.velocity.z) > 5)
+            if (Mathf.Abs(hand.Controller.velocity.x) > 1 || Mathf.Abs(hand.Controller.velocity.z) > 1)
             {
                 BreakGlass(hand);
             }
@@ -37,9 +37,10 @@ public class FireExtinguisherCase : MonoBehaviour
         brokenGlass.SetActive(true);
         for (int i = 0; i < brokenGlass.transform.childCount; i++)
         {
-            brokenGlass.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-hand.Controller.velocity, ForceMode.Impulse);
+            brokenGlass.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-hand.Controller.velocity * 0.5f, ForceMode.Impulse);
         }
 
+        fireExtinguisher.GetComponent<Rigidbody>().isKinematic = false;
         fireExtinguisher.Lock(false);
     }
 }
