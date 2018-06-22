@@ -6,10 +6,12 @@ public class AudioPlayer : MonoBehaviour {
 
 	public AudioSource audioSource;
 	public List<AudioClip> clips = new List<AudioClip>();
-
 	private bool nextClip;
 	public bool playAllClips;
 	private int currentClip;
+	public bool playedSound;
+	public AudioClip singleUse;
+	private bool playedSingleUse;
 	public AudioClip playerName;
 
 	void Awake()
@@ -33,18 +35,30 @@ public class AudioPlayer : MonoBehaviour {
 
 	private void UpdateAudioClip()
 	{
-		print("Update");
 		audioSource.clip = clips[currentClip];
 	}
 
 	public void playAudio()
+	{
+		print("play audio");
+		if(playedSingleUse == false)
+		{
+			print("startCoRoutine");
+			StartCoroutine(SingleUse());
+		}
+		else
+		{
+			PlayMainAudio();
+		}
+	}
+
+	public void PlayMainAudio()
 	{
 		UpdateAudioClip();
 		audioSource.Play();
 
 		if(clips.Count > 1)
 		{
-			
 			if(clips.Count - 1 != currentClip)
 			{
 				nextClip = true;
@@ -58,4 +72,14 @@ public class AudioPlayer : MonoBehaviour {
 			}
 		}
 	}
+
+	public IEnumerator SingleUse()
+	{
+		print("in co routine");
+		playedSingleUse = true;
+		audioSource.clip = singleUse;
+		audioSource.Play();
+		yield return new WaitForSeconds(singleUse.length);
+		PlayMainAudio();
+	} 
 }
