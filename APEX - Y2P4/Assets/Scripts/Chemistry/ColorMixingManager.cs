@@ -14,6 +14,7 @@ public class ColorMixingManager : MonoBehaviour
     {
         public Color color;
         public string name;
+        public string burnsIntoColor;
         public List<ColorMix> colorMixingOptions;
 
         [System.Serializable]
@@ -106,16 +107,29 @@ public class ColorMixingManager : MonoBehaviour
         return mixedColor;
     }
 
-    public Colors[] GetSeperatedColors(string myColorName)
+    public Color GetBurnedColor(string toBurn)
     {
-        Colors[] seperatedColors = new Colors[2];
+        Color burnedColor = new Color();
+        string burnedColorName = null;
 
-        switch (myColorName)
+        for (int i = 0; i < colors.Count; i++)
         {
-            default:
+            if (colors[i].name == toBurn)
+            {
+                burnedColor = colors[i].color;
+                burnedColorName = colors[i].burnsIntoColor;
                 break;
+            }
         }
 
-        return seperatedColors;
+        for (int i = 0; i < colors.Count; i++)
+        {
+            if (colors[i].name == burnedColorName)
+            {
+                burnedColor = colors[i].color;
+            }
+        }
+
+        return burnedColor;
     }
 }
