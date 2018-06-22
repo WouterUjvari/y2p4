@@ -39,15 +39,16 @@ public class AudioPlayer : MonoBehaviour {
 
 	public void playAudio()
 	{
-		print("play audio");
-		if(playedSingleUse == false)
+		if(singleUse != null)
 		{
-			print("startCoRoutine");
-			StartCoroutine(SingleUse());
-		}
-		else
-		{
-			PlayMainAudio();
+			if(playedSingleUse == false)
+			{
+				StartCoroutine(SingleUse());
+			}
+			else
+			{
+				PlayMainAudio();
+			}
 		}
 	}
 
