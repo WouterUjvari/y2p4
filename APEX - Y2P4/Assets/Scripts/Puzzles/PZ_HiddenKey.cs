@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PZ_HiddenKey : MonoBehaviour 
+public class PZ_HiddenKey : Puzzle 
 {
 
     [SerializeField]
@@ -15,7 +15,7 @@ public class PZ_HiddenKey : MonoBehaviour
         hiddenKeyCollider.enabled = false;
     }
 
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         hiddenKeyCollider.enabled = true;
 
@@ -25,7 +25,7 @@ public class PZ_HiddenKey : MonoBehaviour
         }
     }
 
-    public void CompletePuzzle()
+    public override void CompletePuzzle()
     {
         hiddenKeyCollider.enabled = false;
     }

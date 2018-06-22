@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PZ_Chemistry : MonoBehaviour 
+public class PZ_Chemistry : Puzzle 
 {
 
     [SerializeField]
@@ -13,8 +13,13 @@ public class PZ_Chemistry : MonoBehaviour
         currentColorToMix = ColorMixingManager.instance.colors[Random.Range(0, ColorMixingManager.instance.colors.Count)];
     }
 
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         GetNewColorToMix();
+    }
+
+    public override void CompletePuzzle()
+    {
+        
     }
 }

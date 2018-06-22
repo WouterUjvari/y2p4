@@ -4,6 +4,9 @@ using TMPro;
 public class KeyManager : MonoBehaviour 
 {
 
+    private AudioSource aS;
+    [SerializeField]
+    private AudioClip accesDenied;
     private int keysRequired;
     private int currentKeys;
 
@@ -19,6 +22,7 @@ public class KeyManager : MonoBehaviour
     private void Awake()
     {
         keysRequired = keySnapper.snapSpots.Count;
+        aS = GetComponent<AudioSource>();
     }
 
     public void UseKey()
@@ -41,10 +45,13 @@ public class KeyManager : MonoBehaviour
     {
         if (!canOpenLastDoor)
         {
+            aS.clip = accesDenied;
+            aS.Play();
             return;
         }
 
         keyHolderDisplayText.text = "ACCESS\nGRANTED";
+        doorToOpen.GetComponent<AudioPlayer>().playAudio();
         doorToOpen.OpenCloseDoor();
     }
 }

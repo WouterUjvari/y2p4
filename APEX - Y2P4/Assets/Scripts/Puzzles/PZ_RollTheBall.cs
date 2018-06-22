@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PZ_RollTheBall : MonoBehaviour 
+public class PZ_RollTheBall : Puzzle 
 {
 
     [SerializeField]
@@ -40,7 +40,7 @@ public class PZ_RollTheBall : MonoBehaviour
         }
     }
 
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         StartCoroutine(OpenPuzzle());
     }
@@ -87,7 +87,7 @@ public class PZ_RollTheBall : MonoBehaviour
         }
     }
 
-    public void CompletePuzzle()
+    public override void CompletePuzzle()
     {
         Destroy(activeBall);
         StartCoroutine(ClosePuzzle());

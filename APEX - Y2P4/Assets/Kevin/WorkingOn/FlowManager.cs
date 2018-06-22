@@ -11,11 +11,13 @@ public class FlowManager : MonoBehaviour {
 
 	public AudioPlayer shipAI;
 	public AudioPlayer anouncer;
-	public int currentAudioAnouncer;
-	public int currentAudioAI;
+	private int currentAudioAnouncer;
+	private int currentAudioAI;
 
 	public List<ClipList> clipsForShipAI = new List<ClipList>();
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
+
+	public List<Puzzle> puzzles = new List<Puzzle>();
 	
 	private int currentEvent;
 	public int eventAmount;

@@ -2,7 +2,7 @@
 using TMPro;
 using System.Collections.Generic;
 
-public class PZ_Telescope : MonoBehaviour
+public class PZ_Telescope : Puzzle
 {
 
     [Header("Telescope Cam")]
@@ -200,7 +200,7 @@ public class PZ_Telescope : MonoBehaviour
         fovReference = null;
     }
 
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         puzzleAnim.SetTrigger("Open");
 
@@ -243,7 +243,7 @@ public class PZ_Telescope : MonoBehaviour
         }
     }
 
-    private void CompletePuzzle()
+    public override void CompletePuzzle()
     {
         for (int i = 0; i < planets.Count; i++)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PZ_Bowling : MonoBehaviour 
+public class PZ_Bowling : Puzzle 
 {
 
     private bool isResettingPins;
@@ -58,7 +58,7 @@ public class PZ_Bowling : MonoBehaviour
         currentPointsText.text = currentPoints.ToString();
     }
 
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         SpawnPins();
         ToggleDoor();
@@ -146,7 +146,7 @@ public class PZ_Bowling : MonoBehaviour
         }
     }
 
-    private void CompletePuzzle()
+    public override void CompletePuzzle()
     {
         closePuzzleDetectionZone.SetActive(true);
     }
