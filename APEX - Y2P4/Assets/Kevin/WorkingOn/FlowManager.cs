@@ -30,6 +30,7 @@ public class FlowManager : MonoBehaviour {
 
 	public void nextPuzzle()
 	{
+		nextShipAIVoice();
 		StartCoroutine(PauseBetweenPuzzles(timeBetweenPuzzles));
 	}
 
@@ -51,5 +52,6 @@ public class FlowManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(time);
 		puzzles[currentPuzzle].StartPuzzle();
+		currentPuzzle += 1;
 	}
 }

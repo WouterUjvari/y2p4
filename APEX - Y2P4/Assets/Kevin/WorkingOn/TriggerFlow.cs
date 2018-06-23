@@ -21,6 +21,7 @@ public class TriggerFlow : MonoBehaviour {
 		{
 			if(canTrigger)
 			{
+				canTrigger = false;
 				StartCoroutine(TimerBeforeTrigger(timeTillTrigger));
 			}
 		}
