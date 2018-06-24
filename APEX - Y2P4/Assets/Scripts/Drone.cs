@@ -70,7 +70,7 @@ public class Drone : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            RepairDrone();
+            GoLookAtPlayer();
         }
 
         if (isBroken)
@@ -122,7 +122,7 @@ public class Drone : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
 
                 Vector3 targetDir = destination - transform.position;
-                Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
+                Vector3 newDir = Vector3.RotateTowards(transform.forward, -targetDir, Time.deltaTime * rotateSpeed, 0.0f);
                 transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
 
                 if (Physics.Linecast(transform.position, destination))
@@ -156,22 +156,18 @@ public class Drone : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        GetDestination(VRPlayerMovementManager.instance.headTransform, 2);
-
-        Debug.DrawLine(transform.position, destination, Color.green);
-
         if (Vector3.Distance(destination, transform.position) > stoppingDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
 
             Vector3 targetDir = destination - transform.position;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, -targetDir, Time.deltaTime * rotateSpeed, 0.0f);
             transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
         }
         else
         {
             Vector3 targetDir = VRPlayerMovementManager.instance.headTransform.position - transform.position;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Time.deltaTime * rotateSpeed, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, -targetDir, Time.deltaTime * rotateSpeed, 0.0f);
             transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, Quaternion.LookRotation(newDir).eulerAngles.y, transform.localEulerAngles.z);
         }
     }
@@ -265,5 +261,11 @@ public class Drone : MonoBehaviour
 
         isBroken = false;
         canStabilize = true;
+    }
+
+    private void GoLookAtPlayer()
+    {
+        state = State.LookAtPlayer;
+        destination = GetDestination(VRPlayerMovementManager.instance.headTransform, 2);
     }
 }
