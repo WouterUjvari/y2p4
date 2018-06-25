@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExtraDroneFunctionality : MonoBehaviour {
+public class ExtraDroneFunctionality : MonoBehaviour
+{
 
     public Animator anim;
 
@@ -10,6 +11,27 @@ public class ExtraDroneFunctionality : MonoBehaviour {
     public GameObject giftingItem;
 
     public Transform claw;
+
+    [Header("Drone Player Cam")]
+    [SerializeField] private GameObject faceText;
+    [SerializeField] private GameObject droneCamImage;
+    [SerializeField] private GameObject droneCam;
+
+    private void Awake()
+    {
+        droneCam.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (droneCam.activeInHierarchy)
+        {
+            Vector3 target = VRPlayerMovementManager.instance.headTransform.position;
+            target.y = droneCam.transform.position.y;
+
+            droneCam.transform.LookAt(target);
+        }
+    }
 
     public void SpawnInClaw()
     {
@@ -41,8 +63,12 @@ public class ExtraDroneFunctionality : MonoBehaviour {
         //claw.GetComponent<FixedJoint>().connectedBody = null;
         Destroy(claw.GetComponent<FixedJoint>());
         anim.SetTrigger("Retract");
-        print("test");
     }
-        
 
+    public void ToggleDroneCam(bool b)
+    {
+        faceText.SetActive(b ? false : true);
+        droneCam.SetActive(b ? true : false);
+        droneCamImage.SetActive(b ? true : false);
+    }
 }
