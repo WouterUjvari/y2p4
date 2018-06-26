@@ -60,7 +60,7 @@ public class PZ_Bowling : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.nextShipAIVoice();
+        FlowManager.instance.nextShipAIVoice(0);
         SpawnPins();
         ToggleDoor();
     }
@@ -149,8 +149,8 @@ public class PZ_Bowling : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextShipAIVoice();
-        FlowManager.instance.nextPuzzle();
+        FlowManager.instance.nextShipAIVoice(0);
+        FlowManager.instance.nextPuzzle(0);
         closePuzzleDetectionZone.SetActive(true);
     }
 }

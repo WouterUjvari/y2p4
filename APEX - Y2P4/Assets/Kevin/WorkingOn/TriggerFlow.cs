@@ -37,15 +37,15 @@ public class TriggerFlow : MonoBehaviour {
 		yield return new WaitForSeconds(time);
 		if(triggerFlow)
 		{
-			fM.nextPuzzle();
+			fM.nextPuzzle(3);
 		}
 		if(triggerAnouncer)
 		{
-			fM.nextAnouncerVoice();
+			fM.nextAnouncerVoice(3);
 		}
 		if(triggerShipAI)
 		{
-			fM.nextShipAIVoice();
+			fM.nextShipAIVoice(3);
 		}
         this.gameObject.SetActive(false);
 	}

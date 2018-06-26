@@ -72,7 +72,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.nextShipAIVoice();
+        FlowManager.instance.nextShipAIVoice(0);
         GetNewColorToMix();
         UnlockLocks();
     }
@@ -87,6 +87,6 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextPuzzle();
+        FlowManager.instance.nextPuzzle(0);
     }
 }

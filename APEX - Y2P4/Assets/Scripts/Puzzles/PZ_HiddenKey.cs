@@ -32,7 +32,7 @@ public class PZ_HiddenKey : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextPuzzle();
+        FlowManager.instance.nextPuzzle(0);
         hiddenKeyCollider.enabled = false;
     }
 }

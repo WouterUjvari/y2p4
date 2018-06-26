@@ -14,7 +14,6 @@ public class FlowManager : MonoBehaviour {
 
 	private int currentPuzzle;
 	public List<Puzzle> puzzles = new List<Puzzle>();
-	public int timeBetweenPuzzles;
 
 	void Start () 
 	{
@@ -26,26 +25,23 @@ public class FlowManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-		//StartCoroutine(InitialVoiceLine(2));
 	}
 
-	public void nextPuzzle()
+	public void nextPuzzle(float time)
 	{
-		StartCoroutine(PauseBetweenPuzzles(timeBetweenPuzzles));
+		StartCoroutine(PauseBetweenPuzzles(time));
 	}
 
-	public void nextAnouncerVoice()
+	public void nextAnouncerVoice(float time)
 	{
 		anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
-		anouncer.PlayMainAudio();
-		currentAudioAnouncer += 1;
+		StartCoroutine(NextAnouncerVoiceTimer(time));
 	}
 
-	public void nextShipAIVoice()
+	public void nextShipAIVoice(float time)
 	{
 		shipAI.clips = clipsForShipAI[currentAudioAI].clips;
-		shipAI.PlayMainAudio();
-		currentAudioAI += 1;
+		StartCoroutine(NextShipAIVoiceTimer(time));
 	}
 
 	public IEnumerator PauseBetweenPuzzles(float time)
@@ -55,10 +51,18 @@ public class FlowManager : MonoBehaviour {
 		currentPuzzle += 1;
 	}
 
-	public IEnumerator InitialVoiceLine(float time)
+	public IEnumerator NextShipAIVoiceTimer(float time)
 	{
 		yield return new WaitForSeconds(time);
-		nextShipAIVoice();
+		shipAI.PlayMainAudio();
+		currentAudioAI += 1;
+	}
+
+	public IEnumerator NextAnouncerVoiceTimer(float time)
+	{
+		yield return new WaitForSeconds(time);
+		anouncer.PlayMainAudio();
+		currentAudioAnouncer += 1;
 	}
 
 }

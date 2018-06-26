@@ -42,7 +42,7 @@ public class PZ_RollTheBall : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.nextShipAIVoice();
+        FlowManager.instance.nextShipAIVoice(0);
         StartCoroutine(OpenPuzzle());
     }
 
@@ -90,8 +90,8 @@ public class PZ_RollTheBall : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextPuzzle();
-        FlowManager.instance.nextShipAIVoice();
+        FlowManager.instance.nextPuzzle(0);
+        FlowManager.instance.nextShipAIVoice(0);
         Destroy(activeBall);
         StartCoroutine(ClosePuzzle());
     }
