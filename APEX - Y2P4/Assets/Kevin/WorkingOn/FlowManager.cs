@@ -26,6 +26,7 @@ public class FlowManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
+		//StartCoroutine(InitialVoiceLine(2));
 	}
 
 	public void nextPuzzle()
@@ -53,4 +54,11 @@ public class FlowManager : MonoBehaviour {
 		puzzles[currentPuzzle].StartPuzzle();
 		currentPuzzle += 1;
 	}
+
+	public IEnumerator InitialVoiceLine(float time)
+	{
+		yield return new WaitForSeconds(time);
+		nextShipAIVoice();
+	}
+
 }

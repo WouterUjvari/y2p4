@@ -13,11 +13,6 @@ public class AudioPlayer : MonoBehaviour {
 	public AudioClip singleUse;
 	private bool playedSingleUse;
 
-	void Awake()
-	{
-		UpdateAudioClip();
-	}
-
 	void Update()
 	{
 		if(playAllClips)
@@ -49,6 +44,10 @@ public class AudioPlayer : MonoBehaviour {
 			{
 				PlayMainAudio();
 			}
+		}
+		else
+		{
+			PlayMainAudio();
 		}
 	}
 
