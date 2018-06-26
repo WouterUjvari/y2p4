@@ -56,5 +56,6 @@ public class KeyManager : MonoBehaviour
         doorToOpen.GetComponent<AudioPlayer>().playAudio();
         doorToOpen.OpenCloseDoor();
         noTPZone.SetActive(false);
+        TimeManager.instance.StopTimeForever();
     }
 }

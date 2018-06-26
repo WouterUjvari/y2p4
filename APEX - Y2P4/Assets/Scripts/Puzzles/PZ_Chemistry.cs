@@ -13,9 +13,18 @@ public class PZ_Chemistry : Puzzle
     private List<Interactable> locks = new List<Interactable>();
     [SerializeField]
     private List<Interactable> interactablesToLockAtStart = new List<Interactable>();
+    [SerializeField]
+    private ObjectSnapSpot checkCorrectColorStandSnapspot;
+    [SerializeField]
+    private Animator checkCorrectColorStandAnim;
 
     private void Awake()
     {
+        currentColorToMix = new ColorMixingManager.Colors
+        {
+            name = "null"
+        };
+
         for (int i = 0; i < interactablesToLockAtStart.Count; i++)
         {
             interactablesToLockAtStart[i].Lock(true);
@@ -26,6 +35,39 @@ public class PZ_Chemistry : Puzzle
     {
         currentColorToMix = ColorMixingManager.instance.colors[Random.Range(0, ColorMixingManager.instance.colors.Count)];
         mixingColor++;
+    }
+
+    public void CheckCorrectColor()
+    {
+        if (currentColorToMix.name == "null")
+        {
+            return;
+        }
+
+        Flask flask = checkCorrectColorStandSnapspot.snappedObject.GetComponentInChildren<Flask>();
+
+        if (flask.myColorName == currentColorToMix.name)
+        {
+            checkCorrectColorStandAnim.SetTrigger("Correct");
+
+            if (mixingColor == 1)
+            {
+                GetNewColorToMix();
+            }
+            else
+            {
+                CompletePuzzle();
+
+                currentColorToMix = new ColorMixingManager.Colors
+                {
+                    name = "null"
+                };
+            }
+        }
+        else
+        {
+            checkCorrectColorStandAnim.SetTrigger("False");
+        }
     }
 
     public override void StartPuzzle()
