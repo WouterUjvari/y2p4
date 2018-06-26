@@ -29,19 +29,28 @@ public class FlowManager : MonoBehaviour {
 
 	public void nextPuzzle(float time)
 	{
-		StartCoroutine(PauseBetweenPuzzles(time));
+		if(currentPuzzle <= puzzles.Count - 1)
+		{
+			StartCoroutine(PauseBetweenPuzzles(time));
+		}
 	}
 
 	public void nextAnouncerVoice(float time)
 	{
-		anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
-		StartCoroutine(NextAnouncerVoiceTimer(time));
+		if(currentAudioAnouncer <= clipsForAnouncer.Count - 1)
+		{
+			anouncer.clips = clipsForAnouncer[currentAudioAnouncer].clips;
+			StartCoroutine(NextAnouncerVoiceTimer(time));
+		}
 	}
 
 	public void nextShipAIVoice(float time)
 	{
-		shipAI.clips = clipsForShipAI[currentAudioAI].clips;
-		StartCoroutine(NextShipAIVoiceTimer(time));
+		if(currentAudioAI <= clipsForShipAI.Count - 1)
+		{
+			shipAI.clips = clipsForShipAI[currentAudioAI].clips;
+			StartCoroutine(NextShipAIVoiceTimer(time));
+		}
 	}
 
 	public IEnumerator PauseBetweenPuzzles(float time)

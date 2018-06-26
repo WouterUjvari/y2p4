@@ -261,9 +261,9 @@ public class Drone : MonoBehaviour
 
         isBroken = false;
         canStabilize = true;
-        FlowManager.instance.nextAnouncerVoice(2);
         FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextPuzzle(3);
+        FlowManager.instance.nextAnouncerVoice(3);
+        FlowManager.instance.nextPuzzle(5);
     }
 
     private void GoLookAtPlayer()
