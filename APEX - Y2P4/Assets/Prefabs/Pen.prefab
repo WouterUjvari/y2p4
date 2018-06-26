@@ -97,8 +97,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118573386631480}
-  m_LocalRotation: {x: -0, y: -0.49468848, z: -0, w: 0.86907035}
-  m_LocalPosition: {x: -0.315, y: 0.777, z: -1.67}
+  m_LocalRotation: {x: -0.46416828, y: 0.5334307, z: 0.5334275, w: -0.4641709}
+  m_LocalPosition: {x: 1.736, y: 0.101, z: 1.244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4463359197110246}
@@ -234,7 +234,6 @@ MonoBehaviour:
   setKinematic: 0
   collidersToTurnOff:
   - {fileID: 65607189548362570}
-  testHand: {fileID: 0}
 --- !u!114 &114508854558762760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,9 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a44194d049aa540893decb928625cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inkMat: {fileID: 2100000, guid: 000e6a963503fc44389fbc4ad6978441, type: 2}
   penPoint: {fileID: 4463359197110246}
-  lineRendererPreset: {fileID: 2655988077585873504, guid: 092b332d46fe95a47a16e63bdc6dbd0f,
-    type: 2}
   distanceBetweenDrawPoints: 0.01
   drawLayerMask:
     serializedVersion: 2

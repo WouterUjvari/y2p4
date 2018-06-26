@@ -76,10 +76,12 @@ public class Pen : MonoBehaviour
 
         currentLine = newLine.AddComponent<LineRenderer>();
         currentLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        currentLine.useWorldSpace = false;
         currentLine.startWidth = 0.005f;
         currentLine.numCornerVertices = 3;
         currentLine.numCapVertices = 3;
-        currentLine.materials[0].color = inkColor;
+        currentLine.material = new Material(Shader.Find("Unlit/Color"));
+        currentLine.materials[0].SetColor("_Color", inkColor);
 
         currentPositionIndex = 0;
 
