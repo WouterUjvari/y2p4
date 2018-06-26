@@ -12,7 +12,7 @@ public class FlowManager : MonoBehaviour {
 	public List<ClipList> clipsForShipAI = new List<ClipList>();
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
 
-	private int currentPuzzle;
+	public int currentPuzzle;
 	public List<Puzzle> puzzles = new List<Puzzle>();
 
 	void Start () 
