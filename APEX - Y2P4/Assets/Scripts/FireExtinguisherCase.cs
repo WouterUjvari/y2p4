@@ -24,7 +24,7 @@ public class FireExtinguisherCase : MonoBehaviour
 
         if (hand != null)
         {
-            if (Mathf.Abs(hand.Controller.velocity.x) > 1 || Mathf.Abs(hand.Controller.velocity.z) > 1)
+            if (Mathf.Abs(hand.Controller.velocity.x) > 0.5f || Mathf.Abs(hand.Controller.velocity.z) > 0.5f)
             {
                 BreakGlass(hand);
             }

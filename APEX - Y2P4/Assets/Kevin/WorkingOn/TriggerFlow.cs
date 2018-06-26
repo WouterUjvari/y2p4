@@ -47,5 +47,6 @@ public class TriggerFlow : MonoBehaviour {
 		{
 			fM.nextShipAIVoice();
 		}
+        this.gameObject.SetActive(false);
 	}
 }
