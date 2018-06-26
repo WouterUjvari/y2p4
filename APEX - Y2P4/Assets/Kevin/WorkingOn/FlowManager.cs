@@ -30,7 +30,6 @@ public class FlowManager : MonoBehaviour {
 
 	public void nextPuzzle()
 	{
-		nextShipAIVoice();
 		StartCoroutine(PauseBetweenPuzzles(timeBetweenPuzzles));
 	}
 

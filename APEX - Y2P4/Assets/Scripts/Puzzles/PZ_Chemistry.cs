@@ -27,6 +27,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void StartPuzzle()
     {
+        FlowManager.instance.nextShipAIVoice();
         GetNewColorToMix();
         UnlockLocks();
     }
@@ -41,6 +42,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
+        FlowManager.instance.nextShipAIVoice();
         FlowManager.instance.nextPuzzle();
     }
 }
