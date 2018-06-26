@@ -5,6 +5,8 @@ using UnityEngine;
 public class PZ_Chemistry : Puzzle 
 {
 
+    private int mixingColor;
+
     [SerializeField]
     private ColorMixingManager.Colors currentColorToMix;
     [SerializeField]
@@ -23,6 +25,7 @@ public class PZ_Chemistry : Puzzle
     private void GetNewColorToMix()
     {
         currentColorToMix = ColorMixingManager.instance.colors[Random.Range(0, ColorMixingManager.instance.colors.Count)];
+        mixingColor++;
     }
 
     public override void StartPuzzle()
@@ -42,7 +45,6 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextShipAIVoice();
         FlowManager.instance.nextPuzzle();
     }
 }

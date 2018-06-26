@@ -35,7 +35,6 @@ GameObject:
   - component: {fileID: 3380982}
   - component: {fileID: 11489174}
   - component: {fileID: 114808864148886146}
-  - component: {fileID: 65245209568298652}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -657,6 +656,7 @@ GameObject:
   - component: {fileID: 114089820356556634}
   - component: {fileID: 114461086512400022}
   - component: {fileID: 114780501380913088}
+  - component: {fileID: 54827004843977160}
   m_Layer: 0
   m_Name: Head
   m_TagString: Player
@@ -1130,7 +1130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4315425362723014}
   - component: {fileID: 114390841400762818}
-  - component: {fileID: 65601303046180006}
   - component: {fileID: 114093186252436700}
   m_Layer: 0
   m_Name: Camera (head)
@@ -6359,7 +6358,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -6374,10 +6373,25 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!54 &54827004843977160
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114165711361678}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65198718343060342
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6390,30 +6404,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.18}
   m_Center: {x: 0, y: 0, z: -0.03}
---- !u!65 &65245209568298652
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60628897, y: 1, z: 0.5249504}
-  m_Center: {x: 0.0020949543, y: 0.5, z: -0.043100953}
---- !u!65 &65601303046180006
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241410860745774}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.38788036, y: 0.32999825, z: 0.37095702}
-  m_Center: {x: -0.006812826, y: 0.11039293, z: -0.08681601}
 --- !u!65 &65913266647031736
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6719,6 +6709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce8153c613926c40b25494a9e060614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
 --- !u!114 &114099842537081552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7238,7 +7229,7 @@ MonoBehaviour:
   movementType: 1
   cameraRigTransform: {fileID: 0}
   headTransform: {fileID: 4920380148678986}
-  controllerHapticPulse: 5000
+  controllerHapticPulse: 500
   leftHand: {fileID: 114925091457266110}
   rightHand: {fileID: 114151691233474794}
   eyeTransform: {fileID: 4920380148678986}

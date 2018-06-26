@@ -36,7 +36,7 @@ public class RotateAround : MonoBehaviour
         {
             if (lockRotation)
             {
-                transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.localRotation.x, -90, transform.localRotation.z), Time.deltaTime * (speed * 3));
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(transform.localRotation.x, -90, transform.localRotation.z), Time.deltaTime * (speed * 3));
             }
         }
     }

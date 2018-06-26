@@ -86,6 +86,15 @@ public class PZ_Telescope : Puzzle
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            StartPuzzle();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            CompletePuzzle();
+        }
+
         HandleHorizontalMovement();
         HandleVerticalMovement();
         HandleFOV();
@@ -248,6 +257,7 @@ public class PZ_Telescope : Puzzle
     {
         FlowManager.instance.nextShipAIVoice();
         FlowManager.instance.nextPuzzle();
+
         for (int i = 0; i < planets.Count; i++)
         {
             planets[i].Lock(true);
