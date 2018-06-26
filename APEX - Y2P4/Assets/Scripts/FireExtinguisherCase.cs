@@ -40,7 +40,6 @@ public class FireExtinguisherCase : MonoBehaviour
             brokenGlass.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-hand.Controller.velocity * 0.5f, ForceMode.Impulse);
         }
 
-        fireExtinguisher.GetComponent<Rigidbody>().isKinematic = false;
         fireExtinguisher.Lock(false);
     }
 }
