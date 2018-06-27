@@ -112,6 +112,8 @@ public class VRInteractor : MonoBehaviour
             }
         }
 
+        bool prevCollidingObjWasNull = !collidingObject ? true : false;
+
         // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
         if (interactable != null)
         {
@@ -132,7 +134,7 @@ public class VRInteractor : MonoBehaviour
                 Highlightable highlightable = other.gameObject.GetComponent<Highlightable>();
                 if (highlightable != null)
                 {
-                    if (Controller != null && !highlightable.isHighlighted)
+                    if (Controller != null && !highlightable.isHighlighted && prevCollidingObjWasNull)
                     {
                         Controller.TriggerHapticPulse((ushort)VRPlayerMovementManager.instance.controllerHapticPulse);
                     }

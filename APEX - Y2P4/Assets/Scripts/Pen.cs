@@ -43,12 +43,22 @@ public class Pen : MonoBehaviour
             {
                 CreateNewLine(hit.transform);
                 currentDrawingSurface = hit.transform;
+
+                if (hit.transform.tag == "NDA")
+                {
+                    hit.transform.GetComponent<PZ_NDA>().IsSigning(true);
+                }
             }
             else
             {
                 if (hit.transform != currentDrawingSurface)
                 {
                     EndLine();
+
+                    if (hit.transform.tag == "NDA")
+                    {
+                        hit.transform.GetComponent<PZ_NDA>().IsSigning(false);
+                    }
                 }
             }
         }
