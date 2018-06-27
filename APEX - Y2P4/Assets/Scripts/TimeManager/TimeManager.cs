@@ -31,6 +31,7 @@ public class TimeManager : MonoBehaviour
     public void ChangeTime(float seconds)
     {
         currentTime += canChangeTime ? seconds : 0;
+        currentTime = (currentTime < 0) ? 0 : currentTime;
     }
 
     public void StartTime()
