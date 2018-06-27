@@ -39,6 +39,4 @@ public class SmartWatch : MonoBehaviour
 
         listOfTips[FlowManager.instance.currentPuzzle].SetActive(true);
     }
-
-
 }
