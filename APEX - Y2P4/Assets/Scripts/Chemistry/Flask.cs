@@ -8,6 +8,7 @@ public class Flask : MonoBehaviour
     public string myColorName;
     [SerializeField]
     private Liquid myLiquid;
+    public bool isEmpty;
 
     [Space(10)]
 
@@ -87,13 +88,16 @@ public class Flask : MonoBehaviour
                 bubbleParticle.Stop();
             }
         }
+
+        isEmpty = (staticLiquid.localScale.z > 0) ? false : true;
     }
 
     public void AddLiquid(Color color)
     {
         if (!isLerpingColor && color != myCurrentColor)
         {
-            Color newColor = (staticLiquid.localScale.z == 0) ? myCurrentColor : ColorMixingManager.instance.GetMixedColor(myColorName, color);
+            // TODO: Fix newColor. myColorName never changes.
+            Color newColor = isEmpty ? myCurrentColor : ColorMixingManager.instance.GetMixedColor(myColorName, color);
             StartCoroutine(LerpColor(myCurrentColor, newColor));
         }
 
@@ -108,6 +112,9 @@ public class Flask : MonoBehaviour
         isLerpingColor = true;
         float lerpTime = 0;
 
+        myCurrentColor = newColor;
+        myLiquid.myColor = newColor;
+
         while (staticLiquidRenderer.material.color != newColor)
         {
             staticLiquidRenderer.material.color = Color.Lerp(original, newColor, lerpTime);
@@ -117,8 +124,6 @@ public class Flask : MonoBehaviour
             lerpTime += Time.deltaTime * liquidColorLerpSpeed;
             yield return null;
         }
-        myCurrentColor = newColor;
-        myLiquid.myColor = newColor;
 
         isLerpingColor = false;
     }

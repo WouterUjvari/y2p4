@@ -56,7 +56,11 @@ public class Burner : MonoBehaviour
 
     public void StartBurning()
     {
-        StartCoroutine(BurnLiquid(toBurnSnapSpot.snappedObject.GetComponentInChildren<Flask>()));
+        Flask toBurn = toBurnSnapSpot.snappedObject.GetComponentInChildren<Flask>();
+        if (!toBurn.isEmpty)
+        {
+            StartCoroutine(BurnLiquid(toBurn));
+        }
     }
 
     private IEnumerator BurnLiquid(Flask toBurn)

@@ -92,4 +92,9 @@ public class VRPlayerMovementManager : MonoBehaviour
         leftHand.Awake();
         rightHand.Awake();
     }
+
+    public void ToggleCanMove(bool b)
+    {
+        canMove = b;
+    }
 }
