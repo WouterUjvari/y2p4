@@ -7,6 +7,7 @@ public class VRPlayerMovementManager : MonoBehaviour
 {
 
     public static VRPlayerMovementManager instance;
+    public static bool canMove = true;
 
     public enum MovementType
     {

@@ -54,7 +54,7 @@ public class VRLaser : MonoBehaviour
 
     private void Update()
     {
-        if (VRPlayerMovementManager.instance.movementType == VRPlayerMovementManager.MovementType.Teleportation)
+        if (VRPlayerMovementManager.instance.movementType == VRPlayerMovementManager.MovementType.Teleportation && VRPlayerMovementManager.canMove)
         {
             HandleLaser();
         }

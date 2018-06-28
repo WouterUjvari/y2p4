@@ -24,7 +24,7 @@ public class VRWalk : MonoBehaviour
 
     private void Update()
     {
-        if (VRPlayerMovementManager.instance.movementType == VRPlayerMovementManager.MovementType.TouchpadWalking)
+        if (VRPlayerMovementManager.instance.movementType == VRPlayerMovementManager.MovementType.TouchpadWalking && VRPlayerMovementManager.canMove)
         {
             HandleMovement();
         }
