@@ -36,7 +36,7 @@ public class PZ_HiddenKey : Puzzle
     {
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(4);
-        FlowManager.instance.NextPuzzle(10);
+        FlowManager.instance.NextPuzzle(15);
 
         hiddenKeyCollider.enabled = false;
     }

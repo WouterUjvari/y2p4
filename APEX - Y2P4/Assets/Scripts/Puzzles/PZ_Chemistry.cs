@@ -17,6 +17,8 @@ public class PZ_Chemistry : Puzzle
     private ObjectSnapSpot checkCorrectColorStandSnapspot;
     [SerializeField]
     private Animator checkCorrectColorStandAnim;
+    [SerializeField]
+    private Material colorToMakeIndicator;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class PZ_Chemistry : Puzzle
         {
             name = "null"
         };
+        ShowColorToMake(Color.white);
 
         for (int i = 0; i < interactablesToLockAtStart.Count; i++)
         {
@@ -34,6 +37,7 @@ public class PZ_Chemistry : Puzzle
     private void GetNewColorToMix()
     {
         currentColorToMix = ColorMixingManager.instance.colors[Random.Range(0, ColorMixingManager.instance.colors.Count)];
+        ShowColorToMake(currentColorToMix.color);
         mixingColor++;
     }
 
@@ -62,6 +66,7 @@ public class PZ_Chemistry : Puzzle
                 {
                     name = "null"
                 };
+                ShowColorToMake(Color.white);
             }
         }
         else
@@ -73,7 +78,7 @@ public class PZ_Chemistry : Puzzle
     public override void StartPuzzle()
     {
         FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(4);
+        FlowManager.instance.NextAnouncerVoice(3);
         GetNewColorToMix();
         UnlockLocks();
     }
@@ -90,6 +95,14 @@ public class PZ_Chemistry : Puzzle
     {
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(4);
-        FlowManager.instance.NextPuzzle(10);
+        FlowManager.instance.NextPuzzle(15);
+    }
+
+    public void ShowColorToMake(Color toMake)
+    {
+        if (colorToMakeIndicator)
+        {
+            colorToMakeIndicator.SetColor("_EmissionColor", toMake * 3f);
+        }
     }
 }

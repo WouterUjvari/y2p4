@@ -93,14 +93,13 @@ public class FlowManager : MonoBehaviour {
 
     public void DroneBuildEvent()
     {
-        NextShipAIVoice(0);
-        NextAnouncerVoice(4);
+        NextAnouncerVoice(0);
         StartCoroutine(DroneBuildTimer());
     }
 
     public IEnumerator DroneBuildTimer()
     {
-        yield return new WaitForSeconds(13);
+        yield return new WaitForSeconds(10);
         GameObject.FindObjectOfType<Drone>().GoLookAtPlayer();
         ExtraDroneFunctionality.instance.ToggleDroneCam(true);
         yield return new WaitForSeconds(10);
