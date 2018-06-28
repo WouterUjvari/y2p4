@@ -11,7 +11,8 @@ public class AudioPlayer : MonoBehaviour {
 	private int currentClip;
 	public bool playedSound;
 	public AudioClip singleUse;
-	private bool playedSingleUse;
+    [HideInInspector]
+	public bool playedSingleUse;
 
 	void Update()
 	{
@@ -21,7 +22,7 @@ public class AudioPlayer : MonoBehaviour {
 			{
 				if(!audioSource.isPlaying)
 				{
-					playAudio();
+					PlayAudio();
 				}
 			}
 		}
@@ -32,7 +33,7 @@ public class AudioPlayer : MonoBehaviour {
 		audioSource.clip = clips[currentClip];
 	}
 
-	public void playAudio()
+	public void PlayAudio()
 	{
 		if(singleUse != null)
 		{
@@ -55,15 +56,15 @@ public class AudioPlayer : MonoBehaviour {
 	{
 		UpdateAudioClip();
 		audioSource.Play();
-
 		if(clips.Count > 1)
 		{
-			if(clips.Count - 1 != currentClip)
+			if(currentClip < clips.Count - 1 )
 			{
-				nextClip = true;
+                print("next");
+                nextClip = true;
 				currentClip += 1;
 			}
-			else
+			else if(clips.Count - 1 >= currentClip)
 			{
 				nextClip = false;
 				print("reset");

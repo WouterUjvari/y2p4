@@ -23,9 +23,11 @@ public class Clickable : Interactable
         if (canInteract)
         {
             onValidButtonClick.Invoke();
-
-            anim.SetTrigger("Interact");
-            canInteract = false;
+            if (anim != null)
+            {
+                anim.SetTrigger("Interact");
+                canInteract = false;
+            }
         }
     }
 

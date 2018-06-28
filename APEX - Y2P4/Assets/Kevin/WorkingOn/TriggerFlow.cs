@@ -32,20 +32,25 @@ public class TriggerFlow : MonoBehaviour {
 		canTrigger = true;
 	}
 
+    public void DroneBuildEvent()
+    {
+
+    }
+
 	public IEnumerator TimerBeforeTrigger(float time)
 	{
 		yield return new WaitForSeconds(time);
 		if(triggerFlow)
 		{
-			fM.nextPuzzle(3);
+			fM.NextPuzzle(3);
 		}
 		if(triggerAnouncer)
 		{
-			fM.nextAnouncerVoice(3);
+			fM.NextAnouncerVoice(3);
 		}
 		if(triggerShipAI)
 		{
-			fM.nextShipAIVoice(3);
+			fM.NextShipAIVoice(3);
 		}
         this.gameObject.SetActive(false);
 	}

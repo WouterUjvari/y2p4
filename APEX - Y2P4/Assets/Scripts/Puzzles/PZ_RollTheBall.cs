@@ -42,8 +42,8 @@ public class PZ_RollTheBall : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextAnouncerVoice(3);
+        FlowManager.instance.NextShipAIVoice(0);
+        FlowManager.instance.NextAnouncerVoice(3);
         StartCoroutine(OpenPuzzle());
     }
 
@@ -91,9 +91,9 @@ public class PZ_RollTheBall : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextPuzzle(5);
-        FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextAnouncerVoice(3);
+        FlowManager.instance.NextShipAIVoice(0);
+        FlowManager.instance.NextAnouncerVoice(3);
+        FlowManager.instance.NextPuzzle(10);
         Destroy(activeBall);
         StartCoroutine(ClosePuzzle());
     }

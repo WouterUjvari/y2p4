@@ -68,11 +68,6 @@ public class Drone : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            GoLookAtPlayer();
-        }
-
         if (isBroken)
         {
             return;
@@ -172,7 +167,7 @@ public class Drone : MonoBehaviour
         }
     }
 
-    private void GetNewState()
+    public void GetNewState()
     {
         float f = Random.value;
 
@@ -261,12 +256,10 @@ public class Drone : MonoBehaviour
 
         isBroken = false;
         canStabilize = true;
-        FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextAnouncerVoice(3);
-        FlowManager.instance.nextPuzzle(5);
+        FlowManager.instance.DroneBuildEvent();
     }
 
-    private void GoLookAtPlayer()
+    public void GoLookAtPlayer()
     {
         state = State.LookAtPlayer;
         destination = GetDestination(VRPlayerMovementManager.instance.headTransform, 2);

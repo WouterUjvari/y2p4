@@ -46,7 +46,8 @@ public class Pen : MonoBehaviour
 
                 if (hit.transform.tag == "NDA")
                 {
-                    hit.transform.GetComponent<PZ_NDA>().IsSigning(true);
+                    PZ_NDA nda = FindObjectOfType<PZ_NDA>();
+                    nda.IsSigning(true);
                 }
             }
             else
@@ -55,16 +56,21 @@ public class Pen : MonoBehaviour
                 {
                     EndLine();
 
-                    if (hit.transform.tag == "NDA")
-                    {
-                        hit.transform.GetComponent<PZ_NDA>().IsSigning(false);
-                    }
                 }
             }
         }
         else
         {
             EndLine();
+
+            if (currentDrawingSurface)
+            {
+                if (currentDrawingSurface.tag == "NDA")
+                {
+                    PZ_NDA nda = FindObjectOfType<PZ_NDA>();
+                    nda.IsSigning(false);
+                }
+            }
         }
 
         if (!isDrawing)

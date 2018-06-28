@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExtraDroneFunctionality : MonoBehaviour
 {
+    public static ExtraDroneFunctionality instance;
 
     public Animator anim;
 
@@ -11,6 +12,8 @@ public class ExtraDroneFunctionality : MonoBehaviour
     public GameObject giftingItem;
 
     public Transform claw;
+    public GameObject itemInHand;
+    public int itemIndex;
 
     [Header("Drone Player Cam")]
     [SerializeField] private GameObject faceText;
@@ -19,6 +22,7 @@ public class ExtraDroneFunctionality : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         droneCam.SetActive(false);
     }
 
@@ -40,11 +44,10 @@ public class ExtraDroneFunctionality : MonoBehaviour
         //Destroy(claw.GetComponent<FixedJoint>());
         if (giftingItem == null)
         {
-            giftingItem = listOfItems[0];
+            giftingItem = listOfItems[itemIndex];
         }
 
-
-        GameObject g = Instantiate(giftingItem, claw.position, claw.rotation);
+        itemInHand = Instantiate(giftingItem, claw.position, claw.rotation);
         //g.transform.parent = claw.transform;
         //g.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -53,8 +56,13 @@ public class ExtraDroneFunctionality : MonoBehaviour
         joint.breakForce = Mathf.Infinity;
         joint.breakTorque = Mathf.Infinity;
 
-        joint.connectedBody = g.GetComponent<Rigidbody>();
-        g.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
+        joint.connectedBody = itemInHand.GetComponent<Rigidbody>();
+
+        Interactable interactable = itemInHand.GetComponent<Interactable>();
+        if (interactable)
+        {
+            itemInHand.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
+        }
         //Destroy(g.GetComponent<Rigidbody>());
     }
 

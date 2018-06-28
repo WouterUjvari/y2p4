@@ -23,12 +23,9 @@ GameObject:
   - component: {fileID: 23146361725584720}
   - component: {fileID: 65281821831843806}
   - component: {fileID: 54117940435097770}
-  - component: {fileID: 114577080597061868}
-  - component: {fileID: 114103906555242346}
-  - component: {fileID: 114524172463806694}
   m_Layer: 9
   m_Name: FakeNDA
-  m_TagString: Untagged
+  m_TagString: NDA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111667986312812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.647, z: -4.41}
-  m_LocalScale: {x: 0.004769317, y: 0.5993925, z: 0.41328496}
+  m_LocalPosition: {x: -4.2542377, y: 20.525993, z: -14.974888}
+  m_LocalScale: {x: 0.0028210273, y: 0.35453767, z: 0.24445601}
   m_Children:
   - {fileID: 4462406240577878}
   m_Father: {fileID: 0}
@@ -145,58 +142,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.69, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114103906555242346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1111667986312812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1fcab5667f47ed4aa287b53d05612c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onDeInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  reparent: 1
-  setKinematic: 0
-  collidersToTurnOff: []
---- !u!114 &114524172463806694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1111667986312812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc1f70304c77ac34e912fb8fe809fbe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resizeSpeed: 1
-  smallSize: 0.3
-  bigSize: 2.5
-  resizeSetting: 0
---- !u!114 &114577080597061868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1111667986312812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f03c77a883cef4ab4d2c20463dd1f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightMat: {fileID: 2100000, guid: a9d8565cd2f99b04c94288f457b17456, type: 2}
-  renderersToExclude: []
 --- !u!212 &212120501381132500
 SpriteRenderer:
   m_ObjectHideFlags: 1

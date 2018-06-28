@@ -22,6 +22,10 @@ public class Door : MonoBehaviour {
 	{
         if(canPlay)
         {
+            if (aP.playedSingleUse == true)
+            {
+                timeTillOpen = 0;
+            }
             StartCoroutine(DoorTimer(timeTillOpen));
         }
 	}

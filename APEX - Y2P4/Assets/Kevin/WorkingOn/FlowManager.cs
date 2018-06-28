@@ -25,9 +25,15 @@ public class FlowManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
+        NextShipAIVoice(1);
 	}
 
-	public void nextPuzzle(float time)
+    private void Update()
+    {
+        DebugOverride();
+    }
+
+    public void NextPuzzle(float time)
 	{
 		if(currentPuzzle <= puzzles.Count - 1)
 		{
@@ -35,7 +41,7 @@ public class FlowManager : MonoBehaviour {
 		}
 	}
 
-	public void nextAnouncerVoice(float time)
+	public void NextAnouncerVoice(float time)
 	{
 		if(currentAudioAnouncer <= clipsForAnouncer.Count - 1)
 		{
@@ -44,7 +50,7 @@ public class FlowManager : MonoBehaviour {
 		}
 	}
 
-	public void nextShipAIVoice(float time)
+	public void NextShipAIVoice(float time)
 	{
 		if(currentAudioAI <= clipsForShipAI.Count - 1)
 		{
@@ -74,4 +80,31 @@ public class FlowManager : MonoBehaviour {
 		currentAudioAnouncer += 1;
 	}
 
+
+    public void DebugOverride()
+    {
+        if(Input.GetKey(KeyCode.U))
+        {
+            NextPuzzle(0);
+        }
+    }
+
+
+    public void DroneBuildEvent()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+        StartCoroutine(DroneBuildTimer());
+    }
+
+    public IEnumerator DroneBuildTimer()
+    {
+        yield return new WaitForSeconds(13);
+        GameObject.FindObjectOfType<Drone>().GoLookAtPlayer();
+        ExtraDroneFunctionality.instance.ToggleDroneCam(true);
+        yield return new WaitForSeconds(10);
+        GameObject.FindObjectOfType<Drone>().GetNewState();
+        ExtraDroneFunctionality.instance.ToggleDroneCam(false);
+        NextPuzzle(2);
+    }
 }

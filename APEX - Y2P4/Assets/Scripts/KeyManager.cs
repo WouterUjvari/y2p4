@@ -53,7 +53,7 @@ public class KeyManager : MonoBehaviour
         }
 
         keyHolderDisplayText.text = "ACCESS\nGRANTED";
-        doorToOpen.GetComponent<AudioPlayer>().playAudio();
+        doorToOpen.GetComponent<AudioPlayer>().PlayAudio();
         doorToOpen.OpenCloseDoor();
         noTPZone.SetActive(false);
         TimeManager.instance.StopTimeForever();

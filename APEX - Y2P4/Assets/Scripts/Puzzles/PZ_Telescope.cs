@@ -211,8 +211,8 @@ public class PZ_Telescope : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextAnouncerVoice(3);
+        FlowManager.instance.NextShipAIVoice(0);
+        FlowManager.instance.NextAnouncerVoice(3);
         puzzleAnim.SetTrigger("Open");
 
         for (int i = 0; i < planets.Count; i++)
@@ -256,9 +256,9 @@ public class PZ_Telescope : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.nextShipAIVoice(0);
-        FlowManager.instance.nextAnouncerVoice(3);
-        FlowManager.instance.nextPuzzle(5);
+        FlowManager.instance.NextShipAIVoice(0);
+        FlowManager.instance.NextAnouncerVoice(3);
+        FlowManager.instance.NextPuzzle(5);
 
         for (int i = 0; i < planets.Count; i++)
         {
