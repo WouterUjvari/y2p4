@@ -85,6 +85,7 @@ public class FlowManager : MonoBehaviour {
     {
         if(Input.GetKey(KeyCode.U))
         {
+            print("finish puzzle");
             NextPuzzle(0);
         }
     }

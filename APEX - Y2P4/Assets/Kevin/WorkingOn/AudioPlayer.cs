@@ -8,7 +8,7 @@ public class AudioPlayer : MonoBehaviour {
 	public List<AudioClip> clips = new List<AudioClip>();
 	private bool nextClip;
 	public bool playAllClips;
-	private int currentClip;
+	public int currentClip;
 	public bool playedSound;
 	public AudioClip singleUse;
     [HideInInspector]

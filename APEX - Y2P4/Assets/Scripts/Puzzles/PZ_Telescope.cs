@@ -258,7 +258,7 @@ public class PZ_Telescope : Puzzle
     {
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(3);
-        FlowManager.instance.NextPuzzle(5);
+        FlowManager.instance.NextPuzzle(15);
 
         for (int i = 0; i < planets.Count; i++)
         {
