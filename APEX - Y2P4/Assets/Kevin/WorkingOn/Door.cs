@@ -26,6 +26,7 @@ public class Door : MonoBehaviour {
             {
                 timeTillOpen = 0;
             }
+			canPlay = false;
             StartCoroutine(DoorTimer(timeTillOpen));
         }
 	}
@@ -33,7 +34,7 @@ public class Door : MonoBehaviour {
 	public IEnumerator DoorTimer(float time)
 	{
 		yield return new WaitForSeconds(time);
-		canPlay = false;
+		
         anim.SetTrigger("OpenClose");
 	}
 }

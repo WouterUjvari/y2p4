@@ -22,7 +22,7 @@ public class PZ_NDA : Puzzle
         drone.GetNewState();
         ExtraDroneFunctionality.instance.anim.SetTrigger("Retract");
         Destroy(ExtraDroneFunctionality.instance.itemInHand, 0.1f);
-        FlowManager.instance.NextAnouncerVoice(4);
+        FlowManager.instance.NextAnouncerVoice(0);
         FlowManager.instance.NextPuzzle(10);
     }
 
@@ -32,7 +32,7 @@ public class PZ_NDA : Puzzle
         {
             if (!signedNDA)
             {
-                CompletePuzzle();
+                Invoke("CompletePuzzle",0.5f);
                 signedNDA = true;
             }
         }
