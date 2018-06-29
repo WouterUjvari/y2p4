@@ -37,6 +37,7 @@ public class FlowManager : MonoBehaviour {
 	{
 		if(currentPuzzle <= puzzles.Count - 1)
 		{
+            print("next puzzle");
 			StartCoroutine(PauseBetweenPuzzles(time));
 		}
 	}
@@ -62,6 +63,7 @@ public class FlowManager : MonoBehaviour {
 	public IEnumerator PauseBetweenPuzzles(float time)
 	{
 		yield return new WaitForSeconds(time);
+        print(currentPuzzle);
 		puzzles[currentPuzzle].StartPuzzle();
 		currentPuzzle += 1;
 	}
@@ -85,7 +87,6 @@ public class FlowManager : MonoBehaviour {
     {
         if(Input.GetKey(KeyCode.U))
         {
-            print("finish puzzle");
             NextPuzzle(0);
         }
     }

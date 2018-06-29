@@ -77,6 +77,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void StartPuzzle()
     {
+        print("Start Chemical");
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(3);
         GetNewColorToMix();
@@ -93,6 +94,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
+        print("Finish Chemical");
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(4);
         FlowManager.instance.NextPuzzle(15);

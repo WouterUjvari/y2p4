@@ -151,8 +151,8 @@ public class PZ_Bowling : Puzzle
     public override void CompletePuzzle()
     {
         FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(4);
-        FlowManager.instance.NextPuzzle(15);
+        FlowManager.instance.NextAnouncerVoice(2);
+        FlowManager.instance.NextPuzzle(12);
         closePuzzleDetectionZone.SetActive(true);
     }
 }
