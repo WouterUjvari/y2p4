@@ -135,4 +135,17 @@ public class ColorMixingManager : MonoBehaviour
 
         return burnedColor;
     }
+
+    public string GetColorNameByColor(Color color)
+    {
+        for (int i = 0; i < colors.Count; i++)
+        {
+            if (colors[i].color == color)
+            {
+                return colors[i].name;
+            }
+        }
+
+        return string.Empty;
+    }
 }
