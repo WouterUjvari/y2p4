@@ -15,6 +15,8 @@ public class Drone : MonoBehaviour
     }
     [SerializeField]
     private State state;
+    private State? bufferState = null;
+    private State? beforeGrabState = null;
 
     [Header("Movement")]
     [SerializeField]
@@ -85,14 +87,7 @@ public class Drone : MonoBehaviour
                 break;
             case State.Stunned:
 
-                if (stunnedAfterGrabCooldown > 0)
-                {
-                    stunnedAfterGrabCooldown -= Time.deltaTime;
-                }
-                else
-                {
-                    EndStun();
-                }
+                Stunned();
                 break;
             case State.LookAtPlayer:
 
@@ -149,6 +144,18 @@ public class Drone : MonoBehaviour
         }
     }
 
+    private void Stunned()
+    {
+        if (stunnedAfterGrabCooldown > 0)
+        {
+            stunnedAfterGrabCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            EndStun();
+        }
+    }
+
     private void LookAtPlayer()
     {
         if (Vector3.Distance(destination, transform.position) > stoppingDistance)
@@ -170,16 +177,26 @@ public class Drone : MonoBehaviour
     public void GetNewState()
     {
         float f = Random.value;
+        State newState;
 
         if (f <= 0.33f)
         {
             currentStopTime = Random.Range((float)(0.75 * stopTime), (float)(1.25 * stopTime));
-            state = State.Idling;
+            newState = State.Idling;
         }
         else
         {
-            state = State.Patroling;
+            newState = State.Patroling;
         }
+
+        if (state == State.Stunned)
+        {
+            bufferState = newState;
+            return;
+        }
+
+        state = (bufferState != null) ? (State)bufferState : newState;
+        bufferState = null;
     }
 
     private Vector3 GetDestination(Transform center, float radius)
@@ -212,11 +229,26 @@ public class Drone : MonoBehaviour
     {
         rb.useGravity = false;
         rb.isKinematic = true;
-        state = State.Patroling;
+
+        if (beforeGrabState != null)
+        {
+            state = (State)beforeGrabState;
+        }
+        else if (bufferState != null)
+        {
+            state = (State)bufferState;
+        }
+        else
+        {
+            state = State.Patroling;
+        }
+
+        beforeGrabState = null;
     }
 
     public void DroneGrabbed()
     {
+        beforeGrabState = state;
         state = State.GrabbedByPlayer;
         canStabilize = false;
     }
