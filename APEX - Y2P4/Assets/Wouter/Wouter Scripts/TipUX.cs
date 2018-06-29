@@ -77,8 +77,14 @@ public class TipUX : MonoBehaviour {
         tipUXmanager.SpawnNewTip();
         //Destroy(this.gameObject);
     }
+    public void KillhardCoded()
+    {
+        
+        tipUXmanager.SpawnNewTip();
+        anim.SetTrigger("Die");
+    }
 
 
 
-    
+
 }

@@ -33,7 +33,7 @@ public class ExtraDroneFunctionality : MonoBehaviour
         if (droneCam.activeInHierarchy)
         {
             Vector3 target = VRPlayerMovementManager.instance.headTransform.position;
-            target.y = droneCam.transform.position.y;
+            //target.y = droneCam.transform.position.y;
 
             droneCam.transform.LookAt(target);
         }
@@ -76,6 +76,7 @@ public class ExtraDroneFunctionality : MonoBehaviour
     public void DestroyJoints()
     {
         //claw.GetComponent<FixedJoint>().connectedBody = null;
+        giftingItem = null;
         Destroy(claw.GetComponent<FixedJoint>());
         anim.SetTrigger("Retract");
     }

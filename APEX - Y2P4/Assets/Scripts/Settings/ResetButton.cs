@@ -7,6 +7,7 @@ public class ResetButton : MonoBehaviour {
 
 	public void ResetGame()
 	{
+        VRPlayerMovementManager.instance.ToggleCanMove(true);
 		SceneManager.LoadScene(0);
 	}
 

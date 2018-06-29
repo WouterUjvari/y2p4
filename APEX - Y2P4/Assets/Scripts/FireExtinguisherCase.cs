@@ -16,6 +16,8 @@ public class FireExtinguisherCase : MonoBehaviour
     private float glassImpactForce = 1.5f;
     [SerializeField]
     private AudioSource glassBreakAudio;
+    [SerializeField]
+    private Collider hitCollider;
 
     private void Awake()
     {
@@ -37,6 +39,8 @@ public class FireExtinguisherCase : MonoBehaviour
 
     private void BreakGlass(VRInteractor hand)
     {
+        hitCollider.enabled = false;
+
         glass.SetActive(false);
         brokenGlass.SetActive(true);
         for (int i = 0; i < brokenGlass.transform.childCount; i++)

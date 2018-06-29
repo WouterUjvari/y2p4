@@ -17,8 +17,7 @@ public class PZ_HiddenKey : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(4);
+        FlowManager.instance.StartLight();
         TogglePuzzleItems(true);
     }
 
@@ -34,10 +33,7 @@ public class PZ_HiddenKey : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(4);
-        FlowManager.instance.NextPuzzle(15);
-
+        FlowManager.instance.CompleteLight();
         hiddenKeyCollider.enabled = false;
     }
 }

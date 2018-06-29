@@ -61,6 +61,10 @@ public class Burner : MonoBehaviour
         {
             StartCoroutine(BurnLiquid(toBurn));
         }
+        else
+        {
+            toBurnSnapSpot.snappedObject.GetComponent<Interactable>().Lock(false);
+        }
     }
 
     private IEnumerator BurnLiquid(Flask toBurn)

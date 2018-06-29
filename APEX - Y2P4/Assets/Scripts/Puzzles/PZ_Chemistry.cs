@@ -77,8 +77,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void StartPuzzle()
     {
-        FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(3);
+        FlowManager.instance.StartChemical();
         GetNewColorToMix();
         UnlockLocks();
     }
@@ -93,12 +92,7 @@ public class PZ_Chemistry : Puzzle
 
     public override void CompletePuzzle()
     {
-        FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoice(4);
-        ExtraDroneFunctionality.instance.itemIndex = 0;
-        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
-        Invoke("ExtraDroneFunctionality.instance.TriggerAnimation", 8);
-        FlowManager.instance.NextPuzzle(18);
+        FlowManager.instance.CompleteChemical();
     }
 
     public void ShowColorToMake(Color toMake)

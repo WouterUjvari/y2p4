@@ -13,6 +13,7 @@ public class FlowManager : MonoBehaviour {
 	public List<ClipList> clipsForAnouncer = new List<ClipList>();
 
 	public int currentPuzzle;
+    public Drone drone;
 	public List<Puzzle> puzzles = new List<Puzzle>();
 
 	void Start () 
@@ -26,6 +27,7 @@ public class FlowManager : MonoBehaviour {
 			Destroy(gameObject);
 		}
         NextShipAIVoice(1);
+        drone = FindObjectOfType<Drone>();
 	}
 
     private void Update()
@@ -101,12 +103,107 @@ public class FlowManager : MonoBehaviour {
     public IEnumerator DroneBuildTimer()
     {
         yield return new WaitForSeconds(10);
-        GameObject.FindObjectOfType<Drone>().GoLookAtPlayer();
+        FindObjectOfType<Drone>().GoLookAtPlayer();
         ExtraDroneFunctionality.instance.ToggleDroneCam(true);
         ExtraDroneFunctionality.instance.anim.SetTrigger("Point");
         yield return new WaitForSeconds(12);
-        GameObject.FindObjectOfType<Drone>().GetNewState();
+        drone.GetNewState();
         ExtraDroneFunctionality.instance.ToggleDroneCam(false);
         NextPuzzle(4);
+    }
+
+    public void StartNda()
+    {
+        ExtraDroneFunctionality.instance.ToggleDroneCam(false);
+        NextAnouncerVoice(0);
+        ExtraDroneFunctionality.instance.itemIndex = 1;
+        ExtraDroneFunctionality.instance.anim.SetTrigger("GiveItem");
+        drone.GoLookAtPlayer();
+    }
+    public void CompleteNDA()
+    {
+        drone.GetNewState();
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Retract");
+        Destroy(ExtraDroneFunctionality.instance.itemInHand, 0.1f);
+        ExtraDroneFunctionality.instance.giftingItem = null;
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Salute");
+        NextAnouncerVoice(0);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 2);
+        NextPuzzle(10);
+    }
+
+
+    public void StartBall()
+    {
+        NextShipAIVoice(0);
+        drone.Invoke("GoLookAtPlayer",3);
+        NextAnouncerVoice(3);
+        drone.Invoke("GetNewState",4);
+    }
+    public void CompleteBall()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(3);
+        NextPuzzle(10);
+    }
+
+
+    public void StartPlanets()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+    }
+    public void CompletePlanets()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 4);
+        NextPuzzle(12);
+    }
+
+
+    public void StartBowling()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+    }
+    public void CompleteBowling()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(2);
+        NextPuzzle(12);
+    }
+
+
+    public void StartChemical()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(3);
+    }
+    public void CompleteChemical()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 10);
+        NextPuzzle(18);
+    }
+
+
+    public void StartLight()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+    }
+    public void CompleteLight()
+    {
+        NextShipAIVoice(0);
+        NextAnouncerVoice(4);
+        NextPuzzle(15);
     }
 }
