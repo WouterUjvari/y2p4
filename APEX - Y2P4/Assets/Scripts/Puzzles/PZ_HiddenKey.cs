@@ -18,7 +18,7 @@ public class PZ_HiddenKey : Puzzle
     public override void StartPuzzle()
     {
         FlowManager.instance.NextShipAIVoice(0);
-        FlowManager.instance.NextAnouncerVoiceTimer(4);
+        FlowManager.instance.NextAnouncerVoice(4);
         TogglePuzzleItems(true);
     }
 

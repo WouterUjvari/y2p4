@@ -103,9 +103,9 @@ public class FlowManager : MonoBehaviour {
         yield return new WaitForSeconds(10);
         GameObject.FindObjectOfType<Drone>().GoLookAtPlayer();
         ExtraDroneFunctionality.instance.ToggleDroneCam(true);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(12);
         GameObject.FindObjectOfType<Drone>().GetNewState();
         ExtraDroneFunctionality.instance.ToggleDroneCam(false);
-        NextPuzzle(2);
+        NextPuzzle(4);
     }
 }

@@ -60,14 +60,12 @@ public class AudioPlayer : MonoBehaviour {
 		{
 			if(currentClip < clips.Count - 1 )
 			{
-                print("next");
                 nextClip = true;
 				currentClip += 1;
 			}
 			else if(clips.Count - 1 >= currentClip)
 			{
 				nextClip = false;
-				print("reset");
 				currentClip = 0;
 			}
 		}
@@ -75,7 +73,6 @@ public class AudioPlayer : MonoBehaviour {
 
 	public IEnumerator SingleUse()
 	{
-		print("in co routine");
 		playedSingleUse = true;
 		audioSource.clip = singleUse;
 		audioSource.Play();
