@@ -4,6 +4,8 @@ using TMPro;
 public class KeyManager : MonoBehaviour 
 {
 
+    public static KeyManager instance;
+
     private AudioSource aS;
     [SerializeField]
     private AudioClip accesDenied;
@@ -12,8 +14,7 @@ public class KeyManager : MonoBehaviour
 
     private bool canOpenLastDoor;
 
-    [SerializeField]
-    private ObjectSnapper keySnapper;
+    public ObjectSnapper keySnapper;
     [SerializeField]
     private TextMeshProUGUI keyHolderDisplayText;
     [SerializeField]
@@ -23,6 +24,15 @@ public class KeyManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         keysRequired = keySnapper.snapSpots.Count;
         aS = GetComponent<AudioSource>();
     }

@@ -50,6 +50,7 @@ public class ExtraDroneFunctionality : MonoBehaviour
         }
 
         itemInHand = Instantiate(giftingItem, claw.position, claw.rotation);
+
         //g.transform.parent = claw.transform;
         //g.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -64,6 +65,11 @@ public class ExtraDroneFunctionality : MonoBehaviour
         if (interactable)
         {
             itemInHand.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
+        }
+
+        if (giftingItem.tag == "Key")
+        {
+            interactable.onDeInteract.AddListener(() => KeyManager.instance.keySnapper.SnapObject(itemInHand.transform));
         }
         //Destroy(g.GetComponent<Rigidbody>());
     }

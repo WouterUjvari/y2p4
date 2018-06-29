@@ -102,8 +102,8 @@ public class FlowManager : MonoBehaviour {
 
     public IEnumerator DroneBuildTimer()
     {
+        drone.GoLookAtPlayer();
         yield return new WaitForSeconds(10);
-        FindObjectOfType<Drone>().GoLookAtPlayer();
         ExtraDroneFunctionality.instance.ToggleDroneCam(true);
         ExtraDroneFunctionality.instance.anim.SetTrigger("Point");
         yield return new WaitForSeconds(12);
@@ -128,9 +128,6 @@ public class FlowManager : MonoBehaviour {
         ExtraDroneFunctionality.instance.giftingItem = null;
         ExtraDroneFunctionality.instance.anim.SetTrigger("Salute");
         NextAnouncerVoice(0);
-        ExtraDroneFunctionality.instance.itemIndex = 0;
-        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
-        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 2);
         NextPuzzle(10);
     }
 
@@ -138,15 +135,19 @@ public class FlowManager : MonoBehaviour {
     public void StartBall()
     {
         NextShipAIVoice(0);
-        drone.Invoke("GoLookAtPlayer",3);
         NextAnouncerVoice(3);
-        drone.Invoke("GetNewState",4);
+        StartCoroutine(LookAtPlayer(4));
     }
     public void CompleteBall()
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(3);
         NextPuzzle(10);
+        LookAtPlayer(7);
+        ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
+        ExtraDroneFunctionality.instance.itemIndex = 2;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 3);
     }
 
 
@@ -154,14 +155,18 @@ public class FlowManager : MonoBehaviour {
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
+        StartCoroutine(LookAtPlayer(16));
     }
     public void CompletePlanets()
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
-        ExtraDroneFunctionality.instance.itemIndex = 0;
+        StartCoroutine(LookAtPlayer(10));
+
+        ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
+        ExtraDroneFunctionality.instance.itemIndex = 2;
         ExtraDroneFunctionality.instance.triggerName = "GiveItem";
-        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 4);
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 0);
         NextPuzzle(12);
     }
 
@@ -170,12 +175,18 @@ public class FlowManager : MonoBehaviour {
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
+        StartCoroutine(LookAtPlayer(7));
     }
     public void CompleteBowling()
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(2);
         NextPuzzle(12);
+        LookAtPlayer(10);
+        ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
+        ExtraDroneFunctionality.instance.itemIndex = 2;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 2);
     }
 
 
@@ -183,14 +194,18 @@ public class FlowManager : MonoBehaviour {
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(3);
+        StartCoroutine(LookAtPlayer(15));
     }
     public void CompleteChemical()
     {
         NextShipAIVoice(0);
+        StartCoroutine(LookAtPlayer(15));
         NextAnouncerVoice(4);
-        ExtraDroneFunctionality.instance.itemIndex = 0;
+
+        ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
+        ExtraDroneFunctionality.instance.itemIndex = 2;
         ExtraDroneFunctionality.instance.triggerName = "GiveItem";
-        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 10);
+        ExtraDroneFunctionality.instance.Invoke("TriggerAnimation", 0);
         NextPuzzle(18);
     }
 
@@ -199,11 +214,19 @@ public class FlowManager : MonoBehaviour {
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
+        StartCoroutine(LookAtPlayer(15));
     }
     public void CompleteLight()
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
         NextPuzzle(15);
+    }
+
+    public IEnumerator LookAtPlayer(float time)
+    {
+        drone.GoLookAtPlayer();
+        yield return new WaitForSeconds(time);
+        drone.GetNewState();
     }
 }
