@@ -95,7 +95,10 @@ public class PZ_Chemistry : Puzzle
     {
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(4);
-        FlowManager.instance.NextPuzzle(15);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        Invoke("ExtraDroneFunctionality.instance.TriggerAnimation", 8);
+        FlowManager.instance.NextPuzzle(18);
     }
 
     public void ShowColorToMake(Color toMake)

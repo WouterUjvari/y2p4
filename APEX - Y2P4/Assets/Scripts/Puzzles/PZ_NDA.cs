@@ -22,7 +22,12 @@ public class PZ_NDA : Puzzle
         drone.GetNewState();
         ExtraDroneFunctionality.instance.anim.SetTrigger("Retract");
         Destroy(ExtraDroneFunctionality.instance.itemInHand, 0.1f);
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Salute");
         FlowManager.instance.NextAnouncerVoice(0);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        Invoke("ExtraDroneFunctionality.instance.TriggerAnimation",2);
+        
         FlowManager.instance.NextPuzzle(10);
     }
 

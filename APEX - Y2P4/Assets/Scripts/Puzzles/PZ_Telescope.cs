@@ -258,6 +258,9 @@ public class PZ_Telescope : Puzzle
     {
         FlowManager.instance.NextShipAIVoice(0);
         FlowManager.instance.NextAnouncerVoice(4);
+        ExtraDroneFunctionality.instance.itemIndex = 0;
+        ExtraDroneFunctionality.instance.triggerName = "GiveItem";
+        Invoke("ExtraDroneFunctionality.instance.TriggerAnimation()",4);
         FlowManager.instance.NextPuzzle(12);
 
         for (int i = 0; i < planets.Count; i++)

@@ -25,7 +25,7 @@ public class TipUX : MonoBehaviour {
     public void Start()
     {
         anim = GetComponent<Animator>();
-        if (targetToFind != null)
+        if (targetToFind != "")
         {
             target = GameObject.Find(targetToFind).transform;
         }     
@@ -45,14 +45,14 @@ public class TipUX : MonoBehaviour {
         }
         else if (tipuxtype == TipUXType.PressInteractKey)
         {
-
-        }
-        else if (tipuxtype == TipUXType.PressNavigationKey)
-        {
-            if(VRInteractor.triggered)
+            if (VRInteractor.triggered)
             {
                 QueNextTip();
             }
+        }
+        else if (tipuxtype == TipUXType.PressNavigationKey)
+        {
+           
         }
         
     }

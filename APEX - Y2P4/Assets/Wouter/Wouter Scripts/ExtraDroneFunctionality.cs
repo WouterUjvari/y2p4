@@ -14,6 +14,8 @@ public class ExtraDroneFunctionality : MonoBehaviour
     public Transform claw;
     public GameObject itemInHand;
     public int itemIndex;
+    [HideInInspector]
+    public string triggerName;
 
     [Header("Drone Player Cam")]
     [SerializeField] private GameObject faceText;
@@ -64,6 +66,11 @@ public class ExtraDroneFunctionality : MonoBehaviour
             itemInHand.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
         }
         //Destroy(g.GetComponent<Rigidbody>());
+    }
+
+    public void TriggerAnimation()
+    {
+        anim.SetTrigger(triggerName);
     }
 
     public void DestroyJoints()
