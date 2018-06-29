@@ -5,6 +5,10 @@ using UnityEngine;
 public class TipUX : MonoBehaviour {
 
     public LineRenderer myLine;
+    public TipUXManager tipUXmanager;
+    public enum TipUXType {PressTarget, PickUpTarget, PressInteractKey, PressNavigationKey };
+    public TipUXType tipuxtype;
+    private Animator anim;
 
     [Header("Line transforms")]
     public Transform origin;
@@ -13,13 +17,15 @@ public class TipUX : MonoBehaviour {
     public string targetToFind;
 
     [Header("Rotate")]
-    public Transform targetCam;
+    public Transform targetCamPos;
+    public Transform targetCamRot;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
     public void Start()
     {
-        if(targetToFind != null)
+        anim = GetComponent<Animator>();
+        if (targetToFind != null)
         {
             target = GameObject.Find(targetToFind).transform;
         }     
@@ -30,14 +36,49 @@ public class TipUX : MonoBehaviour {
         myLine.SetPosition(0, origin.position);
         myLine.SetPosition(1, hook.position);
         myLine.SetPosition(2, target.position);
+
+          
+        
+        if (tipuxtype == TipUXType.PickUpTarget)
+        {
+
+        }
+        else if (tipuxtype == TipUXType.PressInteractKey)
+        {
+
+        }
+        else if (tipuxtype == TipUXType.PressNavigationKey)
+        {
+            if(VRInteractor.triggered)
+            {
+                QueNextTip();
+            }
+        }
+        
     }
 
     public void LateUpdate()
     {
-        Vector3 desiredPosition = targetCam.position + offset;
+        Vector3 desiredPosition = targetCamPos.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
 
-        transform.LookAt(targetCam);
+        transform.LookAt(targetCamRot);
     }
+
+    public void QueNextTip()
+    {
+        anim.SetTrigger("Die");
+    }
+
+    public void KillTip()
+    {
+        tipUXmanager.tipIndex++;
+        tipUXmanager.SpawnNewTip();
+        //Destroy(this.gameObject);
+    }
+
+
+
+    
 }

@@ -8,6 +8,9 @@ public class VRInteractor : MonoBehaviour
     public GameObject collidingObject;
     public Interactable interactingObject;
 
+    public static bool triggered;
+    
+
     [SerializeField]
     private VRInteractor otherHand;
     private HandActions handActions;
@@ -72,15 +75,18 @@ public class VRInteractor : MonoBehaviour
         // If the trigger gets pressed down and there is a colliding object, interact with it.
         if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
+            triggered = true;
             if (collidingObject != null)
             {
                 Interact();
             }
         }
+        
 
         // If the trigger gets pressed up and the player is interacting with an object, deinteract with it.
         if (Controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
+            triggered = false;
             if (interactingObject != null)
             {
                 DeInteract();
