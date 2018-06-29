@@ -12,6 +12,10 @@ public class FireExtinguisherCase : MonoBehaviour
     private GameObject glass;
     [SerializeField]
     private GameObject brokenGlass;
+    [SerializeField]
+    private float glassImpactForce = 1.5f;
+    [SerializeField]
+    private AudioSource glassBreakAudio;
 
     private void Awake()
     {
@@ -37,7 +41,12 @@ public class FireExtinguisherCase : MonoBehaviour
         brokenGlass.SetActive(true);
         for (int i = 0; i < brokenGlass.transform.childCount; i++)
         {
-            brokenGlass.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-hand.Controller.velocity * 0.5f, ForceMode.Impulse);
+            brokenGlass.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-hand.Controller.velocity * glassImpactForce, ForceMode.Impulse);
+        }
+
+        if (glassBreakAudio.clip != null)
+        {
+            glassBreakAudio.Play();
         }
 
         fireExtinguisher.Lock(false);
