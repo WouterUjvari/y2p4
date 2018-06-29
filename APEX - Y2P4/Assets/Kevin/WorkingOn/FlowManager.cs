@@ -143,7 +143,7 @@ public class FlowManager : MonoBehaviour {
         NextShipAIVoice(0);
         NextAnouncerVoice(3);
         NextPuzzle(10);
-        LookAtPlayer(7);
+        LookAtPlayer(10);
         ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
         ExtraDroneFunctionality.instance.itemIndex = 2;
         ExtraDroneFunctionality.instance.triggerName = "GiveItem";

@@ -37,6 +37,12 @@ public class KeyManager : MonoBehaviour
         aS = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        canOpenLastDoor = false;
+        keyHolderDisplayText.text = "ACCESS\nDENIED";
+    }
+
     public void UseKey()
     {
         currentKeys++;
