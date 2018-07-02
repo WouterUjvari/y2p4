@@ -20,6 +20,8 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private Door doorToOpen;
     [SerializeField]
+    private Collider elevatorTriggerCol;
+    [SerializeField]
     private GameObject noTPZone;
 
     private void Awake()
@@ -35,6 +37,7 @@ public class KeyManager : MonoBehaviour
 
         keysRequired = keySnapper.snapSpots.Count;
         aS = GetComponent<AudioSource>();
+        elevatorTriggerCol.enabled = false;
     }
 
     private void Start()
@@ -72,6 +75,7 @@ public class KeyManager : MonoBehaviour
         doorToOpen.GetComponent<AudioPlayer>().PlayAudio();
         doorToOpen.OpenCloseDoor();
         noTPZone.SetActive(false);
+        elevatorTriggerCol.enabled = true;
         TimeManager.instance.StopTimeForever();
     }
 }
