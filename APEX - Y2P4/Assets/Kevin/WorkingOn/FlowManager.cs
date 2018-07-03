@@ -106,6 +106,7 @@ public class FlowManager : MonoBehaviour {
         yield return new WaitForSeconds(10);
         ExtraDroneFunctionality.instance.ToggleDroneCam(true);
         ExtraDroneFunctionality.instance.anim.SetTrigger("Point");
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Lean");
         yield return new WaitForSeconds(12);
         drone.GetNewState();
         ExtraDroneFunctionality.instance.ToggleDroneCam(false);
@@ -114,6 +115,7 @@ public class FlowManager : MonoBehaviour {
 
     public void StartNda()
     {
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Scratch");
         ExtraDroneFunctionality.instance.ToggleDroneCam(false);
         NextAnouncerVoice(0);
         ExtraDroneFunctionality.instance.itemIndex = 1;
@@ -140,6 +142,7 @@ public class FlowManager : MonoBehaviour {
     }
     public void CompleteBall()
     {
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Curious");
         NextShipAIVoice(0);
         NextAnouncerVoice(3);
         NextPuzzle(10);
@@ -153,6 +156,7 @@ public class FlowManager : MonoBehaviour {
 
     public void StartPlanets()
     {
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Scratch");
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
         StartCoroutine(LookAtPlayer(16));
@@ -173,12 +177,14 @@ public class FlowManager : MonoBehaviour {
 
     public void StartBowling()
     {
+        ExtraDroneFunctionality.instance.anim.SetBool("Pumped", true);
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
         StartCoroutine(LookAtPlayer(7));
     }
     public void CompleteBowling()
     {
+        ExtraDroneFunctionality.instance.anim.SetBool("Pumped", false);
         NextShipAIVoice(0);
         NextAnouncerVoice(2);
         NextPuzzle(12);
@@ -192,6 +198,7 @@ public class FlowManager : MonoBehaviour {
 
     public void StartChemical()
     {
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Scratch");
         NextShipAIVoice(0);
         NextAnouncerVoice(3);
         StartCoroutine(LookAtPlayer(15));
@@ -201,7 +208,7 @@ public class FlowManager : MonoBehaviour {
         NextShipAIVoice(0);
         StartCoroutine(LookAtPlayer(15));
         NextAnouncerVoice(4);
-
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Salute");
         ExtraDroneFunctionality.instance.anim.ResetTrigger("Retract");
         ExtraDroneFunctionality.instance.itemIndex = 2;
         ExtraDroneFunctionality.instance.triggerName = "GiveItem";
@@ -215,12 +222,14 @@ public class FlowManager : MonoBehaviour {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
         StartCoroutine(LookAtPlayer(15));
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Search");
     }
     public void CompleteLight()
     {
         NextShipAIVoice(0);
         NextAnouncerVoice(4);
         NextPuzzle(15);
+        ExtraDroneFunctionality.instance.anim.SetTrigger("Salute");
     }
 
     public IEnumerator LookAtPlayer(float time)
