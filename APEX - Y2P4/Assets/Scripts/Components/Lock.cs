@@ -11,7 +11,10 @@ public class Lock : MonoBehaviour
     {
         for (int i = 0; i < lockables.Count; i++)
         {
-            lockables[i].Lock(b);
+            if (lockables[i] != null)
+            {
+                lockables[i].Lock(b);
+            }
         }
     }
 }

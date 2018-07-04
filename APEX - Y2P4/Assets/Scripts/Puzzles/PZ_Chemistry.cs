@@ -30,7 +30,10 @@ public class PZ_Chemistry : Puzzle
 
         for (int i = 0; i < interactablesToLockAtStart.Count; i++)
         {
-            interactablesToLockAtStart[i].Lock(true);
+            if (interactablesToLockAtStart[i] != null)
+            {
+                interactablesToLockAtStart[i].Lock(true);
+            }
         }
     }
 
@@ -86,7 +89,10 @@ public class PZ_Chemistry : Puzzle
     {
         for (int i = 0; i < locks.Count; i++)
         {
-            locks[i].Lock(false);
+            if (locks[i] != null)
+            {
+                locks[i].Lock(false);
+            }
         }
     }
 
