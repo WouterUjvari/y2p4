@@ -10,8 +10,8 @@ public abstract class Interactable : MonoBehaviour
         get { return locked; }
     }
 
-    [SerializeField] public UnityEvent onInteract;
-    [SerializeField] public UnityEvent onDeInteract;
+    public UnityEvent onInteract;
+    public UnityEvent onDeInteract;
 
     protected VRInteractor interactingHand;
 
