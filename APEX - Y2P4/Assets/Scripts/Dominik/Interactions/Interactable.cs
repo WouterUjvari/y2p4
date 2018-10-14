@@ -5,12 +5,13 @@ public abstract class Interactable : MonoBehaviour
 {
 
     protected bool locked;
-    public bool Locked { get { return locked; } private set { } }
+    public bool Locked
+    {
+        get { return locked; }
+    }
 
-    [SerializeField]
-    public UnityEvent onInteract;
-    [SerializeField]
-    public UnityEvent onDeInteract;
+    [SerializeField] public UnityEvent onInteract;
+    [SerializeField] public UnityEvent onDeInteract;
 
     protected VRInteractor interactingHand;
 

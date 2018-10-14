@@ -4,12 +4,13 @@ public class VRInteractor : MonoBehaviour
 {
 
     private SteamVR_TrackedObject trackedObj;
+    private AudioSource audioSource;
+    private float audioPitch;
 
     public GameObject collidingObject;
     public Interactable interactingObject;
 
     public static bool triggered;
-    
 
     [SerializeField]
     private VRInteractor otherHand;
@@ -33,6 +34,7 @@ public class VRInteractor : MonoBehaviour
         handActions = GetComponentInChildren<HandActions>();
 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        audioSource = GetComponent<AudioSource>();
 
 #if TEST
         Controller = SteamVR_Controller.Input((int)trackedObj.index);
@@ -75,7 +77,6 @@ public class VRInteractor : MonoBehaviour
         // If the trigger gets pressed down and there is a colliding object, interact with it.
         if (Controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
-            print("triggerererere");
             triggered = true;
             if (collidingObject != null)
             {
@@ -179,8 +180,6 @@ public class VRInteractor : MonoBehaviour
 
     private void Interact()
     {
-        float pitchValue;
-
         // Check if the object were supposed to interact with is indeed an interactable, if not then return.
         Interactable interactable = collidingObject.GetComponent<Interactable>();
         if (interactable == null)
@@ -207,21 +206,25 @@ public class VRInteractor : MonoBehaviour
         // Interact with the object and set the interactingObject.
         interactable.Interact(this);
         interactingObject = interactable;
-        pitchValue = Random.Range(1,1.5f);
-        GetComponent<AudioSource>().pitch = pitchValue;
-        GetComponent<AudioSource>().Play();
+
+        PlayInteractAudio();
+
         //collidingObject = null;
     }
 
     public void DeInteract()
     {
-        float pitchValue;
-
         // Deinteract with the interactingObject and set it to null.
         interactingObject.DeInteract(this);
         interactingObject = null;
-        pitchValue = Random.Range(0.9f,0.7f);
-        GetComponent<AudioSource>().pitch = pitchValue;
-        GetComponent<AudioSource>().Play();
+
+        PlayInteractAudio();
+    }
+
+    private void PlayInteractAudio()
+    {
+        audioPitch = Random.Range(0.9f,0.7f);
+        audioSource.pitch = audioPitch;
+        audioSource.Play();
     }
 }
