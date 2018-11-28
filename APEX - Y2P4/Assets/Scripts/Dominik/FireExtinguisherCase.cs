@@ -21,7 +21,7 @@ public class FireExtinguisherCase : MonoBehaviour
 
     private void Awake()
     {
-        fireExtinguisher.Lock(true);
+        fireExtinguisher.Lock = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,6 +53,6 @@ public class FireExtinguisherCase : MonoBehaviour
             glassBreakAudio.Play();
         }
 
-        fireExtinguisher.Lock(false);
+        fireExtinguisher.Lock = false;
     }
 }

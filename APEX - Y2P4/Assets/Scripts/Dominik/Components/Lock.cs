@@ -13,7 +13,7 @@ public class Lock : MonoBehaviour
         {
             if (lockables[i] != null)
             {
-                lockables[i].Lock(b);
+                lockables[i].Lock = b;
             }
         }
     }

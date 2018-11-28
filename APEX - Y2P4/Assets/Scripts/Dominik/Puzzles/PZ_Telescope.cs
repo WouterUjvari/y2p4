@@ -216,7 +216,7 @@ public class PZ_Telescope : Puzzle
 
         for (int i = 0; i < planets.Count; i++)
         {
-            planets[i].Lock(false);
+            planets[i].Lock = false;
         }
     }
 
@@ -248,7 +248,7 @@ public class PZ_Telescope : Puzzle
         planets.Shuffle();
         for (int i = 0; i < planets.Count; i++)
         {
-            planets[i].Lock(true);
+            planets[i].Lock = true;
             objSnapper.snapSpots[i].SnapObject(planets[i].transform);
         }
     }
@@ -259,7 +259,7 @@ public class PZ_Telescope : Puzzle
 
         for (int i = 0; i < planets.Count; i++)
         {
-            planets[i].Lock(true);
+            planets[i].Lock = true;
 
             RotateAround[] rotateArounds = planets[i].GetComponentsInParent<RotateAround>();
             for (int ii = 0; ii < rotateArounds.Length; ii++)

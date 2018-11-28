@@ -127,7 +127,7 @@ public class Grabable_Restricted : Grabable
 
     public override void Interact(VRInteractor hand)
     {
-        if (locked)
+        if (Lock)
         {
             return;
         }

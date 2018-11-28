@@ -32,7 +32,7 @@ public class Grabable : Interactable
 
     public override void Interact(VRInteractor hand)
     {
-        if (locked)
+        if (Lock)
         {
             return;
         }

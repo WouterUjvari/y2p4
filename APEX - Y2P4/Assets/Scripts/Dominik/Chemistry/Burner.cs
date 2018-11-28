@@ -63,7 +63,7 @@ public class Burner : MonoBehaviour
         }
         else
         {
-            toBurnSnapSpot.snappedObject.GetComponent<Interactable>().Lock(false);
+            toBurnSnapSpot.snappedObject.GetComponent<Interactable>().Lock = false;
         }
     }
 
@@ -85,6 +85,6 @@ public class Burner : MonoBehaviour
         yield return new WaitForSeconds(3.9f);
         burnedLiquidParticle.Stop();
 
-        toBurnSnapSpot.snappedObject.GetComponent<Interactable>().Lock(false);
+        toBurnSnapSpot.snappedObject.GetComponent<Interactable>().Lock = false;
     }
 }

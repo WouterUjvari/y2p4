@@ -106,6 +106,6 @@ public class ObjectSnapSpot : MonoBehaviour
 
     public void LockSnappedObject()
     {
-        snappedObject.GetComponent<Interactable>().Lock(true);
+        snappedObject.GetComponent<Interactable>().Lock = true;
     }
 }

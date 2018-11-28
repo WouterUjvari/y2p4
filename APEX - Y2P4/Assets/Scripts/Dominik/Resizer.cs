@@ -59,7 +59,7 @@ public class Resizer : MonoBehaviour
         }
 
         canResize = false;
-        doorHandleInteractable.Lock(true);
+        doorHandleInteractable.Lock = true;
         anim.SetTrigger("Resize");
     }
 
@@ -160,7 +160,7 @@ public class Resizer : MonoBehaviour
     public void ResetCanResize()
     {
         canResize = true;
-        doorHandleInteractable.Lock(false);
+        doorHandleInteractable.Lock = false;
     }
 
     public void CheckDoorState()

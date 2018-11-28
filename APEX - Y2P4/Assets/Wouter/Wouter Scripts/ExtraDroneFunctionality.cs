@@ -64,12 +64,12 @@ public class ExtraDroneFunctionality : MonoBehaviour
         Interactable interactable = itemInHand.GetComponent<Interactable>();
         if (interactable)
         {
-            itemInHand.GetComponent<Interactable>().onInteract.AddListener(DestroyJoints);
+            itemInHand.GetComponent<Interactable>().OnInteract.AddListener(DestroyJoints);
         }
 
         if (giftingItem.tag == "Key")
         {
-            interactable.onDeInteract.AddListener(() => KeyManager.instance.keySnapper.SnapObject(itemInHand.transform));
+            interactable.OnDeInteract.AddListener(() => KeyManager.instance.keySnapper.SnapObject(itemInHand.transform));
         }
         //Destroy(g.GetComponent<Rigidbody>());
     }

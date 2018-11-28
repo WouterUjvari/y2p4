@@ -1,32 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class Interactable : MonoBehaviour
 {
 
-    protected bool locked;
-    public bool Locked
+    // Lock can be used for locking interactables when
+    // for example they are placed in a closed cupboard.
+    private bool locked;
+    public bool Lock
     {
-        get { return locked; }
+        get
+        {
+            return locked;
+        }
+        set
+        {
+            locked = value;
+            OnLockInteractable(locked);
+        }
     }
 
-    public UnityEvent onInteract;
-    public UnityEvent onDeInteract;
+    public UnityEvent OnInteract;
+    public UnityEvent OnDeInteract;
+
+    public event Action<bool> OnLockInteractable = delegate { };
 
     protected VRInteractor interactingHand;
 
     public virtual void Interact(VRInteractor hand)
     {
-        onInteract.Invoke();
+        OnInteract.Invoke();
     }
 
     public virtual void DeInteract(VRInteractor hand)
     {
-        onDeInteract.Invoke();
-    }
-
-    public void Lock(bool b)
-    {
-        locked = b;
+        OnDeInteract.Invoke();
     }
 }

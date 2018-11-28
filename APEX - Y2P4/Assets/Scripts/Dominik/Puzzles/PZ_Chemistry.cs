@@ -32,7 +32,7 @@ public class PZ_Chemistry : Puzzle
         {
             if (interactablesToLockAtStart[i] != null)
             {
-                interactablesToLockAtStart[i].Lock(true);
+                interactablesToLockAtStart[i].Lock = true;
             }
         }
     }
@@ -91,7 +91,7 @@ public class PZ_Chemistry : Puzzle
         {
             if (locks[i] != null)
             {
-                locks[i].Lock(false);
+                locks[i].Lock = false;
             }
         }
     }

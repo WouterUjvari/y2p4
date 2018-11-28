@@ -124,7 +124,7 @@ public class VRInteractor : MonoBehaviour
         // If the current colliding object is an interactable, set the collidingObject to that object and change the hand animation based on the type of interactable.
         if (interactable != null)
         {
-            if (interactable.Locked)
+            if (interactable.Lock)
             {
                 return;
             }
